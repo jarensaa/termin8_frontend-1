@@ -72,7 +72,7 @@ const App = React.createClass({
                 <MaterialTitlePanel title={contentHeader}>
                     <div style={styles.content}>
                         <p>
-                            Intro page
+                            Intro page 1
                         </p>
                     </div>
                 </MaterialTitlePanel>
