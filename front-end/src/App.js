@@ -4,6 +4,7 @@ import './App.css';
 import Sidebar from './sidebar';
 import MaterialTitlePanel from './material_title_panel';
 import SidebarContent from './sidebar_content';
+import {Card,Col,Button} from 'react-materialize';
 
 const styles = {
     contentHeaderMenuLink: {
@@ -71,9 +72,17 @@ const App = React.createClass({
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
                     <div style={styles.content}>
-                        <p>
-                            Intro page 1
-                        </p>
+                        <Col m={6} s={12}>
+                            <Card className='blue-grey darken-1' textClassName='white-text' title='Card title' actions={[
+                                <div>
+                                    <Button waves='light' margin ="5px">button</Button>
+                                    <Button waves='light'>button</Button>
+                                    <Button waves='light'>button</Button>
+                                </div>
+                            ]}>
+                                I am a very simple card. <yay></yay>
+                            </Card>
+                        </Col>
                     </div>
                 </MaterialTitlePanel>
             </Sidebar>

@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import MaterialTitlePanel from './material_title_panel';
+import Logo from './Termin8_logo.svg';
 
 const styles = {
     sidebar: {
@@ -11,7 +12,7 @@ const styles = {
     },
     sidebarLink: {
         display: 'block',
-        padding: '16px 0px',
+        padding: '16px 16px',
         color: '#757575',
         textDecoration: 'none',
     },
@@ -24,6 +25,10 @@ const styles = {
         padding: '16px',
         height: '100%',
         backgroundColor: 'white',
+    },
+    image: {
+        width: 200,
+        padding: '16px 16px',
     },
 };
 
@@ -38,14 +43,14 @@ const SidebarContent = (props) => {
     }
 
     return (
-        <MaterialTitlePanel title="Menu" style={style}>
-            <div style={styles.content}>
+            <div style={style}>
+                <img src={Logo} style={styles.image}/>
                 <a href="index.html" style={styles.sidebarLink}>Home</a>
                 <a href="responsive_example.html" style={styles.sidebarLink}>Responsive Example</a>
                 <div style={styles.divider} />
                 {links}
             </div>
-        </MaterialTitlePanel>
+
     );
 };
 

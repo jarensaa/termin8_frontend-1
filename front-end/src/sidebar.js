@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const CANCEL_DISTANCE_ON_SCROLL = 20;
 
 const defaultStyles = {
