@@ -48,7 +48,7 @@ const App = React.createClass({
 
 
 
-    render() {
+    render: function() {
 
         const sidebar = <SidebarContent />;
 
