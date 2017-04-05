@@ -2,7 +2,6 @@
  * Created by Jens-Andreas on 04-Apr-17.
  */
 import React from 'react';
-import MaterialTitlePanel from './material_title_panel';
 import Logo from './Termin8_logo.svg';
 
 const styles = {
@@ -39,14 +38,13 @@ const SidebarContent = (props) => {
 
     for (let ind = 0; ind < 10; ind++) {
         links.push(
-            <a key={ind} href="#" style={styles.sidebarLink}>Mock menu item {ind}</a>);
+            <a key={ind} href="#" style={styles.sidebarLink}>Room {ind}</a>);
     }
 
     return (
             <div style={style}>
                 <img src={Logo} style={styles.image}/>
                 <a href="index.html" style={styles.sidebarLink}>Home</a>
-                <a href="responsive_example.html" style={styles.sidebarLink}>Responsive Example</a>
                 <div style={styles.divider} />
                 {links}
             </div>
