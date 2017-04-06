@@ -4,52 +4,56 @@
 import React from 'react';
 import PlantCard from './plant_card';
 
-
 const styles = {
     area: {
         padding: "10px 10px 0px",
     }
 }
 
-const plantValues = {
-    waterLevel: 3,
-    room: 2,
-
-}
-
 class CardArea extends React.Component{
-    constructor(){
-        super();
-        this.state = { items: []};
-    }
-
-    componentDidMount() {
-        //TODO Add REST API features here.
-        /*
-        Based on JSON data, set the correct plantValues of the plant.
-         */
+    constructor(props){
+        super(props);
+        this.state = {
+            data: props.data,
+            roomFilter: props.roomFilter,
+            filterActive: props.filterActive,
+        };
     }
 
     render() {
-        return(
+        let plants = [];
+
+        for(let i = 0; i < this.state.data.length; i++){
+            const plant = this.state.data[i]
+            let plantColor = "green";
+
+            //TODO: Remove when watering logic is implemented
+            if(plant.id % 2 === 0){
+                plantColor = "yellow";
+            }
+
+
+            const plantProps = {
+                color: plantColor,
+                room: plant.room.id,
+                key: plant.id,
+                id: plant.id,
+                name: plant.name,
+                roomName: plant.room.name,
+            }
+
+            plants.push(<PlantCard {...plantProps}/>);
+        }
+
+
+        return (
             <div style={styles.area}>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
-                <PlantCard {...plantValues}/>
+                {plants}
             </div>
         )
     }
+
+
 }
 
 export default CardArea;

@@ -15,27 +15,70 @@ const style = {
         height: 1,
         backgroundColor: '#757575',
     },
-    cardStyle: {
+    greenCardStyle: {
         className: 'green lighten-3',
         textClassName: 'gray-text',
         title: 'Card title',
     },
-    buttonStyle: {
+    greenButtonStyle: {
         waves: 'light',
         className: 'green lighten-2',
         style: {
             margin: "10px",
         }
     },
+    yellowCardStyle: {
+        className: 'amber lighten-3',
+        textClassName: 'gray-text',
+        title: 'Card title',
+    },
+    yellowButtonStyle: {
+        waves: 'light',
+        className: 'amber lighten-2',
+        style: {
+            margin: "10px",
+        }
+    },
+    redCardStyle: {
+        className: 'red lighten-3',
+        textClassName: 'gray-text',
+        title: 'Card title',
+    },
+    redButtonStyle: {
+        waves: 'light',
+        className: 'red lighten-2',
+        style: {
+            margin: "10px",
+        }
+    },
+    buttonStyle: {
+    },
+    cardStyle: {
+        title: "Default",
+    },
 }
 
 const PlantCard = (props) => {
 
+
+        if(props.color === "green"){
+            style.cardStyle = style.greenCardStyle;
+            style.buttonStyle = style.greenButtonStyle
+        } else if(props.color === "red"){
+            style.cardStyle = style.redCardStyle;
+            style.buttonStyle = style.redButtonStyle;
+        } else {
+            style.cardStyle = style.yellowCardStyle;
+            style.buttonStyle = style.yellowButtonStyle;
+        }
+
+        style.cardStyle.title = props.name;
+
        return(
            <div style={style.content}>
                <Card {...style.cardStyle}>
-                   <div style={props}>
-                       About the plant
+                   <div>
+                       This plant is located in room {props.roomName}
                        <div style={style.divider} />
                        <Button {...style.buttonStyle}>Configure</Button>
                        <Button {...style.buttonStyle}>Water</Button>
