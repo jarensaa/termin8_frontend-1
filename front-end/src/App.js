@@ -4,6 +4,7 @@ import Sidebar from './sidebar';
 import MaterialTitlePanel from './material_title_panel';
 import SidebarContent from './sidebar_content';
 import PlantCard from './Cards/plant_card';
+import CardContent from './Cards/card_content';
 
 
 const styles = {
@@ -53,6 +54,7 @@ const App = React.createClass({
     render: function () {
 
         const sidebar = <SidebarContent />;
+        const card = <CardContent/>;
 
         const contentHeader = (
             <span>
@@ -69,10 +71,15 @@ const App = React.createClass({
             onSetOpen: this.onSetOpen,
         };
 
+        const cardProps = {
+            cards: card
+        }
+
         return (
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
-                    <PlantCard/>
+                    Hi!
+                    /*<PlantCard {...cardProps} />*/
                 </MaterialTitlePanel>
             </Sidebar>
         );
