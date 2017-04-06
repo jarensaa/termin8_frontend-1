@@ -6,7 +6,7 @@ import {Card, Button} from 'react-materialize';
 
 const style = {
     content: {
-        padding: '16px',
+        padding: '0px 10px 0px 10px',
         width: '400px',
         float: 'left',
     },

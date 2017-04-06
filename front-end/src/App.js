@@ -3,7 +3,7 @@ import './App.css';
 import Sidebar from './sidebar';
 import MaterialTitlePanel from './material_title_panel';
 import SidebarContent from './sidebar_content';
-import PlantCard from './Cards/plant_card';
+import CardArea from './Cards/card_area';
 
 
 const styles = {
@@ -19,6 +19,7 @@ const styles = {
     },
 };
 const App = React.createClass({
+
     getInitialState(){
         return {docked: false, open: false};
     },
@@ -58,7 +59,7 @@ const App = React.createClass({
             <span>
                 {!this.state.docked &&
                 <a onClick={this.toggleOpen} href="#" style={styles.contentHeaderMenuLink}>=</a>}
-                <span> Termin8 perfect plant watering system</span>
+                <span> My Plants</span>
             </span>
         );
 
@@ -79,8 +80,7 @@ const App = React.createClass({
         return (
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
-                    <PlantCard {...plantValues}/>
-                    <PlantCard {...plantValues}/>
+                    <CardArea/>
                 </MaterialTitlePanel>
             </Sidebar>
         );
