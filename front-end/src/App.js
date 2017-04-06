@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 import Sidebar from './sidebar';
 import MaterialTitlePanel from './material_title_panel';
 import SidebarContent from './sidebar_content';
-import {Card,Col,Button} from 'react-materialize';
+import PlantCard from './Cards/plant_card';
+
 
 const styles = {
     contentHeaderMenuLink: {
@@ -14,11 +14,13 @@ const styles = {
     },
     content: {
         padding: '16px',
+        height: '400px',
+        width: '400px',
     },
 };
 const App = React.createClass({
     getInitialState(){
-        return {docked: false, open:false};
+        return {docked: false, open: false};
     },
 
     componentWillMount() {
@@ -48,8 +50,7 @@ const App = React.createClass({
     },
 
 
-
-    render: function() {
+    render: function () {
 
         const sidebar = <SidebarContent />;
 
@@ -71,19 +72,7 @@ const App = React.createClass({
         return (
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
-                    <div style={styles.content}>
-                        <Col m={6} s={12}>
-                            <Card className='blue-grey darken-1' textClassName='white-text' title='Card title' actions={[
-                                <div>
-                                    <Button waves='light' margin ="5px">button</Button>
-                                    <Button waves='light'>button</Button>
-                                    <Button waves='light'>button</Button>
-                                </div>
-                            ]}>
-                                I am a very simple card. <yay></yay>
-                            </Card>
-                        </Col>
-                    </div>
+                    <PlantCard/>
                 </MaterialTitlePanel>
             </Sidebar>
         );
