@@ -78,8 +78,7 @@ const App = React.createClass({
         return (
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
-                    Hi!
-                    /*<PlantCard {...cardProps} />*/
+                    <PlantCard/>
                 </MaterialTitlePanel>
             </Sidebar>
         );
