@@ -23,6 +23,8 @@ Free components for React in material design!
 
 ## Setting up the local environment
 ```
+git clone https://github.com/simenbkr/termin8_frontend.git
+cd termin8_frontend
 cd front-end
 npm install
 npm start
@@ -34,4 +36,3 @@ npm run build
 ```
 Genereates html, css and js to be deployed to the server.
 The underlying frameworks used are Webpack and Babel
-

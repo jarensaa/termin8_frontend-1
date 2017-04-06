@@ -1,0 +1,6 @@
+{
+  "plants" : [
+    {"id":1,"name":"plante1","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Rom1"},"plant_type":{"id":2,"name":"Type2"}},
+    {"id":2,"name":"test","max_temp":0.0,"min_temp":10.0,"min_moisture":0.0,"max_moisture":10.0,"last_watered":"19:11:19","automatic_water":false,"room":{"id":1,"name":"Rom1"},"plant_type":{"id":2,"name":"Type2"}}
+  ]
+}
