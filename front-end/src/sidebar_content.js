@@ -8,6 +8,7 @@ const styles = {
     sidebar: {
         width: 256,
         height: '100%',
+        backgroundColor: 'white',
     },
     sidebarLink: {
         display: 'block',

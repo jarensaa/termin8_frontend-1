@@ -3,7 +3,8 @@ import './App.css';
 import Sidebar from './sidebar';
 import MaterialTitlePanel from './material_title_panel';
 import SidebarContent from './sidebar_content';
-import {Card, Col, Button} from 'react-materialize';
+import PlantCard from './Cards/plant_card';
+
 
 const styles = {
     contentHeaderMenuLink: {
@@ -71,18 +72,7 @@ const App = React.createClass({
         return (
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
-                        <div style={styles.content}>
-                            <Card className='blue-grey darken-1' textClassName='white-text' title='Card title'
-                                  actions={[
-                                      <div>
-                                          <Button waves='light' margin="5px">button</Button>
-                                          <Button waves='light'>button</Button>
-                                          <Button waves='light'>button</Button>
-                                      </div>
-                                  ]}>
-                                I am a very simple card.
-                            </Card>
-                        </div>
+                    <PlantCard/>
                 </MaterialTitlePanel>
             </Sidebar>
         );
