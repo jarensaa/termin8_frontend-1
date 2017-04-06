@@ -23,6 +23,7 @@ Free components for React in material design!
 
 ## Setting up the local environment
 ```
+git clone https://github.com/simenbkr/termin8_frontend.git
 cd front-end
 npm install
 npm start
