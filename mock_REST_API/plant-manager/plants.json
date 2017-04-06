@@ -1,0 +1,19 @@
+{
+  "plants" : [
+    {"id":1,"name":"plant1","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Rom1"},"plant_type":{"id":2,"name":"Type1"}},
+    {"id":2,"name":"plant2","max_temp":0.0,"min_temp":10.0,"min_moisture":0.0,"max_moisture":10.0,"last_watered":"19:11:19","automatic_water":false,"room":{"id":2,"name":"Rom2"},"plant_type":{"id":2,"name":"Type2"}},
+    {"id":3,"name":"plant3","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Rom3"},"plant_type":{"id":2,"name":"Type3"}},
+    {"id":4,"name":"plant4","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Rom1"},"plant_type":{"id":2,"name":"Type1"}},
+    {"id":5,"name":"plant5","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":2,"name":"Rom2"},"plant_type":{"id":2,"name":"Type2"}},
+    {"id":6,"name":"plant6","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Rom3"},"plant_type":{"id":2,"name":"Type4"}},
+    {"id":7,"name":"plant7","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Rom1"},"plant_type":{"id":2,"name":"Type2"}},
+    {"id":8,"name":"plant8","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":2,"name":"Rom2"},"plant_type":{"id":2,"name":"Type3"}},
+    {"id":9,"name":"plant9","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Rom3"},"plant_type":{"id":2,"name":"Type2"}},
+    {"id":10,"name":"plant10","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":4,"name":"Rom4"},"plant_type":{"id":2,"name":"Type1"}},
+    {"id":11,"name":"plant11","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":5,"name":"Rom5"},"plant_type":{"id":2,"name":"Type1"}},
+    {"id":12,"name":"plant12","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Rom1"},"plant_type":{"id":2,"name":"Type2"}},
+    {"id":13,"name":"plant13","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":2,"name":"Rom2"},"plant_type":{"id":2,"name":"Type3"}},
+    {"id":14,"name":"plant14","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Rom3"},"plant_type":{"id":2,"name":"Type1"}},
+    {"id":15,"name":"plant15","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Rom1"},"plant_type":{"id":2,"name":"Type4"}}
+  ]
+}

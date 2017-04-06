@@ -1,3 +1,6 @@
+/**
+ * Created by Jens-Andreas on 04-Apr-17.
+ */
 import React from 'react';
 
 
@@ -6,11 +9,11 @@ const CANCEL_DISTANCE_ON_SCROLL = 20;
 const defaultStyles = {
   root: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    overflow: 'hidden',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      overflow: 'hidden',
   },
   sidebar: {
     zIndex: 2,

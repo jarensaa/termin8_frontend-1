@@ -36,4 +36,3 @@ npm run build
 ```
 Genereates html, css and js to be deployed to the server.
 The underlying frameworks used are Webpack and Babel
-

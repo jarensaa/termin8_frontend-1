@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 import Sidebar from './sidebar';
 import MaterialTitlePanel from './material_title_panel';
 import SidebarContent from './sidebar_content';
-import {Card,Col,Button} from 'react-materialize';
+import CardArea from './Cards/card_area';
+
 
 const styles = {
     contentHeaderMenuLink: {
@@ -14,17 +14,40 @@ const styles = {
     },
     content: {
         padding: '16px',
+        height: '400px',
+        width: '400px',
     },
 };
-const App = React.createClass({
+
+let App = React.createClass({
+
     getInitialState(){
-        return {docked: false, open:false};
+        return {
+            docked: false,
+            open: false,
+            data: [],
+            roomFilter: -1,
+            filterActive: false,
+        };
     },
 
     componentWillMount() {
-        const mql = window.matchMedia(`(min-width: 800px)`);
+        const mql = window.matchMedia(`(min-width: 1000px)`);
         mql.addListener(this.mediaQueryChanged);
-        this.setState({mql: mql, docked: mql.matches});
+        this.setState({
+            mql: mql,
+            docked: mql.matches,
+        });
+
+        var request = require('superagent');
+        const self = this;
+        request
+            .get('http://localhost:4000/plants')
+            .end(function (err, res) {
+                self.setState({
+                    data: res.body
+                });
+            })
     },
 
     componentWillUnmount() {
@@ -48,16 +71,14 @@ const App = React.createClass({
     },
 
 
-
-    render: function() {
-
+    render: function () {
         const sidebar = <SidebarContent />;
 
         const contentHeader = (
             <span>
                 {!this.state.docked &&
                 <a onClick={this.toggleOpen} href="#" style={styles.contentHeaderMenuLink}>=</a>}
-                <span> Termin8 perfect plant watering system</span>
+                <span> My Plants</span>
             </span>
         );
 
@@ -68,25 +89,25 @@ const App = React.createClass({
             onSetOpen: this.onSetOpen,
         };
 
-        return (
-            <Sidebar {...sidebarProps}>
-                <MaterialTitlePanel title={contentHeader}>
-                    <div style={styles.content}>
-                        <Col m={6} s={12}>
-                            <Card className='blue-grey darken-1' textClassName='white-text' title='Card title' actions={[
-                                <div>
-                                    <Button waves='light' margin ="5px">button</Button>
-                                    <Button waves='light'>button</Button>
-                                    <Button waves='light'>button</Button>
-                                </div>
-                            ]}>
-                                I am a very simple card. <yay></yay>
-                            </Card>
-                        </Col>
-                    </div>
-                </MaterialTitlePanel>
-            </Sidebar>
-        );
+        const self = this;
+
+        if(this.state.data.length > 0){
+            return (
+                <Sidebar {...sidebarProps}>
+                    <MaterialTitlePanel title={contentHeader}>
+                        <CardArea {...self.state}/>
+                    </MaterialTitlePanel>
+                </Sidebar>
+            );
+        }
+
+        return( <div>
+                    <div> Loading....</div>
+                    <div> If you can see this, there is probably no connection with the server.</div>
+                </div>
+            )
+
+
     }
 });
 
