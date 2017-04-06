@@ -18,16 +18,36 @@ const styles = {
         width: '400px',
     },
 };
-const App = React.createClass({
+
+let App = React.createClass({
 
     getInitialState(){
-        return {docked: false, open: false};
+        return {
+            docked: false,
+            open: false,
+            data: [],
+            roomFilter: -1,
+            filterActive: false,
+        };
     },
 
     componentWillMount() {
-        const mql = window.matchMedia(`(min-width: 800px)`);
+        const mql = window.matchMedia(`(min-width: 1000px)`);
         mql.addListener(this.mediaQueryChanged);
-        this.setState({mql: mql, docked: mql.matches});
+        this.setState({
+            mql: mql,
+            docked: mql.matches,
+        });
+
+        var request = require('superagent');
+        const self = this;
+        request
+            .get('http://localhost:4000/plants')
+            .end(function (err, res) {
+                self.setState({
+                    data: res.body
+                });
+            })
     },
 
     componentWillUnmount() {
@@ -52,7 +72,6 @@ const App = React.createClass({
 
 
     render: function () {
-
         const sidebar = <SidebarContent />;
 
         const contentHeader = (
@@ -70,20 +89,25 @@ const App = React.createClass({
             onSetOpen: this.onSetOpen,
         };
 
-        const plantValues = {
-            waterLevel: 3,
-            room: 2,
+        const self = this;
 
+        if(this.state.data.length > 0){
+            return (
+                <Sidebar {...sidebarProps}>
+                    <MaterialTitlePanel title={contentHeader}>
+                        <CardArea {...self.state}/>
+                    </MaterialTitlePanel>
+                </Sidebar>
+            );
         }
 
+        return( <div>
+                    <div> Loading....</div>
+                    <div> If you can see this, there is probably no connection with the server.</div>
+                </div>
+            )
 
-        return (
-            <Sidebar {...sidebarProps}>
-                <MaterialTitlePanel title={contentHeader}>
-                    <CardArea/>
-                </MaterialTitlePanel>
-            </Sidebar>
-        );
+
     }
 });
 
