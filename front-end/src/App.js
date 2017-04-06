@@ -69,10 +69,18 @@ const App = React.createClass({
             onSetOpen: this.onSetOpen,
         };
 
+        const plantValues = {
+            waterLevel: 3,
+            room: 2,
+
+        }
+
+
         return (
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
-                    <PlantCard/>
+                    <PlantCard {...plantValues}/>
+                    <PlantCard {...plantValues}/>
                 </MaterialTitlePanel>
             </Sidebar>
         );
