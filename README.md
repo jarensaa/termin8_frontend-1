@@ -26,6 +26,7 @@ Free components for React in material design!
 First of all, navigate to your preffered location and clone the repo:
 ```
 git clone https://github.com/simenbkr/termin8_frontend.git
+git checkout dev
 ```
 
 For testing purposes,  setup the local REST API server simulator:
