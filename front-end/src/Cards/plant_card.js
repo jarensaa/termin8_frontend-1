@@ -51,8 +51,7 @@ const style = {
             margin: "10px",
         }
     },
-    buttonStyle: {
-    },
+    buttonStyle: {},
     cardStyle: {
         title: "Default",
     },
@@ -60,32 +59,41 @@ const style = {
 
 const PlantCard = (props) => {
 
+    function handleConfigureClick() {
+        props.handleConfigureEvent(props);
+    }
 
-        if(props.color === "green"){
-            style.cardStyle = style.greenCardStyle;
-            style.buttonStyle = style.greenButtonStyle
-        } else if(props.color === "red"){
-            style.cardStyle = style.redCardStyle;
-            style.buttonStyle = style.redButtonStyle;
-        } else {
-            style.cardStyle = style.yellowCardStyle;
-            style.buttonStyle = style.yellowButtonStyle;
-        }
+    function handleWaterClick() {
+        props.handleWaterEvent(props);
+    }
 
-        style.cardStyle.title = props.name;
 
-       return(
-           <div style={style.content}>
-               <Card {...style.cardStyle}>
-                   <div>
-                       This plant is located in room {props.roomName}
-                       <div style={style.divider} />
-                       <Button {...style.buttonStyle}>Configure</Button>
-                       <Button {...style.buttonStyle}>Water</Button>
-                   </div>
-               </Card>
-           </div>
-       )
+
+    if (props.color === "green") {
+        style.cardStyle = style.greenCardStyle;
+        style.buttonStyle = style.greenButtonStyle
+    } else if (props.color === "red") {
+        style.cardStyle = style.redCardStyle;
+        style.buttonStyle = style.redButtonStyle;
+    } else {
+        style.cardStyle = style.yellowCardStyle;
+        style.buttonStyle = style.yellowButtonStyle;
+    }
+
+    style.cardStyle.title = props.name;
+
+    return (
+        <div style={style.content}>
+            <Card {...style.cardStyle}>
+                <div>
+                    This plant is located in {props.roomName}
+                    <div style={style.divider}/>
+                    <Button {...style.buttonStyle} onClick={handleConfigureClick}>Configure</Button>
+                    <Button {...style.buttonStyle} onClick={handleWaterClick}>Water</Button>
+                </div>
+            </Card>
+        </div>
+    )
 };
 
 export default PlantCard;
