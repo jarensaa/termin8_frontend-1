@@ -46,7 +46,7 @@ class SidebarContent extends React.Component{
 
         const links = [];
 
-        for (let ind = 0; ind < 10; ind++) {
+        for (let ind = 1; ind <= 10; ind++) {
             links.push(
                 <a key={ind} href="#" style={styles.sidebarLink} id={ind} onClick={(props) => this.props.filter(ind)}>Room {ind}</a>);
         }
