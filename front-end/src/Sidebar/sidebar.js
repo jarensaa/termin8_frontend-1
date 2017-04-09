@@ -178,6 +178,7 @@ class Sidebar extends React.Component {
   }
 
   overlayClicked() {
+
     if (this.props.open) {
       this.props.onSetOpen(false);
     }
@@ -286,6 +287,8 @@ class Sidebar extends React.Component {
       overlayStyle.visibility = 'visible';
     }
 
+
+
     if (isTouching || !this.props.transitions) {
       sidebarStyle.transition = 'none';
       sidebarStyle.WebkitTransition = 'none';
@@ -323,6 +326,7 @@ class Sidebar extends React.Component {
         <div className={this.props.sidebarClassName} style={sidebarStyle} ref={this.saveSidebarRef}>
           {this.props.sidebar}
         </div>
+
         <div className={this.props.overlayClassName}
              style={overlayStyle}
              role="presentation"

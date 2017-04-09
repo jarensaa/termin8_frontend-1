@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import './App.css';
-import Sidebar from './sidebar';
+import './CSS/App.css';
+import Sidebar from './Sidebar/sidebar';
 import MaterialTitlePanel from './material_title_panel';
-import SidebarContent from './sidebar_content';
+import SidebarContent from './Sidebar/sidebar_content';
 import CardArea from './Cards/card_area';
 
+//This is a change.
 
 const styles = {
     contentHeaderMenuLink: {
@@ -27,7 +28,6 @@ let App = React.createClass({
             open: false,
             data: [],
             roomFilter: -1,
-            filterActive: false,
         };
     },
 
@@ -70,9 +70,22 @@ let App = React.createClass({
         }
     },
 
+    handleConfigureEvent(plantCardProps){
+        console.log("Pressed the configure button on plant with id:" + plantCardProps.id);
+        //Open configuration panel TODO: Make config planel
+    },
+
+    handleWaterEvent(plantCardProps){
+        console.log("Pressed the water button on plant with id:" + plantCardProps.id);
+        //Send a POST to the server, then re-render the area.
+    },
+
+    filterCards(filterOnID){
+        this.setState({roomFilter: filterOnID});
+    },
+
 
     render: function () {
-        const sidebar = <SidebarContent />;
 
         const contentHeader = (
             <span>
@@ -82,12 +95,20 @@ let App = React.createClass({
             </span>
         );
 
+
         const sidebarProps = {
-            sidebar: sidebar,
+            sidebar: <SidebarContent filter={this.filterCards}/>,
             docked: this.state.docked,
             open: this.state.open,
             onSetOpen: this.onSetOpen,
         };
+
+        const cardAreaProps = {
+            handleConfigureEvent: this.handleConfigureEvent,
+            handleWaterEvent: this.handleWaterEvent,
+            roomFilter: this.state.roomFilter,
+            data: this.state.data,
+        }
 
         const self = this;
 
@@ -95,7 +116,7 @@ let App = React.createClass({
             return (
                 <Sidebar {...sidebarProps}>
                     <MaterialTitlePanel title={contentHeader}>
-                        <CardArea {...self.state}/>
+                        <CardArea {...cardAreaProps}/>
                     </MaterialTitlePanel>
                 </Sidebar>
             );

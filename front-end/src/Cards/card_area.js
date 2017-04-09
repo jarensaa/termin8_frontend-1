@@ -4,6 +4,7 @@
 import React from 'react';
 import PlantCard from './plant_card';
 
+
 const styles = {
     area: {
         padding: "10px 10px 0px",
@@ -11,27 +12,23 @@ const styles = {
 }
 
 class CardArea extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            data: props.data,
-            roomFilter: props.roomFilter,
-            filterActive: props.filterActive,
-        };
-    }
 
     render() {
         let plants = [];
 
-        for(let i = 0; i < this.state.data.length; i++){
-            const plant = this.state.data[i]
+        for(let i = 0; i < this.props.data.length; i++){
+            const plant = this.props.data[i]
             let plantColor = "green";
 
             //TODO: Remove when watering logic is implemented
-            if(plant.id % 2 === 0){
+            let number = Math.floor(Math.random() * 10 + 1);
+            if(number<2){
                 plantColor = "yellow";
+            } else if (number < 4){
+                plantColor = "red";
+            } else {
+                plantColor = "green";
             }
-
 
             const plantProps = {
                 color: plantColor,
@@ -40,9 +37,16 @@ class CardArea extends React.Component{
                 id: plant.id,
                 name: plant.name,
                 roomName: plant.room.name,
+                handleConfigureEvent: this.props.handleConfigureEvent,
+                handleWaterEvent: this.props.handleWaterEvent,
             }
 
-            plants.push(<PlantCard {...plantProps}/>);
+            if(this.props.roomFilter === -1) {
+                plants.push(<PlantCard {...plantProps}/>);
+            } else {
+                if (plant.room.id === this.props.roomFilter)
+                    plants.push(<PlantCard {...plantProps}/>);
+            }
         }
 
 
