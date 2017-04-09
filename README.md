@@ -45,7 +45,7 @@ npm install
 npm start
 ```
 
-The real front-end and a mock back-end is now running. Open another terminal, make a new branch from dev, and get to codeing! :)
+The real front-end and a mock back-end is now running.
 
 
 
