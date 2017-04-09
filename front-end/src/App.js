@@ -5,6 +5,7 @@ import MaterialTitlePanel from './material_title_panel';
 import SidebarContent from './Sidebar/sidebar_content';
 import CardArea from './Cards/card_area';
 
+
 //This is a change.
 
 const styles = {
@@ -110,25 +111,13 @@ let App = React.createClass({
             data: this.state.data,
         }
 
-        const self = this;
-
-        if(this.state.data.length > 0){
-            return (
-                <Sidebar {...sidebarProps}>
-                    <MaterialTitlePanel title={contentHeader}>
-                        <CardArea {...cardAreaProps}/>
-                    </MaterialTitlePanel>
-                </Sidebar>
-            );
-        }
-
-        return( <div>
-                    <div> Loading....</div>
-                    <div> If you can see this, there is probably no connection with the server.</div>
-                </div>
-            )
-
-
+        return (
+            <Sidebar {...sidebarProps}>
+                <MaterialTitlePanel title={contentHeader}>
+                    <CardArea {...cardAreaProps}/>
+                </MaterialTitlePanel>
+            </Sidebar>
+        );
     }
 });
 

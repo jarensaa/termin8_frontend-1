@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import PlantCard from './plant_card';
-
+import {ProgressBar} from 'react-materialize';
 
 const styles = {
     area: {
@@ -14,47 +14,50 @@ const styles = {
 class CardArea extends React.Component{
 
     render() {
-        let plants = [];
+        if(this.props.data.length > 0) {
 
-        for(let i = 0; i < this.props.data.length; i++){
-            const plant = this.props.data[i]
-            let plantColor = "green";
+            let plants = [];
 
-            //TODO: Remove when watering logic is implemented
-            let number = Math.floor(Math.random() * 10 + 1);
-            if(number<2){
-                plantColor = "yellow";
-            } else if (number < 4){
-                plantColor = "red";
-            } else {
-                plantColor = "green";
-            }
+            for (let i = 0; i < this.props.data.length; i++) {
+                const plant = this.props.data[i]
+                let plantColor = "green";
 
-            const plantProps = {
-                color: plantColor,
-                room: plant.room.id,
-                key: plant.id,
-                id: plant.id,
-                name: plant.name,
-                roomName: plant.room.name,
-                handleConfigureEvent: this.props.handleConfigureEvent,
-                handleWaterEvent: this.props.handleWaterEvent,
-            }
+                //TODO: Remove when watering logic is implemented
+                let number = Math.floor(Math.random() * 10 + 1);
+                if (plant.id%4 === 0) {
+                    plantColor = "yellow";
+                } else if (plant.id%5=== 0) {
+                    plantColor = "red";
+                }
 
-            if(this.props.roomFilter === -1) {
-                plants.push(<PlantCard {...plantProps}/>);
-            } else {
-                if (plant.room.id === this.props.roomFilter)
+                const plantProps = {
+                    color: plantColor,
+                    room: plant.room.id,
+                    key: plant.id,
+                    id: plant.id,
+                    name: plant.name,
+                    roomName: plant.room.name,
+                    handleConfigureEvent: this.props.handleConfigureEvent,
+                    handleWaterEvent: this.props.handleWaterEvent,
+                }
+
+                if (this.props.roomFilter === -1) {
                     plants.push(<PlantCard {...plantProps}/>);
+                } else {
+                    if (plant.room.id === this.props.roomFilter)
+                        plants.push(<PlantCard {...plantProps}/>);
+                }
             }
+
+
+            return (
+                <div style={styles.area}>
+                    {plants}
+                </div>
+            )
+        } else {
+            return <ProgressBar/>
         }
-
-
-        return (
-            <div style={styles.area}>
-                {plants}
-            </div>
-        )
     }
 
 
