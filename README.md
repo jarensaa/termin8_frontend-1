@@ -22,13 +22,32 @@ Free components for React in material design!
 
 
 ## Setting up the local environment
+
+First of all, navigate to your preffered location and clone the repo:
 ```
 git clone https://github.com/simenbkr/termin8_frontend.git
+git checkout dev
+```
+
+For testing purposes,  setup the local REST API server simulator:
+```
+cd mock_REST_API
+npm install -g json-server
+cd plant-manager
+json-server --port 4000 plants.json
+```
+
+Open another terminal and navigate to the project. Start the front-end server:
+```
 cd termin8_frontend
 cd front-end
 npm install
 npm start
 ```
+
+The real front-end and a mock back-end is now running.
+
+
 
 ## Available scripts
 ```
