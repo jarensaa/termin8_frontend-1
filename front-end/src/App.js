@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import './CSS/App.css';
-import Sidebar from './Sidebar/sidebar';
-import MaterialTitlePanel from './material_title_panel';
-import SidebarContent from './Sidebar/sidebar_content';
+import Sidebar from './Navigation/sidebar';
+import MaterialTitlePanel from './Navigation/material_title_panel';
+import SidebarContent from './Navigation/sidebar_content';
 import CardArea from './Cards/card_area';
 
 
-//This is a change.
 
+// Some css overrides. Should probably by moved to the App.css.
 const styles = {
     contentHeaderMenuLink: {
         textDecoration: 'none',
@@ -23,6 +23,11 @@ const styles = {
 
 let App = React.createClass({
 
+    /*
+    Set the initial states of the component. Acts as a constructor in this case, since this
+    is the main component of the system.
+     */
+
     getInitialState(){
         return {
             docked: false,
@@ -32,7 +37,13 @@ let App = React.createClass({
         };
     },
 
+
+    /*
+    Called after the component is initalized, but right before it's rendered.
+     */
     componentWillMount() {
+
+        //Set the sidebar Props
         const mql = window.matchMedia(`(min-width: 1000px)`);
         mql.addListener(this.mediaQueryChanged);
         this.setState({
@@ -40,6 +51,14 @@ let App = React.createClass({
             docked: mql.matches,
         });
 
+
+        /*GET plant data from server with superagent framework
+
+        Key concept: Call the GET to the server, then render the area. Since no data has been recieved yet,
+        a progress bar will be rendered instead of the plant-cards. Once data is recieved from the server, the
+        self.setState method is called, triggering the re-rendering of the area.
+
+         */
         var request = require('superagent');
         const self = this;
         request
@@ -50,6 +69,7 @@ let App = React.createClass({
                 });
             })
     },
+
 
     componentWillUnmount() {
         this.state.mql.removeListener(this.mediaQueryChanged);
@@ -96,9 +116,14 @@ let App = React.createClass({
             </span>
         );
 
+        const sidebarContentProps = {
+            filterCards: this.filterCards,
+            activeButton: this.state.roomFilter,
+            data: this.state.data,
+        }
 
         const sidebarProps = {
-            sidebar: <SidebarContent filter={this.filterCards}/>,
+            sidebar: <SidebarContent {...sidebarContentProps}/>,
             docked: this.state.docked,
             open: this.state.open,
             onSetOpen: this.onSetOpen,
@@ -122,3 +147,26 @@ let App = React.createClass({
 });
 
 export default App;
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+asdasd
+ */
