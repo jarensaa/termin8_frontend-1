@@ -44,27 +44,27 @@ class SidebarContent extends React.Component{
         const style = this.props.style ? {...styles.sidebar, ...this.props.style} : styles.sidebar;
 
         const rooms = [];
-        const roomsHTML = [];
+        const sidebarContent = [];
 
         //The data property is passed from from the server through a GET in App.js.
-        if(this.props.data.length > 0){
+        if(this.props.roomData.length > 0){
 
-            for(let i = 0; i < this.props.data.length; i++){
-                let currentRoom = this.props.data[i].room;
+            for(let i = 0; i < this.props.roomData.length; i++){
+                let currentRoom = this.props.roomData[i];
 
                 //If the room does not exist...
                 if(rooms[currentRoom.id] === undefined){
                     //... add it to the dict for further identification...
                     rooms[currentRoom.id] = currentRoom.name;
 
-                    //...determine if the button is active...
+                    //...determine if the button for the room is active...
                     let style = styles.sidebarLink;
                     if(currentRoom.id === this.props.activeButton){
                         style = styles.activeSidebarLink;
                     }
 
                     //...then add it to the sidebar.
-                    roomsHTML.push(
+                    sidebarContent.push(
                         <a key={currentRoom.id}
                            href="#"
                            style={style}
@@ -88,7 +88,7 @@ class SidebarContent extends React.Component{
                 <img src={Logo} style={styles.image}/>
                 <a onClick={(props) => this.props.filterCards(-1)} href="#" style={homeStyle}>Home</a>
                 <div style={styles.divider} />
-                {roomsHTML}
+                {sidebarContent}
             </div>
 
         );

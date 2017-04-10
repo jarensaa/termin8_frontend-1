@@ -4,6 +4,7 @@ import Sidebar from './Navigation/sidebar';
 import MaterialTitlePanel from './Navigation/material_title_panel';
 import SidebarContent from './Navigation/sidebar_content';
 import CardArea from './Cards/card_area';
+import configData from './config.json';
 
 
 
@@ -32,9 +33,38 @@ let App = React.createClass({
         return {
             docked: false,
             open: false,
-            data: [],
+            plantData: [],
+            roomData: [],
             roomFilter: -1,
         };
+    },
+
+    getPlantData(){
+
+
+        var request = require('superagent');
+        const self = this;
+        request
+            .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint)
+            .end(function (err, res) {
+                self.setState({
+                    plantData: res.body
+                });
+            })
+    },
+
+    getRoomData(){
+
+
+        var request = require('superagent');
+        const self = this;
+        request
+            .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint)
+            .end(function (err, res) {
+                self.setState({
+                    roomData: res.body
+                });
+            })
     },
 
 
@@ -59,15 +89,8 @@ let App = React.createClass({
         self.setState method is called, triggering the re-rendering of the area.
 
          */
-        var request = require('superagent');
-        const self = this;
-        request
-            .get('http://localhost:4000/plants')
-            .end(function (err, res) {
-                self.setState({
-                    data: res.body
-                });
-            })
+        this.getPlantData();
+        this.getRoomData();
     },
 
 
@@ -119,7 +142,7 @@ let App = React.createClass({
         const sidebarContentProps = {
             filterCards: this.filterCards,
             activeButton: this.state.roomFilter,
-            data: this.state.data,
+            roomData: this.state.roomData,
         }
 
         const sidebarProps = {
@@ -133,7 +156,7 @@ let App = React.createClass({
             handleConfigureEvent: this.handleConfigureEvent,
             handleWaterEvent: this.handleWaterEvent,
             roomFilter: this.state.roomFilter,
-            data: this.state.data,
+            data: this.state.plantData,
         }
 
         return (

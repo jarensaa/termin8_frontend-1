@@ -15,5 +15,13 @@
     {"id":13,"name":"plant13","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":2,"name":"Soverom"},"plant_type":{"id":2,"name":"Type3"}},
     {"id":14,"name":"plant14","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Kjellerstue"},"plant_type":{"id":2,"name":"Type1"}},
     {"id":15,"name":"plant15","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Stue"},"plant_type":{"id":2,"name":"Type4"}}
+  ],
+
+  "room" : [
+    {"id": 1, "name":"Stue"},
+    {"id": 2, "name":"Soverom"},
+    {"id": 3, "name":"Kjellerstue"},
+    {"id": 4, "name":"Bad"},
+    {"id": 5, "name":"Hage"}
   ]
 }

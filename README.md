@@ -34,7 +34,7 @@ For testing purposes,  setup the local REST API server simulator:
 cd mock_REST_API
 npm install -g json-server
 cd plant-manager
-json-server --port 4000 plants.json
+json-server --port 4000 mockData.json
 ```
 
 Open another terminal and navigate to the project. Start the front-end server:
