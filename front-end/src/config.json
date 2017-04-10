@@ -1,0 +1,7 @@
+{
+  "plantConfig": {
+    "red-treshhold": "80",
+    "yellow-treshhold": "65"
+  }
+
+}
