@@ -4,5 +4,5 @@
 ```
 npm install -g json-server
 cd plant-manager
-json-server --port 4000 plants.json
+json-server --port 4000 mockData.json
 ```
