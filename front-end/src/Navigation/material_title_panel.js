@@ -27,13 +27,4 @@ const MaterialTitlePanel = (props) => {
     );
 };
 
-MaterialTitlePanel.propTypes = {
-    style: React.PropTypes.object,
-    title: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.object,
-    ]),
-    children: React.PropTypes.object,
-};
-
 export default MaterialTitlePanel;

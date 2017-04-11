@@ -19,6 +19,10 @@ const style = {
         className: 'green lighten-3',
         textClassName: 'gray-text',
         title: 'Card title',
+        style: {
+            width: "380px",
+        }
+
     },
     greenButtonStyle: {
         waves: 'light',
@@ -31,6 +35,9 @@ const style = {
         className: 'amber lighten-3',
         textClassName: 'gray-text',
         title: 'Card title',
+        style: {
+            width: "380px",
+        }
     },
     yellowButtonStyle: {
         waves: 'light',
@@ -43,6 +50,9 @@ const style = {
         className: 'red lighten-3',
         textClassName: 'gray-text',
         title: 'Card title',
+        style: {
+            width: "380px",
+        }
     },
     redButtonStyle: {
         waves: 'light',
@@ -86,7 +96,7 @@ const PlantCard = (props) => {
         <div style={style.content}>
             <Card {...style.cardStyle}>
                 <div>
-                    This plant is located in {props.roomName}
+                    This plant is located in {props.room.name}
                     <div style={style.divider}/>
                     <Button {...style.buttonStyle} onClick={handleConfigureClick}>Configure</Button>
                     <Button {...style.buttonStyle} onClick={handleWaterClick}>Water</Button>

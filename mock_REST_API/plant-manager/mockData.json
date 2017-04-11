@@ -1,27 +1,86 @@
 {
-  "plants" : [
-    {"id":1,"name":"plant1","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Stue"},"plant_type":{"id":2,"name":"Type1"}},
-    {"id":2,"name":"plant2","max_temp":0.0,"min_temp":10.0,"min_moisture":0.0,"max_moisture":10.0,"last_watered":"19:11:19","automatic_water":false,"room":{"id":2,"name":"Soverom"},"plant_type":{"id":2,"name":"Type2"}},
-    {"id":3,"name":"plant3","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Kjellerstue"},"plant_type":{"id":2,"name":"Type3"}},
-    {"id":4,"name":"plant4","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Stue"},"plant_type":{"id":2,"name":"Type1"}},
-    {"id":5,"name":"plant5","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":2,"name":"Soverom"},"plant_type":{"id":2,"name":"Type2"}},
-    {"id":6,"name":"plant6","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Kjellerstue"},"plant_type":{"id":2,"name":"Type4"}},
-    {"id":7,"name":"plant7","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Stue"},"plant_type":{"id":2,"name":"Type2"}},
-    {"id":8,"name":"plant8","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":2,"name":"Soverom"},"plant_type":{"id":2,"name":"Type3"}},
-    {"id":9,"name":"plant9","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Kjellerstue"},"plant_type":{"id":2,"name":"Type2"}},
-    {"id":10,"name":"plant10","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":4,"name":"Bad"},"plant_type":{"id":2,"name":"Type1"}},
-    {"id":11,"name":"plant11","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":5,"name":"Hage"},"plant_type":{"id":2,"name":"Type1"}},
-    {"id":12,"name":"plant12","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Stue"},"plant_type":{"id":2,"name":"Type2"}},
-    {"id":13,"name":"plant13","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":2,"name":"Soverom"},"plant_type":{"id":2,"name":"Type3"}},
-    {"id":14,"name":"plant14","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":3,"name":"Kjellerstue"},"plant_type":{"id":2,"name":"Type1"}},
-    {"id":15,"name":"plant15","max_temp":0.0,"min_temp":33.0,"min_moisture":10.0,"max_moisture":45.0,"last_watered":"18:58:20","automatic_water":true,"room":{"id":1,"name":"Stue"},"plant_type":{"id":2,"name":"Type4"}}
+  "plants": [
+    {
+      "id": 1,
+      "name": "Jens sin plante",
+      "room": 5,
+      "sensor_data": {
+        "moisture": 1000,
+        "temp": 9000
+      },
+      "watering_history": {
+        "moisture": 23,
+        "temp": 31
+      },
+      "automatic_water": true,
+      "plant_type": {
+        "id": 2,
+        "name": "type2",
+        "max_temp": 40,
+        "min_temp": 0,
+        "min_moisture": 1,
+        "max_moisture": 30
+      }
+    }
   ],
-
-  "room" : [
-    {"id": 1, "name":"Stue"},
-    {"id": 2, "name":"Soverom"},
-    {"id": 3, "name":"Kjellerstue"},
-    {"id": 4, "name":"Bad"},
-    {"id": 5, "name":"Hage"}
+  "room": [
+    {
+      "id": 1,
+      "name": "Stue"
+    },
+    {
+      "id": 2,
+      "name": "Soverom"
+    },
+    {
+      "id": 3,
+      "name": "Kjellerstue"
+    },
+    {
+      "id": 4,
+      "name": "Bad"
+    },
+    {
+      "id": 5,
+      "name": "Hage"
+    },
+    {
+      "id": 6,
+      "name": "Magic Room"
+    },
+    {
+      "id": 7,
+      "name": "Magic Room"
+    },
+    {
+      "id": 8,
+      "name": "New Room"
+    }
+  ],
+  "planttype": [
+    {
+      "id": 1,
+      "name": "type1",
+      "max_temp": 40,
+      "min_temp": 0,
+      "min_moisture": 1,
+      "max_moisture": 30
+    },
+    {
+      "id": 2,
+      "name": "type2",
+      "max_temp": 40,
+      "min_temp": 0,
+      "min_moisture": 1,
+      "max_moisture": 30
+    },
+    {
+      "id": 3,
+      "name": "type3",
+      "max_temp": 40,
+      "min_temp": 0,
+      "min_moisture": 1,
+      "max_moisture": 30
+    }
   ]
 }

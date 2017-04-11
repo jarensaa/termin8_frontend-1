@@ -342,64 +342,7 @@ class Sidebar extends React.Component {
   }
 }
 
-Sidebar.propTypes = {
-  // main content to render
-  children: React.PropTypes.node.isRequired,
 
-  // styles
-  styles: React.PropTypes.shape({
-    root: React.PropTypes.object,
-    sidebar: React.PropTypes.object,
-    content: React.PropTypes.object,
-    overlay: React.PropTypes.object,
-    dragHandle: React.PropTypes.object,
-  }),
-
-  // root component optional class
-  rootClassName: React.PropTypes.string,
-
-  // sidebar optional class
-  sidebarClassName: React.PropTypes.string,
-
-  // content optional class
-  contentClassName: React.PropTypes.string,
-
-  // overlay optional class
-  overlayClassName: React.PropTypes.string,
-
-  // sidebar content to render
-  sidebar: React.PropTypes.node.isRequired,
-
-  // boolean if sidebar should be docked
-  docked: React.PropTypes.bool,
-
-  // boolean if sidebar should slide open
-  open: React.PropTypes.bool,
-
-  // boolean if transitions should be disabled
-  transitions: React.PropTypes.bool,
-
-  // boolean if touch gestures are enabled
-  touch: React.PropTypes.bool,
-
-  // max distance from the edge we can start touching
-  touchHandleWidth: React.PropTypes.number,
-
-  // Place the sidebar on the right
-  pullRight: React.PropTypes.bool,
-
-  // Enable/Disable sidebar shadow
-  shadow: React.PropTypes.bool,
-
-  // distance we have to drag the sidebar to toggle open state
-  dragToggleDistance: React.PropTypes.number,
-
-  // callback called when the overlay is clicked
-  onSetOpen: React.PropTypes.func,
-
-  // Intial sidebar width when page loads
-  defaultSidebarWidth: React.PropTypes.number,
-};
 
 Sidebar.defaultProps = {
   docked: false,
