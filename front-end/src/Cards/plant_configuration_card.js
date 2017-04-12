@@ -8,7 +8,7 @@ import {Card, Button,Row,Input,Dropdown, NavItem, Icon, Badge} from 'react-mater
 const style = {
     cardStyle: {
         position: 'absolute',
-        zIndex: 2,
+        zIndex: 3,
         width: "380px",
         height: "615px",
         left: '20px',
@@ -22,7 +22,7 @@ const style = {
             margin: "10px",
             position: 'absolute',
             bottom: '10px',
-            right: '30px',
+            right: '25px',
             width: '140px'
         }
     },
@@ -34,7 +34,7 @@ const style = {
             margin: "10px",
             position: 'absolute',
             bottom: '10px',
-            left: '30px',
+            left: '25px',
             width: '140px'
         }
     },

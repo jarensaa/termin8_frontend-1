@@ -4,8 +4,11 @@ import Sidebar from './Navigation/sidebar';
 import MaterialTitlePanel from './Navigation/material_title_panel';
 import SidebarContent from './Navigation/sidebar_content';
 import CardArea from './Cards/card_area';
+import RoomCard from './Cards/room_add_card';
+import Overlay from './StyleComponents/overlay'
 import configData from './config.json';
 import PlantConfigCard from './Cards/plant_configuration_card';
+import {Button} from 'react-materialize';
 
 
 
@@ -23,6 +26,8 @@ const styles = {
     },
 };
 
+
+// stuffs
 let App = React.createClass({
 
     /*
@@ -30,8 +35,10 @@ let App = React.createClass({
     is the main component of the system.
      */
     getCardAreaContent(){
-        const content = [];
+        const cardAreaContent = [];
+
         const cardAreaProps = {
+            key: '1',
             handleConfigureEvent: this.handleConfigureEvent,
             handleWaterEvent: this.handleWaterEvent,
             roomFilter: this.state.roomFilter,
@@ -40,36 +47,70 @@ let App = React.createClass({
 
             styles: {
                 padding: "10px 10px 0px",
-                opacity: '1'
             }
         };
 
-        if(this.state.renderConfigCard){
-            cardAreaProps.styles.opacity = '.3';
-            content.push(<CardArea key="1" {...cardAreaProps}/>);
-            content.push(<PlantConfigCard
-                key="2"
-                plantProps={this.state.plantConfig}
-                roomData={this.state.roomData}
-                typeData={this.state.typeData}
-                handleCancelButton={this.handleCancelButton}
-                handleConfirmButton={this.handleConfirmButton}
-            />);
-        } else {
-            content.push(<CardArea key="1" {...cardAreaProps}/>);
+
+        cardAreaContent.push(<CardArea {...cardAreaProps}/>)
+
+        //Check if something other than cardarea got focus:
+        if(this.checkOtherProcedures()){
+
+            cardAreaContent.push(<Overlay key="2"/>)
+
+
+            if(this.state.renderConfigCard){
+                cardAreaContent.push(<PlantConfigCard
+                    key="3"
+                    plantProps={this.state.plantConfig}
+                    roomData={this.state.roomData}
+                    typeData={this.state.typeData}
+                    handleCancelButton={this.handleCancelButton}
+                    handleConfirmButton={this.handleConfigConfirmButton}
+                />);
+            }
+
+            else if(this.state.renderPlantAddCard){
+
+            }
+
+            else if(this.state.renderRoomAddCard){
+                cardAreaContent.push(
+                    <RoomCard
+                        key="3"
+                        handleCancelButton={this.handleCancelButton}
+                        handleConfirmButton = {this.addRoomData}
+                    />
+                )
+            }
+
+            else if(this.state.renderTypeAddCard){
+
+            }
+
+
+
         }
 
-        return content;
+
+
+
+
+        return cardAreaContent;
+
     },
 
     handleCancelButton(){
         this.setState({
             renderConfigCard: false,
+            renderTypeAddCard: false,
+            renderRoomAddCard: false,
+            renderPlantAddCard: false,
             plantConfig: undefined,
         })
     },
 
-    handleConfirmButton(returnProps){
+    handleConfigConfirmButton(returnProps){
 
 
         const PATCH_Props = {
@@ -95,12 +136,35 @@ let App = React.createClass({
 
     //Triggered when the "configure" button is pressed on a plant-card.
     handleConfigureEvent(plantCardProps){
-        if(!this.state.renderConfigCard) {
+        if(!this.checkOtherProcedures()) {
             this.setState({
                 renderConfigCard: true,
                 plantConfig: this.state.plantData[plantCardProps.id - 1],
             })
         }
+    },
+
+    //Triggered when the 'add new room' button is pressed on the fixed add button.
+    handleAddNewRoomEvent(){
+        if(!this.checkOtherProcedures()){
+            this.setState({
+                renderRoomAddCard: true,
+            })
+        }
+    },
+
+
+    /**
+     * Check if some other procedure is active. For example addRoom or configure plant
+     * @returns {boolean}: True if some other card is active, otherwise false
+     */
+    checkOtherProcedures(){
+        return(
+                this.state.renderConfigCard ||
+                this.state.renderPlantAddCard ||
+                this.state.renderTypeAddCard ||
+                this.state.renderRoomAddCard
+        )
     },
 
     getInitialState(){
@@ -112,6 +176,9 @@ let App = React.createClass({
             roomFilter: -1,
             roomKeyTracker: 0,
             renderConfigCard: false,
+            renderTypeAddCard: false,
+            renderPlantAddCard: false,
+            renderRoomAddCard: false,
             plantConfig: undefined,
             typeData: [],
             typeKeyTracker: 0,
@@ -184,23 +251,27 @@ let App = React.createClass({
     },
 
     addRoomData(roomName){
-        this.state.roomKeyTracker++;
+        if(roomName !== undefined) {
+            this.state.roomKeyTracker++;
 
-        const roomData = {
-            id: this.state.roomKeyTracker,
-            name: roomName
-        };
+            const roomData = {
+                id: this.state.roomKeyTracker,
+                name: roomName
+            };
 
 
-        //POST data to the server over the REST API.
-        var request = require('superagent');
-        const self = this;
-        request
-            .post(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint)
-            .send(roomData)
-            .end(function () {
-                self.getRoomData();
-            })
+            //POST data to the server over the REST API.
+            var request = require('superagent');
+            const self = this;
+            request
+                .post(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint)
+                .send(roomData)
+                .end(function () {
+                    self.getRoomData();
+                })
+        }
+
+        this.handleCancelButton();
     },
 
     addPlantData(plantName,roomKey,plantType){
@@ -256,7 +327,6 @@ let App = React.createClass({
     handleWaterEvent(plantCardProps){
         console.log("Pressed the water button on plant with id:" + plantCardProps.id);
         //Send a POST to the server, then re-render the area.
-        this.addRoomData("New Room");
     },
 
     //Triggered when a sidebar button is pressed. ID to filter on is thrown from the sidebar.
@@ -290,10 +360,32 @@ let App = React.createClass({
             onSetOpen: this.onSetOpen,
         };
 
+        const addroom = {
+            position: 'absolute',
+            bottom: '20px',
+            left: '20px'
+        }
+
+        const addplant = {
+            position: 'absolute',
+            bottom: '20px',
+            left: '300px'
+        }
+
+        const addType = {
+            position: 'absolute',
+            bottom: '20px',
+            left: '580px'
+        }
+
+
         return (
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
                     {this.getCardAreaContent()}
+                    <Button style={addroom} onClick={this.handleAddNewRoomEvent}>Prototyping: addroom</Button>
+                    <Button style={addplant}>Prototyping: addPlant</Button>
+                    <Button style={addType}>Prototyping: addType</Button>
                 </MaterialTitlePanel>
             </Sidebar>
         );

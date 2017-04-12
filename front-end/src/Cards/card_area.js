@@ -19,12 +19,12 @@ class CardArea extends React.Component {
 
         for (let i = 0; i < this.props.data.length; i++) {
             const plant = this.props.data[i];
-            const room = this.props.rooms[i];
+            const room = this.props.rooms[plant.room-1];
 
             let plantColor = "green";
 
             //TODO: Remove when watering logic is implemented
-            if (plant.id % 4 === 0) {
+            if (plant.id % 3 === 0) {
                 plantColor = "yellow";
             } else if (plant.id % 5 === 0) {
                 plantColor = "red";
@@ -43,7 +43,7 @@ class CardArea extends React.Component {
             if (this.props.roomFilter === -1) {
                 plants.push(<PlantCard {...plantProps}/>);
             } else {
-                if (plant.room.id === this.props.roomFilter)
+                if (plant.room === this.props.roomFilter)
                     plants.push(<PlantCard {...plantProps}/>);
             }
         }

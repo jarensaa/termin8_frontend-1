@@ -2,8 +2,30 @@
   "plants": [
     {
       "id": 1,
-      "name": "Jens sin plante",
-      "room": 5,
+      "name": "Plante1",
+      "room": 6,
+      "sensor_data": {
+        "moisture": 1000,
+        "temp": 9000
+      },
+      "watering_history": {
+        "moisture": 23,
+        "temp": 31
+      },
+      "automatic_water": false,
+      "plant_type": {
+        "id": 2,
+        "name": "type2",
+        "max_temp": 40,
+        "min_temp": 0,
+        "min_moisture": 1,
+        "max_moisture": 30
+      }
+    },
+    {
+      "id": 2,
+      "name": "Plante2",
+      "room": 3,
       "sensor_data": {
         "moisture": 1000,
         "temp": 9000
@@ -14,8 +36,30 @@
       },
       "automatic_water": true,
       "plant_type": {
-        "id": 2,
-        "name": "type2",
+        "id": 1,
+        "name": "type1",
+        "max_temp": 40,
+        "min_temp": 0,
+        "min_moisture": 1,
+        "max_moisture": 30
+      }
+    },
+    {
+      "id": 3,
+      "name": "Jens sin plante",
+      "room": 1,
+      "sensor_data": {
+        "moisture": 1000,
+        "temp": 9000
+      },
+      "watering_history": {
+        "moisture": 23,
+        "temp": 31
+      },
+      "automatic_water": false,
+      "plant_type": {
+        "id": 3,
+        "name": "type3",
         "max_temp": 40,
         "min_temp": 0,
         "min_moisture": 1,
@@ -46,15 +90,7 @@
     },
     {
       "id": 6,
-      "name": "Magic Room"
-    },
-    {
-      "id": 7,
-      "name": "Magic Room"
-    },
-    {
-      "id": 8,
-      "name": "New Room"
+      "name": "Bad i kjeller"
     }
   ],
   "planttype": [
