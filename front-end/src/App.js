@@ -5,6 +5,7 @@ import MaterialTitlePanel from './Navigation/material_title_panel';
 import SidebarContent from './Navigation/sidebar_content';
 import CardArea from './Cards/card_area';
 import RoomCard from './Cards/room_add_card';
+import TypeAddCard from './Cards/add_plant_type_card';
 import Overlay from './StyleComponents/overlay'
 import configData from './config.json';
 import PlantConfigCard from './Cards/plant_configuration_card';
@@ -56,7 +57,10 @@ let App = React.createClass({
         //Check if something other than cardarea got focus:
         if(this.checkOtherProcedures()){
 
-            cardAreaContent.push(<Overlay key="2"/>)
+            cardAreaContent.push(<Overlay
+                key="2"
+                handleCancelButton={this.handleCancelButton}
+            />);
 
 
             if(this.state.renderConfigCard){
@@ -86,10 +90,14 @@ let App = React.createClass({
 
             else if(this.state.renderTypeAddCard){
 
+                cardAreaContent.push(
+                    <TypeAddCard
+                        key = "3"
+                        handleCancelButton = {this.handleCancelButton}
+                        handleConfirmButton = {this.addPlantData}
+                    />
+                )
             }
-
-
-
         }
 
 
@@ -111,7 +119,6 @@ let App = React.createClass({
     },
 
     handleConfigConfirmButton(returnProps){
-
 
         const PATCH_Props = {
             id: returnProps.plantId,
@@ -153,6 +160,14 @@ let App = React.createClass({
         }
     },
 
+    handleAddNewTypeEvent(){
+        if(!this.checkOtherProcedures()){
+            this.setState({
+                renderTypeAddCard: true,
+            })
+        }
+    },
+
 
     /**
      * Check if some other procedure is active. For example addRoom or configure plant
@@ -174,7 +189,6 @@ let App = React.createClass({
             plantData: [],
             roomData: [],
             roomFilter: -1,
-            roomKeyTracker: 0,
             renderConfigCard: false,
             renderTypeAddCard: false,
             renderPlantAddCard: false,
@@ -204,17 +218,8 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint)
             .end(function (err, res) {
-
-                let keyTracker = 0;
-                for(let i = 0; i < res.body.length; i++){
-                    if(res.body[i].id > keyTracker){
-                        keyTracker = res.body[i].id;
-                    }
-                }
-
                 self.setState({
                     roomData: res.body,
-                    roomKeyTracker: keyTracker
                 });
             })
 
@@ -252,10 +257,7 @@ let App = React.createClass({
 
     addRoomData(roomName){
         if(roomName !== undefined) {
-            this.state.roomKeyTracker++;
-
             const roomData = {
-                id: this.state.roomKeyTracker,
                 name: roomName
             };
 
@@ -274,8 +276,21 @@ let App = React.createClass({
         this.handleCancelButton();
     },
 
-    addPlantData(plantName,roomKey,plantType){
-        //TODO add post request for add plant
+    addPlantData(props){
+        if(props.name !== undefined) {
+
+            //POST data to the server over the REST API.
+            var request = require('superagent');
+            const self = this;
+            request
+                .post(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint)
+                .send(props)
+                .end(function () {
+                    self.getTypeData();
+                })
+        }
+
+        this.handleCancelButton();
     },
 
     addPlantType(typeName, maxTemp, minTemp, maxMoisture, minMoisture){
@@ -385,7 +400,7 @@ let App = React.createClass({
                     {this.getCardAreaContent()}
                     <Button style={addroom} onClick={this.handleAddNewRoomEvent}>Prototyping: addroom</Button>
                     <Button style={addplant}>Prototyping: addPlant</Button>
-                    <Button style={addType}>Prototyping: addType</Button>
+                    <Button style={addType} onClick={this.handleAddNewTypeEvent}>Prototyping: addType</Button>
                 </MaterialTitlePanel>
             </Sidebar>
         );

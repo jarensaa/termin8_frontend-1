@@ -20,7 +20,7 @@ const overlayProps = {
 }
 
 const Overlay = (props) => {
-    return <div {...overlayProps}>{props.content}</div>
+    return <div {...overlayProps} onClick={props.handleCancelButton}>{props.content}</div>
 }
 
 export default Overlay
