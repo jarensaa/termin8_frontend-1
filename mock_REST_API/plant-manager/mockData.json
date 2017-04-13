@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Plante1",
-      "room": 6,
+      "room": 5,
       "sensor_data": {
         "moisture": 1000,
         "temp": 9000
@@ -91,6 +91,14 @@
     {
       "id": 6,
       "name": "Bad i kjeller"
+    },
+    {
+      "id": 7,
+      "name": "stuff"
+    },
+    {
+      "name": "kjeller",
+      "id": 8
     }
   ],
   "planttype": [
@@ -117,6 +125,14 @@
       "min_temp": 0,
       "min_moisture": 1,
       "max_moisture": 30
+    },
+    {
+      "name": "solsikke",
+      "min_temp": "10",
+      "max_temp": "100",
+      "max_moisture": "50",
+      "min_moisture": "10",
+      "id": 4
     }
   ]
 }
