@@ -11,60 +11,41 @@ const style = {
         float: 'left',
     },
     divider: {
-        margin: '8px 0',
+        margin: '8px 0px',
         height: 1,
         backgroundColor: '#757575',
     },
-    greenCardStyle: {
+    cardStyle: {
         className: 'green lighten-3',
         textClassName: 'gray-text',
         title: 'Card title',
         style: {
             width: "380px",
+            height: "235px",
         }
 
     },
-    greenButtonStyle: {
+    configureButtonStyle: {
         waves: 'light',
         className: 'green lighten-2',
         style: {
-            margin: "10px",
+            position: 'absolute',
+            bottom: '20px',
+            width: '150px'
         }
     },
-    yellowCardStyle: {
-        className: 'amber lighten-3',
-        textClassName: 'gray-text',
-        title: 'Card title',
-        style: {
-            width: "380px",
-        }
-    },
-    yellowButtonStyle: {
+
+    waterButtonStyle: {
         waves: 'light',
-        className: 'amber lighten-2',
+        className: 'green lighten-2',
         style: {
-            margin: "10px",
+            position: 'absolute',
+            bottom: '20px',
+            right: '25px',
+            width: '150px'
         }
-    },
-    redCardStyle: {
-        className: 'red lighten-3',
-        textClassName: 'gray-text',
-        title: 'Card title',
-        style: {
-            width: "380px",
-        }
-    },
-    redButtonStyle: {
-        waves: 'light',
-        className: 'red lighten-2',
-        style: {
-            margin: "10px",
-        }
-    },
-    buttonStyle: {},
-    cardStyle: {
-        title: "Default",
-    },
+    }
+
 }
 
 const PlantCard = (props) => {
@@ -77,17 +58,19 @@ const PlantCard = (props) => {
         props.handleWaterEvent(props);
     }
 
+    if (props.color === "yellow") {
+        style.cardStyle.className = 'amber lighten-3';
+        style.configureButtonStyle.className = 'amber lighten-2';
+        style.waterButtonStyle.className = 'amber lighten-2';
 
-
-    if (props.color === "green") {
-        style.cardStyle = style.greenCardStyle;
-        style.buttonStyle = style.greenButtonStyle
-    } else if (props.color === "red") {
-        style.cardStyle = style.redCardStyle;
-        style.buttonStyle = style.redButtonStyle;
+    } else if (props.color === "red"){
+        style.cardStyle.className = 'red lighten-3';
+        style.waterButtonStyle.className = 'red lighten-2';
+        style.configureButtonStyle.className = 'red lighten-2';
     } else {
-        style.cardStyle = style.yellowCardStyle;
-        style.buttonStyle = style.yellowButtonStyle;
+        style.cardStyle.className = 'green lighten-3';
+        style.waterButtonStyle.className = 'green lighten-2';
+        style.configureButtonStyle.className = 'green lighten-2';
     }
 
     style.cardStyle.title = props.name;
@@ -95,12 +78,10 @@ const PlantCard = (props) => {
     return (
         <div style={style.content}>
             <Card {...style.cardStyle}>
-                <div>
-                    This plant is located in {props.room.name}
-                    <div style={style.divider}/>
-                    <Button {...style.buttonStyle} onClick={handleConfigureClick}>Configure</Button>
-                    <Button {...style.buttonStyle} onClick={handleWaterClick}>Water</Button>
-                </div>
+                This plant is located in {props.room.name}
+                <div style={style.divider}/>
+                <Button {...style.configureButtonStyle} onClick={handleConfigureClick}>Configure</Button>
+                <Button {...style.waterButtonStyle} onClick={handleWaterClick}>Water</Button>
             </Card>
         </div>
     )
