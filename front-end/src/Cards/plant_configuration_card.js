@@ -39,21 +39,23 @@ const style = {
         }
     },
 
-    roomButtonStyle: {
+    greenButtonStyle: {
         waves: 'light',
         className: 'green lighten-2',
         style: {
             margin: "0px 10px 40px 10px",
             width: "310px",
+            backgroundColor: '#81c784'
         }
     },
 
-    typeButtonStyle: {
+    greyButtonStyle: {
         waves: 'light',
         className: 'green lighten-2',
         style: {
             margin: "0px 10px 40px 10px",
-            width: "310px"
+            width: "310px",
+            backgroundColor: '#e0e0e0',
         }
     },
 
@@ -75,14 +77,50 @@ class PlantConfigCard extends React.Component {
             plantRoom: props.plantProps.room,
             plantType: props.plantProps.plant_type,
             autoWater: props.plantProps.automatic_water,
+            unselectedRoom: true,
+            unselectedType: true,
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleAutoWaterToggle = this.handleAutoWaterToggle.bind(this);
+        this.checkIfRoomExists = this.checkIfRoomExists.bind(this);
+        this.checkIfTypeExist = this.checkIfTypeExist.bind(this);
+    }
+
+
+    //Returns true if the
+    checkIfRoomExists(){
+        for(let i = 0; i < this.props.roomData.length; i++){
+            if(this.state.plantRoom === this.props.roomData[i].id)
+                return true;
+        }
+        return false;
+    }
+
+    checkIfTypeExist(){
+
+        for(let i = 0; i < this.props.typeData.length; i++){
+            if(this.state.plantType.id === this.props.typeData[i].id)
+                return true;
+        }
+        return false;
     }
 
 
     loadDefaultForm(){
+
+        let roomStyle = style.greenButtonStyle;
+        let typeStyle = style.greenButtonStyle;
+
+        if(!this.checkIfRoomExists()){
+            roomStyle = style.greyButtonStyle;
+        }
+
+        if(!this.checkIfTypeExist()){
+            typeStyle = style.greyButtonStyle;
+        }
+
+
         let plantName = {
             s: 12,
             label:"Plant name",
@@ -91,26 +129,27 @@ class PlantConfigCard extends React.Component {
             }
         }
 
-        if(this.state.plantName != undefined)
+        if(this.state.plantName !== undefined)
             plantName.defaultValue = this.state.plantName;
 
 
+
         let plantRoom = {
-            trigger: <Button {...style.roomButtonStyle}>
+            trigger: <Button {...roomStyle}>
                     Room <Icon right>arrow_drop_down</Icon>
                     </Button>,
-        }
+        };
 
         let plantType = {
-            trigger: <Button {...style.typeButtonStyle}>Type<Icon right>arrow_drop_down</Icon></Button>
-        }
+            trigger: <Button {...typeStyle}>Type<Icon right>arrow_drop_down</Icon></Button>
+        };
 
         let autoWater = {
             s: 6,
             name: "on",
             type: 'switch',
             defaultChecked: this.state.autoWater,
-        }
+        };
 
 
         const fieldBox = {
@@ -118,6 +157,7 @@ class PlantConfigCard extends React.Component {
                 margin: "15px",
             }
         }
+
 
         return(
             <Row>
@@ -147,7 +187,9 @@ class PlantConfigCard extends React.Component {
      * Note: The binding
      */
     handleNameChange(event){
-        this.state.plantName = event.target.value;
+        this.setState({
+           plantName: event.target.value
+        });
     }
 
     /**
@@ -155,9 +197,10 @@ class PlantConfigCard extends React.Component {
      * and all related events.
      */
     getRooms(){
+
         const rooms = [];
         for(let i = 0; i < this.props.roomData.length; i++){
-            if(this.props.roomData[i].id != this.state.plantRoom) {
+            if(this.props.roomData[i].id !== this.state.plantRoom) {
                 rooms.push(<NavItem
                     key={i}
                     onClick={(selectedRoom) => this.handleRoomDropdown(this.props.roomData[i].id)}
@@ -184,7 +227,7 @@ class PlantConfigCard extends React.Component {
     getTypes(){
         const types = [];
         for(let i = 0; i < this.props.typeData.length; i++){
-            if(this.props.typeData[i].id != this.state.plantType.id) {
+            if(this.props.typeData[i].id !== this.state.plantType.id) {
                 types.push(
                     <NavItem
                         key={i}

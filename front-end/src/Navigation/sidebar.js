@@ -129,8 +129,8 @@ class Sidebar extends React.Component {
       // trigger a change to open if sidebar has been dragged beyond dragToggleDistance
       const touchWidth = this.touchSidebarWidth();
 
-      if (this.props.open && touchWidth < this.state.sidebarWidth - this.props.dragToggleDistance ||
-          !this.props.open && touchWidth > this.props.dragToggleDistance) {
+      if ( (this.props.open && touchWidth < this.state.sidebarWidth - this.props.dragToggleDistance) ||
+          (!this.props.open && touchWidth > this.props.dragToggleDistance)) {
         this.props.onSetOpen(!this.props.open);
       }
 
@@ -143,6 +143,7 @@ class Sidebar extends React.Component {
       });
     }
   }
+
 
   // This logic helps us prevents the user from sliding the sidebar horizontally
   // while scrolling the sidebar vertically. When a scroll event comes in, we're

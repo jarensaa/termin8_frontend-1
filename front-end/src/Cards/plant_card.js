@@ -141,15 +141,3 @@ const PlantCard = (props) => {
 };
 
 export default PlantCard;
-
-/*
-
-
-asdas
-
-asd
-as
-das
-das
-d
- */

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './CSS/App.css';
 import Sidebar from './Navigation/sidebar';
 import MaterialTitlePanel from './Navigation/material_title_panel';
@@ -95,7 +95,7 @@ let App = React.createClass({
                     <RoomCard
                         key="3"
                         handleCancelButton={this.handleCancelButton}
-                        handleConfirmButton = {this.addRoomData}
+                        handleConfirmButton={this.addRoomData}
                     />
                 )
             }
@@ -103,9 +103,9 @@ let App = React.createClass({
             else if(this.state.renderTypeAddCard){
                 cardAreaContent.push(
                     <TypeAddCard
-                        key = "3"
-                        handleCancelButton = {this.handleCancelButton}
-                        handleConfirmButton = {this.addTypeData}
+                        key="3"
+                        handleCancelButton={this.handleCancelButton}
+                        handleConfirmButton={this.addTypeData}
                     />
                 )
             }
@@ -124,6 +124,7 @@ let App = React.createClass({
             plantConfig: undefined,
         })
     },
+
 
     handleConfigConfirmButton(returnProps){
 
@@ -300,8 +301,6 @@ let App = React.createClass({
     },
 
     addPlantData(props){
-        console.log(props);
-
         const POST_Props={
             name: props.plantName,
             room: props.plantRoom,
@@ -387,28 +386,32 @@ let App = React.createClass({
     },
 
     deleteSelectedType(TypeID){
-        console.log("Delete:" + TypeID);
         var request = require('superagent');
         const self = this;
         request
             .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + "/" + TypeID)
             .end(function () {
-                self.setState({activeTypeButton: -1});
                 self.getTypeData();
                 self.getPlantData();
+                self.setState({
+                    roomFilter: -1,
+                    typeFilter: -1
+                });
             });
     },
 
     deleteSelectedRoom(RoomID){
-        console.log("Delete:" + RoomID);
         var request = require('superagent');
         const self = this;
         request
             .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + "/" + RoomID)
             .end(function () {
-                self.setState({activeRoomButton: -1});
                 self.getRoomData();
                 self.getPlantData();
+                self.setState({
+                    roomFilter: -1,
+                    typeFilter: -1
+                });
             });
     },
 

@@ -13,6 +13,21 @@ const PreloaderStyle = {
 
 class CardArea extends React.Component {
 
+    getRoom(plantRoom,rooms){
+        for(let i = 0; i < rooms.length; i++){
+            if(rooms[i].id === plantRoom)
+                return rooms[i];
+        }
+    }
+
+    getType(plantType,types){
+        for(let i = 0; i < types.length;i++){
+            if(types[i].id === plantType){
+                return types[i];
+            }
+        }
+    }
+
     render() {
         if (this.props.data.length === 0 || this.props.rooms.length === 0 || this.props.types.length === 0) {
 
@@ -27,7 +42,10 @@ class CardArea extends React.Component {
 
         for (let i = 0; i < this.props.data.length; i++) {
             const plant = this.props.data[i];
-            const room = this.props.rooms[plant.room-1];
+
+            const room = this.getRoom(plant.room,this.props.rooms);
+            const type = this.getType(plant.plant_type.id,this.props.types);
+
 
             let plantColor = "green";
 
@@ -41,13 +59,13 @@ class CardArea extends React.Component {
             const plantProps = {
                 color: plantColor,
                 room: room,
+                type: type,
                 key: plant.id,
                 id: plant.id,
                 name: plant.name,
-                type: plant.plant_type,
                 handleConfigureEvent: this.props.handleConfigureEvent,
                 handleWaterEvent: this.props.handleWaterEvent,
-            }
+            };
 
             if (this.props.roomFilter === -1 && this.props.typeFilter === -1) {
                 plants.push(<PlantCard {...plantProps}/>);

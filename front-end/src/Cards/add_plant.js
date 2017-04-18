@@ -145,7 +145,9 @@ class PlantAddCard extends React.Component {
      * Note: The binding
      */
     handleNameChange(event){
-        this.state.plantName = event.target.value;
+        this.setState({
+            plantName: event.target.value
+        });
     }
 
     /**
@@ -155,7 +157,7 @@ class PlantAddCard extends React.Component {
     getRooms(){
         const rooms = [];
         for(let i = 0; i < this.props.roomData.length; i++){
-            if(this.props.roomData[i].id != this.state.plantRoom) {
+            if(this.props.roomData[i].id !== this.state.plantRoom) {
                 rooms.push(<NavItem
                     key={i}
                     onClick={(selectedRoom) => this.handleRoomDropdown(this.props.roomData[i].id)}
@@ -182,7 +184,7 @@ class PlantAddCard extends React.Component {
     getTypes(){
         const types = [];
         for(let i = 0; i < this.props.typeData.length; i++){
-            if(this.props.typeData[i].id != this.state.plantType.id) {
+            if(this.props.typeData[i].id !== this.state.plantType.id) {
                 types.push(
                     <NavItem
                         key={i}
