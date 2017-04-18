@@ -79,8 +79,6 @@ class SidebarContent extends React.Component {
         const typeContent = [];
 
 
-        console.log(this.props);
-
         //The data property is passed from from the server through a GET in App.js.
         if (this.props.roomData.length > 0) {
 

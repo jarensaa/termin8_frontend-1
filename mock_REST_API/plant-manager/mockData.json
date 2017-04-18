@@ -2,8 +2,8 @@
   "plants": [
     {
       "id": 1,
-      "name": "Plante1",
-      "room": 5,
+      "name": "Eierløs",
+      "room": 3,
       "sensor_data": {
         "moisture": 1000,
         "temp": 9000
@@ -14,18 +14,14 @@
       },
       "automatic_water": false,
       "plant_type": {
-        "id": 2,
-        "name": "type2",
-        "max_temp": 40,
-        "min_temp": 0,
-        "min_moisture": 1,
-        "max_moisture": 30
+        "name": "test",
+        "id": 8
       }
     },
     {
       "id": 2,
       "name": "Plante2",
-      "room": 3,
+      "room": 2,
       "sensor_data": {
         "moisture": 1000,
         "temp": 9000
@@ -36,18 +32,18 @@
       },
       "automatic_water": true,
       "plant_type": {
-        "id": 1,
-        "name": "type1",
-        "max_temp": 40,
-        "min_temp": 0,
-        "min_moisture": 1,
-        "max_moisture": 30
+        "name": "Solsikke",
+        "min_temp": "20",
+        "max_temp": "60",
+        "max_moisture": "30",
+        "min_moisture": "20",
+        "id": 6
       }
     },
     {
       "id": 3,
       "name": "Jens sin plante",
-      "room": 1,
+      "room": 2,
       "sensor_data": {
         "moisture": 1000,
         "temp": 9000
@@ -58,81 +54,69 @@
       },
       "automatic_water": false,
       "plant_type": {
-        "id": 3,
-        "name": "type3",
-        "max_temp": 40,
-        "min_temp": 0,
-        "min_moisture": 1,
-        "max_moisture": 30
+        "name": "Solsikke",
+        "min_temp": "20",
+        "max_temp": "60",
+        "max_moisture": "30",
+        "min_moisture": "20",
+        "id": 6
       }
+    },
+    {
+      "name": "Plante 4",
+      "room": 2,
+      "plant_type": {
+        "name": "Kaktus",
+        "min_temp": "10",
+        "max_temp": "100",
+        "max_moisture": "10",
+        "min_moisture": "5",
+        "id": 7
+      },
+      "automatic_water": true,
+      "id": 4
+    },
+    {
+      "name": "Plante 5",
+      "room": 2,
+      "plant_type": {
+        "name": "Solsikke",
+        "min_temp": "20",
+        "max_temp": "60",
+        "max_moisture": "30",
+        "min_moisture": "20",
+        "id": 6
+      },
+      "automatic_water": false,
+      "id": 5
     }
   ],
   "room": [
     {
-      "id": 1,
-      "name": "Stue"
+      "name": "Kjellerstue",
+      "id": 2
     },
     {
-      "id": 2,
-      "name": "Soverom"
-    },
-    {
-      "id": 3,
-      "name": "Kjellerstue"
-    },
-    {
-      "id": 4,
-      "name": "Bad"
-    },
-    {
-      "id": 5,
-      "name": "Hage"
-    },
-    {
-      "id": 6,
-      "name": "Bad i kjeller"
-    },
-    {
-      "id": 7,
-      "name": "stuff"
-    },
-    {
-      "name": "kjeller",
-      "id": 8
+      "name": "Stue",
+      "id": 3
     }
   ],
   "planttype": [
     {
-      "id": 1,
-      "name": "type1",
-      "max_temp": 40,
-      "min_temp": 0,
-      "min_moisture": 1,
-      "max_moisture": 30
+      "name": "Solsikke",
+      "min_temp": "20",
+      "max_temp": "60",
+      "max_moisture": "30",
+      "min_moisture": "20",
+      "id": 6
     },
     {
-      "id": 2,
-      "name": "type2",
-      "max_temp": 40,
-      "min_temp": 0,
-      "min_moisture": 1,
-      "max_moisture": 30
-    },
-    {
-      "id": 3,
-      "name": "type3",
-      "max_temp": 40,
-      "min_temp": 0,
-      "min_moisture": 1,
-      "max_moisture": 30
-    },
-    {
-      "name": "solsikke",
+      "name": "Kaktus",
       "min_temp": "10",
       "max_temp": "100",
-      "max_moisture": "50",
-      "min_moisture": "10",
-      "id": 4
+      "max_moisture": "10",
+      "min_moisture": "5",
+      "id": 7
     }
   ]
 }
