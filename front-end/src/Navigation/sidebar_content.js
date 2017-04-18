@@ -48,28 +48,28 @@ const styles = {
     },
 };
 
-class SidebarContent extends React.Component{
+class SidebarContent extends React.Component {
 
-    constructor(props){
-        super(props)
+    constructor(props) {
+        super(props);
         this.turnOffFilter = this.turnOffFilter.bind(this);
         this.deleteSelected = this.deleteSelected.bind(this);
     }
 
-    turnOffFilter(){
+    turnOffFilter() {
         this.props.filterCardsOnRoom(-1);
         this.props.filterCardsOnType(-1);
     }
 
-    deleteSelected(){
-        if(this.props.activeRoomButton !== -1){
+    deleteSelected() {
+        if (this.props.activeRoomButton !== -1) {
             this.props.deleteSelectedRoom(this.props.activeRoomButton);
-        } else if(this.props.activeTypeButton !== -1){
+        } else if (this.props.activeTypeButton !== -1) {
             this.props.deleteSelectedType(this.props.activeTypeButton);
         }
     }
 
-    render(){
+    render() {
         const style = this.props.style ? {...styles.sidebar, ...this.props.style} : styles.sidebar;
 
         const rooms = [];
@@ -78,20 +78,23 @@ class SidebarContent extends React.Component{
         const roomContent = [];
         const typeContent = [];
 
-        //The data property is passed from from the server through a GET in App.js.
-        if(this.props.roomData.length > 0){
 
-            for(let i = 0; i < this.props.roomData.length; i++){
+        console.log(this.props);
+
+        //The data property is passed from from the server through a GET in App.js.
+        if (this.props.roomData.length > 0) {
+
+            for (let i = 0; i < this.props.roomData.length; i++) {
                 let currentRoom = this.props.roomData[i];
 
                 //If the room does not exist...
-                if(rooms[currentRoom.id] === undefined){
+                if (rooms[currentRoom.id] === undefined) {
                     //... add it to the dict for further identification...
                     rooms[currentRoom.id] = currentRoom.name;
 
                     //...determine if the button for the room is active...
                     let style = styles.sidebarLink;
-                    if(currentRoom.id === this.props.activeRoomButton){
+                    if (currentRoom.id === this.props.activeRoomButton) {
                         style = styles.activeSidebarLink;
                     }
 
@@ -108,19 +111,20 @@ class SidebarContent extends React.Component{
             }
         }
 
-        if(this.props.typeData.length > 0){
 
-            for(let i = 0; i < this.props.typeData.length; i++){
+        if (this.props.typeData.length > 0) {
+
+            for (let i = 0; i < this.props.typeData.length; i++) {
                 let currentType = this.props.typeData[i];
 
                 //If the room does not exist...
-                if(types[currentType.id] === undefined){
+                if (types[currentType.id] === undefined) {
                     //... add it to the dict for further identification...
                     types[currentType.id] = currentType.name;
 
                     //...determine if the button for the room is active...
                     let style = styles.sidebarLink;
-                    if(currentType.id === this.props.activeTypeButton){
+                    if (currentType.id === this.props.activeTypeButton) {
                         style = styles.activeSidebarLink;
                     }
 
@@ -137,10 +141,11 @@ class SidebarContent extends React.Component{
             }
         }
 
+
         //Determine if home is active. Set style accordingly.
         let homeStyle = styles.sidebarLink;
-        if(this.props.activeRoomButton === -1 && this.props.activeTypeButton === -1){
-           homeStyle = styles.activeSidebarLink;
+        if (this.props.activeRoomButton === -1 && this.props.activeTypeButton === -1) {
+            homeStyle = styles.activeSidebarLink;
         }
 
 
@@ -149,11 +154,11 @@ class SidebarContent extends React.Component{
                 <div>
                     <img src={Logo} style={styles.image}/>
                     <a onClick={this.turnOffFilter} href="#" style={homeStyle}>Home</a>
-                    <div style={styles.divider} />
+                    <div style={styles.divider}/>
                     {roomContent}
-                    <div style={styles.divider} />
+                    <div style={styles.divider}/>
                     {typeContent}
-                    <div style={styles.divider} />
+                    <div style={styles.divider}/>
                     <Button
                         {...styles.deleteButtonStyle}
                         onClick={this.deleteSelected}
@@ -162,8 +167,8 @@ class SidebarContent extends React.Component{
             </div>
         );
     }
-};
-
+}
+;
 
 
 SidebarContent.propTypes = {
@@ -171,3 +176,21 @@ SidebarContent.propTypes = {
 };
 
 export default SidebarContent;
+
+/*
+
+
+
+
+ asdsad
+
+ asd
+ asd
+ a
+
+
+ asd
+ asd
+ as
+ d
+ */
