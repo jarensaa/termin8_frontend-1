@@ -44,8 +44,10 @@ let App = React.createClass({
             handleConfigureEvent: this.handleConfigureEvent,
             handleWaterEvent: this.handleWaterEvent,
             roomFilter: this.state.roomFilter,
+            typeFilter: this.state.typeFilter,
             data: this.state.plantData,
             rooms: this.state.roomData,
+            types: this.state.typeData,
 
             styles: {
                 padding: "10px 10px 0px",
@@ -141,7 +143,7 @@ let App = React.createClass({
             .send(PATCH_Props)
             .end(function () {
                 self.getPlantData();
-            })
+            });
         this.handleCancelButton();
     },
 
@@ -201,14 +203,14 @@ let App = React.createClass({
             open: false,
             plantData: [],
             roomData: [],
+            typeData: [],
             roomFilter: -1,
+            typeFilter: -1,
             renderConfigCard: false,
             renderTypeAddCard: false,
             renderPlantAddCard: false,
             renderRoomAddCard: false,
             plantConfig: undefined,
-            typeData: [],
-            typeKeyTracker: 0,
         };
     },
 
@@ -245,17 +247,8 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint)
             .end(function (err, res) {
-
-                let keyTracker = 0;
-                for(let i = 0; i < res.body.length; i++){
-                    if(res.body[i].id > keyTracker){
-                        keyTracker = res.body[i].id;
-                    }
-                }
-
                 self.setState({
                     typeData: res.body,
-                    typeKeyTracker: keyTracker
                 });
             })
     },
@@ -378,8 +371,45 @@ let App = React.createClass({
     },
 
     //Triggered when a sidebar button is pressed. ID to filter on is thrown from the sidebar.
-    filterCards(filterOnID){
-        this.setState({roomFilter: filterOnID});
+    filterCardsOnRoom(filterOnID){
+        this.setState({
+            roomFilter: filterOnID,
+            typeFilter: -1
+        });
+    },
+
+    filterCardsOnType(filterOnID){
+        this.setState({
+            typeFilter: filterOnID,
+            roomFilter: -1
+
+        });
+    },
+
+    deleteSelectedType(TypeID){
+        console.log("Delete:" + TypeID);
+        var request = require('superagent');
+        const self = this;
+        request
+            .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + "/" + TypeID)
+            .end(function () {
+                self.setState({activeTypeButton: -1});
+                self.getTypeData();
+                self.getPlantData();
+            });
+    },
+
+    deleteSelectedRoom(RoomID){
+        console.log("Delete:" + RoomID);
+        var request = require('superagent');
+        const self = this;
+        request
+            .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + "/" + RoomID)
+            .end(function () {
+                self.setState({activeRoomButton: -1});
+                self.getRoomData();
+                self.getPlantData();
+            });
     },
 
 
@@ -396,9 +426,14 @@ let App = React.createClass({
 
 
         const sidebarContentProps = {
-            filterCards: this.filterCards,
-            activeButton: this.state.roomFilter,
+            filterCardsOnRoom: this.filterCardsOnRoom,
+            filterCardsOnType: this.filterCardsOnType,
+            activeRoomButton: this.state.roomFilter,
+            activeTypeButton: this.state.typeFilter,
             roomData: this.state.roomData,
+            typeData: this.state.typeData,
+            deleteSelectedRoom: this.deleteSelectedRoom,
+            deleteSelectedType: this.deleteSelectedType
         };
 
         const sidebarProps = {
@@ -447,26 +482,3 @@ let App = React.createClass({
 });
 
 export default App;
-
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-asdasd
- */

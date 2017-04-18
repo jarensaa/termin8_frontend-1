@@ -14,7 +14,7 @@ const PreloaderStyle = {
 class CardArea extends React.Component {
 
     render() {
-        if (this.props.data.length === 0 || this.props.rooms.length === 0) {
+        if (this.props.data.length === 0 || this.props.rooms.length === 0 || this.props.types.length === 0) {
 
             return (
                 <div style={PreloaderStyle}>
@@ -22,7 +22,6 @@ class CardArea extends React.Component {
                 </div>
             )
         }
-
 
         let plants = [];
 
@@ -45,14 +44,17 @@ class CardArea extends React.Component {
                 key: plant.id,
                 id: plant.id,
                 name: plant.name,
+                type: plant.plant_type,
                 handleConfigureEvent: this.props.handleConfigureEvent,
                 handleWaterEvent: this.props.handleWaterEvent,
             }
 
-            if (this.props.roomFilter === -1) {
+            if (this.props.roomFilter === -1 && this.props.typeFilter === -1) {
                 plants.push(<PlantCard {...plantProps}/>);
             } else {
                 if (plant.room === this.props.roomFilter)
+                    plants.push(<PlantCard {...plantProps}/>);
+                else if(plant.plant_type.id === this.props.typeFilter)
                     plants.push(<PlantCard {...plantProps}/>);
             }
         }
