@@ -3,15 +3,24 @@
  */
 import React from 'react';
 import PlantCard from './plant_card';
-import {ProgressBar} from 'react-materialize';
+import {Preloader} from 'react-materialize';
 
-
+const PreloaderStyle = {
+    position: 'fixed',
+    left: '50%',
+    top: '50%'
+};
 
 class CardArea extends React.Component {
 
     render() {
         if (this.props.data.length === 0 || this.props.rooms.length === 0) {
-            return <ProgressBar/>;
+
+            return (
+                <div style={PreloaderStyle}>
+                    <Preloader size="big" flashing/>
+                </div>
+            )
         }
 
 

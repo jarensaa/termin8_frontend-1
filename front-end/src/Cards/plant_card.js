@@ -31,7 +31,8 @@ const style = {
         style: {
             position: 'absolute',
             bottom: '20px',
-            width: '150px'
+            width: '150px',
+            zIndex: 1,
         }
     },
 
@@ -42,7 +43,8 @@ const style = {
             position: 'absolute',
             bottom: '20px',
             right: '25px',
-            width: '150px'
+            width: '150px',
+            zIndex:1,
         }
     }
 

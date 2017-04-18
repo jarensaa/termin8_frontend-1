@@ -10,12 +10,12 @@ const overlayProps = {
     key: "2",
     style: {
         position:'fixed',
-        top: "65px",
+        top: "0px",
         width:'100%',
         height: '100%',
         backgroundColor: 'black',
         opacity: '.4',
-        zIndex: 2
+        zIndex: 2,
     }
 }
 
