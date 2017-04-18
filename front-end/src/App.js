@@ -6,6 +6,7 @@ import SidebarContent from './Navigation/sidebar_content';
 import CardArea from './Cards/card_area';
 import RoomCard from './Cards/room_add_card';
 import TypeAddCard from './Cards/add_plant_type_card';
+import PlantAddCard from './Cards/add_plant';
 import Overlay from './StyleComponents/overlay'
 import configData from './config.json';
 import PlantConfigCard from './Cards/plant_configuration_card';
@@ -75,6 +76,15 @@ let App = React.createClass({
             }
 
             else if(this.state.renderPlantAddCard){
+                cardAreaContent.push(
+                    <PlantAddCard
+                        key="3"
+                        roomData={this.state.roomData}
+                        typeData={this.state.typeData}
+                        handleCancelButton={this.handleCancelButton}
+                        handleConfirmButton={this.addPlantData}
+                    />
+                )
 
             }
 
@@ -89,20 +99,15 @@ let App = React.createClass({
             }
 
             else if(this.state.renderTypeAddCard){
-
                 cardAreaContent.push(
                     <TypeAddCard
                         key = "3"
                         handleCancelButton = {this.handleCancelButton}
-                        handleConfirmButton = {this.addPlantData}
+                        handleConfirmButton = {this.addTypeData}
                     />
                 )
             }
         }
-
-
-
-
 
         return cardAreaContent;
 
@@ -164,6 +169,14 @@ let App = React.createClass({
         if(!this.checkOtherProcedures()){
             this.setState({
                 renderTypeAddCard: true,
+            })
+        }
+    },
+
+    handleNewPlantEvent(){
+        if(!this.checkOtherProcedures()){
+            this.setState({
+                renderPlantAddCard: true,
             })
         }
     },
@@ -276,7 +289,7 @@ let App = React.createClass({
         this.handleCancelButton();
     },
 
-    addPlantData(props){
+    addTypeData(props){
         if(props.name !== undefined) {
 
             //POST data to the server over the REST API.
@@ -293,10 +306,30 @@ let App = React.createClass({
         this.handleCancelButton();
     },
 
-    addPlantType(typeName, maxTemp, minTemp, maxMoisture, minMoisture){
-        //TODO add this stuff.
-    },
+    addPlantData(props){
+        console.log(props);
 
+        const POST_Props={
+            name: props.plantName,
+            room: props.plantRoom,
+            plant_type: props.plantType,
+            automatic_water: props.autoWater,
+        };
+
+        if(POST_Props.name !== undefined) {
+            //POST data to the server over the REST API.
+            var request = require('superagent');
+            const self = this;
+            request
+                .post(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint)
+                .send(POST_Props)
+                .end(function () {
+                    self.getPlantData();
+                })
+        }
+
+        this.handleCancelButton();
+    },
 
     /*
     Called after the component is initalized, but right before it's rendered.
@@ -376,21 +409,27 @@ let App = React.createClass({
         };
 
         const addroom = {
-            position: 'absolute',
+            position: 'fixed',
             bottom: '20px',
-            left: '20px'
+            right: '20px',
+            width: '280px',
+            zIndex: 2
         }
 
         const addplant = {
-            position: 'absolute',
-            bottom: '20px',
-            left: '300px'
+            position: 'fixed',
+            bottom: '70px',
+            right: '20px',
+            width: '280px',
+            zIndex: 2
         }
 
         const addType = {
-            position: 'absolute',
-            bottom: '20px',
-            left: '580px'
+            position: 'fixed',
+            bottom: '120px',
+            right: '20px',
+            width: '280px',
+            zIndex: 2
         }
 
 
@@ -399,7 +438,7 @@ let App = React.createClass({
                 <MaterialTitlePanel title={contentHeader}>
                     {this.getCardAreaContent()}
                     <Button style={addroom} onClick={this.handleAddNewRoomEvent}>Prototyping: addroom</Button>
-                    <Button style={addplant}>Prototyping: addPlant</Button>
+                    <Button style={addplant} onClick={this.handleNewPlantEvent}>Prototyping: addPlant</Button>
                     <Button style={addType} onClick={this.handleAddNewTypeEvent}>Prototyping: addType</Button>
                 </MaterialTitlePanel>
             </Sidebar>
