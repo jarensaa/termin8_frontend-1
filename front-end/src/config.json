@@ -1,0 +1,14 @@
+{
+  "plantConfig": {
+    "redTreshhold": "80",
+    "yellowTreshhold": "65"
+  },
+
+  "serverConfig": {
+    "baseUrl": "http://localhost",
+    "port": ":4000",
+    "plantEndpoint": "/plants",
+    "roomEndpoint": "/room",
+    "typesEndpoint": "/planttype"
+  }
+}

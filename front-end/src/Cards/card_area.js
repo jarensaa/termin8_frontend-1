@@ -3,58 +3,88 @@
  */
 import React from 'react';
 import PlantCard from './plant_card';
+import {Preloader} from 'react-materialize';
 
+const PreloaderStyle = {
+    position: 'fixed',
+    left: '50%',
+    top: '50%'
+};
 
-const styles = {
-    area: {
-        padding: "10px 10px 0px",
+class CardArea extends React.Component {
+
+    getRoom(plantRoom,rooms){
+        for(let i = 0; i < rooms.length; i++){
+            if(rooms[i].id === plantRoom)
+                return rooms[i];
+        }
     }
-}
 
-class CardArea extends React.Component{
+    getType(plantType,types){
+        for(let i = 0; i < types.length;i++){
+            if(types[i].id === plantType){
+                return types[i];
+            }
+        }
+    }
 
     render() {
+        if (this.props.data.length === 0 || this.props.rooms.length === 0 || this.props.types.length === 0) {
+
+            return (
+                <div style={PreloaderStyle}>
+                    <Preloader size="big" flashing/>
+                </div>
+            )
+        }
+
         let plants = [];
 
-        for(let i = 0; i < this.props.data.length; i++){
-            const plant = this.props.data[i]
+        for (let i = 0; i < this.props.data.length; i++) {
+            const plant = this.props.data[i];
+
+            const room = this.getRoom(plant.room,this.props.rooms);
+            const type = this.getType(plant.plant_type.id,this.props.types);
+
+
             let plantColor = "green";
 
             //TODO: Remove when watering logic is implemented
-            let number = Math.floor(Math.random() * 10 + 1);
-            if(number<2){
+            if (plant.id % 3 === 0) {
                 plantColor = "yellow";
-            } else if (number < 4){
+            } else if (plant.id % 5 === 0) {
                 plantColor = "red";
-            } else {
-                plantColor = "green";
             }
 
             const plantProps = {
                 color: plantColor,
-                room: plant.room.id,
+                room: room,
+                type: type,
                 key: plant.id,
                 id: plant.id,
                 name: plant.name,
-                roomName: plant.room.name,
                 handleConfigureEvent: this.props.handleConfigureEvent,
                 handleWaterEvent: this.props.handleWaterEvent,
-            }
+            };
 
-            if(this.props.roomFilter === -1) {
+            if (this.props.roomFilter === -1 && this.props.typeFilter === -1) {
                 plants.push(<PlantCard {...plantProps}/>);
             } else {
-                if (plant.room.id === this.props.roomFilter)
+                if (plant.room === this.props.roomFilter)
+                    plants.push(<PlantCard {...plantProps}/>);
+                else if(plant.plant_type.id === this.props.typeFilter)
                     plants.push(<PlantCard {...plantProps}/>);
             }
         }
 
 
         return (
-            <div style={styles.area}>
+            <div style={this.props.styles}>
                 {plants}
             </div>
+
         )
+
     }
 
 

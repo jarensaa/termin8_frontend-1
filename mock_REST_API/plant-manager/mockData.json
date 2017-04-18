@@ -1,0 +1,122 @@
+{
+  "plants": [
+    {
+      "id": 1,
+      "name": "Eierløs",
+      "room": 3,
+      "sensor_data": {
+        "moisture": 1000,
+        "temp": 9000
+      },
+      "watering_history": {
+        "moisture": 23,
+        "temp": 31
+      },
+      "automatic_water": false,
+      "plant_type": {
+        "name": "test",
+        "id": 8
+      }
+    },
+    {
+      "id": 2,
+      "name": "Plante2",
+      "room": 2,
+      "sensor_data": {
+        "moisture": 1000,
+        "temp": 9000
+      },
+      "watering_history": {
+        "moisture": 23,
+        "temp": 31
+      },
+      "automatic_water": true,
+      "plant_type": {
+        "name": "Solsikke",
+        "min_temp": "20",
+        "max_temp": "60",
+        "max_moisture": "30",
+        "min_moisture": "20",
+        "id": 6
+      }
+    },
+    {
+      "id": 3,
+      "name": "Jens sin plante",
+      "room": 2,
+      "sensor_data": {
+        "moisture": 1000,
+        "temp": 9000
+      },
+      "watering_history": {
+        "moisture": 23,
+        "temp": 31
+      },
+      "automatic_water": false,
+      "plant_type": {
+        "name": "Solsikke",
+        "min_temp": "20",
+        "max_temp": "60",
+        "max_moisture": "30",
+        "min_moisture": "20",
+        "id": 6
+      }
+    },
+    {
+      "name": "Plante 4",
+      "room": 2,
+      "plant_type": {
+        "name": "Kaktus",
+        "min_temp": "10",
+        "max_temp": "100",
+        "max_moisture": "10",
+        "min_moisture": "5",
+        "id": 7
+      },
+      "automatic_water": true,
+      "id": 4
+    },
+    {
+      "name": "Plante 5",
+      "room": 2,
+      "plant_type": {
+        "name": "Solsikke",
+        "min_temp": "20",
+        "max_temp": "60",
+        "max_moisture": "30",
+        "min_moisture": "20",
+        "id": 6
+      },
+      "automatic_water": false,
+      "id": 5
+    }
+  ],
+  "room": [
+    {
+      "name": "Kjellerstue",
+      "id": 2
+    },
+    {
+      "name": "Stue",
+      "id": 3
+    }
+  ],
+  "planttype": [
+    {
+      "name": "Solsikke",
+      "min_temp": "20",
+      "max_temp": "60",
+      "max_moisture": "30",
+      "min_moisture": "20",
+      "id": 6
+    },
+    {
+      "name": "Kaktus",
+      "min_temp": "10",
+      "max_temp": "100",
+      "max_moisture": "10",
+      "min_moisture": "5",
+      "id": 7
+    }
+  ]
+}
