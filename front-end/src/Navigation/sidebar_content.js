@@ -152,7 +152,7 @@ class SidebarContent extends React.Component {
         return (
             <div style={style}>
                 <div>
-                    <img src={Logo} style={styles.image}/>
+                    <img src={Logo} style={styles.image} alt=""/>
                     <a onClick={this.turnOffFilter} href="#" style={homeStyle}>Home</a>
                     <div style={styles.divider}/>
                     {roomContent}
