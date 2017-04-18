@@ -44,7 +44,40 @@ const style = {
             bottom: '20px',
             right: '25px',
             width: '150px',
-            zIndex:1,
+            zIndex: 1,
+        }
+    },
+
+    grayConfigureButtonStyle: {
+        waves: 'light',
+        className: 'grey lighten-2',
+        style: {
+            position: 'absolute',
+            bottom: '20px',
+            width: '150px',
+            zIndex: 1,
+        }
+    },
+
+    grayWaterButtonStyle: {
+        waves: 'light',
+        className: 'grey lighten-2',
+        style: {
+            position: 'absolute',
+            bottom: '20px',
+            right: '25px',
+            width: '150px',
+            zIndex: 1,
+        }
+    },
+
+    grayCardStyle: {
+        className: 'grey lighten-3',
+        textClassName: 'gray-text',
+        title: 'Unconfigured plant',
+        style: {
+            width: "380px",
+            height: "235px",
         }
     }
 
@@ -60,33 +93,63 @@ const PlantCard = (props) => {
         props.handleWaterEvent(props);
     }
 
-    if (props.color === "yellow") {
-        style.cardStyle.className = 'amber lighten-3';
-        style.configureButtonStyle.className = 'amber lighten-2';
-        style.waterButtonStyle.className = 'amber lighten-2';
-
-    } else if (props.color === "red"){
-        style.cardStyle.className = 'red lighten-3';
-        style.waterButtonStyle.className = 'red lighten-2';
-        style.configureButtonStyle.className = 'red lighten-2';
-    } else {
-        style.cardStyle.className = 'green lighten-3';
-        style.waterButtonStyle.className = 'green lighten-2';
-        style.configureButtonStyle.className = 'green lighten-2';
+    if (props.room === undefined || props.type === undefined  || props.name === undefined) {
+        return (
+            <div style={style.content}>
+                <Card {...style.grayCardStyle}>
+                    <div>This plant needs configuring.</div>
+                    <div style={style.divider}/>
+                    <Button {...style.grayConfigureButtonStyle} onClick={handleConfigureClick}>Configure</Button>
+                    <Button {...style.grayWaterButtonStyle} onClick={handleWaterClick}>Water</Button>
+                </Card>
+            </div>
+        )
     }
 
-    style.cardStyle.title = props.name;
+    else {
+
+        if (props.color === "yellow") {
+            style.cardStyle.className = 'amber lighten-3';
+            style.configureButtonStyle.className = 'amber lighten-2';
+            style.waterButtonStyle.className = 'amber lighten-2';
+
+        } else if (props.color === "red") {
+            style.cardStyle.className = 'red lighten-3';
+            style.waterButtonStyle.className = 'red lighten-2';
+            style.configureButtonStyle.className = 'red lighten-2';
+        } else {
+            style.cardStyle.className = 'green lighten-3';
+            style.waterButtonStyle.className = 'green lighten-2';
+            style.configureButtonStyle.className = 'green lighten-2';
+        }
+
+        style.cardStyle.title = props.name;
+    }
 
     return (
         <div style={style.content}>
             <Card {...style.cardStyle}>
-                This plant is located in {props.room.name}
+                <div>This plant is located in {props.room.name}</div>
+                <div>This plant is of type {props.type.name}</div>
                 <div style={style.divider}/>
                 <Button {...style.configureButtonStyle} onClick={handleConfigureClick}>Configure</Button>
                 <Button {...style.waterButtonStyle} onClick={handleWaterClick}>Water</Button>
             </Card>
         </div>
     )
+
 };
 
 export default PlantCard;
+
+/*
+
+
+asdas
+
+asd
+as
+das
+das
+d
+ */
