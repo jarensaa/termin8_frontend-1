@@ -406,7 +406,7 @@ let App = React.createClass({
     editRoomData(props){
         console.log("PATCH:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/");
         console.log(props);
-        var request = require('superagent').agent;
+        var request = require('superagent');
         const self = this;
         request
             .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/")
