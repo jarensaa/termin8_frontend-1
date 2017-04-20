@@ -409,6 +409,7 @@ let App = React.createClass({
         const self = this;
         request
             .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/")
+            .withCredentials()
             .send(props)
             .end(function () {
                 self.getPlantData();
