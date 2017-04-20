@@ -170,11 +170,13 @@ let App = React.createClass({
             automatic_water: returnProps.autoWater,
         }
 
+        console.log("PATCH:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint + PATCH_Props.id + "/");
+
         //PATCH data to the server over the REST API.
         var request = require('superagent');
         const self = this;
         request
-            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint + "/" + PATCH_Props.id)
+            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint + PATCH_Props.id + "/")
             .send(PATCH_Props)
             .end(function () {
                 self.getPlantData();
@@ -262,7 +264,8 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint)
             .end(function (err, res) {
-                console.log("Response:" + res);
+                console.log("Response:");
+                console.log(res);
                 if(res !== undefined) {
                     self.setState({
                         plantData: res.body
@@ -320,7 +323,7 @@ let App = React.createClass({
             };
 
             console.log("POST: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint);
-            console.log("DATA:" + roomData);
+            console.log(roomData);
 
             //POST data to the server over the REST API.
             var request = require('superagent');
@@ -340,7 +343,7 @@ let App = React.createClass({
         if(props.name !== undefined) {
 
             console.log("POST: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint);
-            console.log("Data" + props);
+            console.log(props);
 
             //POST data to the server over the REST API.
             var request = require('superagent');
@@ -367,7 +370,7 @@ let App = React.createClass({
         if(POST_Props.name !== undefined) {
             //POST data to the server over the REST API.
             console.log("POST:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint);
-            console.log("DATA" + POST_Props);
+            console.log(POST_Props);
 
             var request = require('superagent');
             const self = this;
@@ -384,10 +387,13 @@ let App = React.createClass({
 
     editTypeData(props){
         //PATCH data to the server over the REST API.
+        console.log("PATCH: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + props.id + "/");
+        console.log(props);
+
         var request = require('superagent');
         const self = this;
         request
-            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + props.id)
+            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + props.id + "/")
             .send(props)
             .end(function () {
                 self.getPlantData();
@@ -397,11 +403,12 @@ let App = React.createClass({
     },
 
     editRoomData(props){
+        console.log("PATCH:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/");
         console.log(props);
         var request = require('superagent');
         const self = this;
         request
-            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id)
+            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/")
             .send(props)
             .end(function () {
                 self.getPlantData();
