@@ -256,13 +256,13 @@ let App = React.createClass({
     },
 
     getPlantData(){
+        console.log("GET: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint);
         var request = require('superagent');
         const self = this;
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint)
             .end(function (err, res) {
-                console.log(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint);
-                console.log("Asked server for plant-data. Response:" + res);
+                console.log("Response:" + res);
                 if(res !== undefined) {
                     self.setState({
                         plantData: res.body
@@ -272,11 +272,13 @@ let App = React.createClass({
     },
 
     getRoomData(){
+        console.log("GET: "+ configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint);
         var request = require('superagent');
         const self = this;
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint)
             .end(function (err, res) {
+                console.log("Response:" + res);
                 if(res !== undefined) {
                     self.setState({
                         roomData: res.body,
@@ -288,12 +290,13 @@ let App = React.createClass({
     },
 
     getTypeData(){
+        console.log("GET: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint);
         var request = require('superagent');
         const self = this;
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint)
             .end(function (err, res) {
-
+                console.log("Response:" + res);
                 if(res !== undefined) {
                     self.setState({
                         typeData: res.body,
@@ -316,6 +319,8 @@ let App = React.createClass({
                 name: roomName
             };
 
+            console.log("POST: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint);
+            console.log("DATA:" + roomData);
 
             //POST data to the server over the REST API.
             var request = require('superagent');
@@ -333,6 +338,9 @@ let App = React.createClass({
 
     addTypeData(props){
         if(props.name !== undefined) {
+
+            console.log("POST: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint);
+            console.log("Data" + props);
 
             //POST data to the server over the REST API.
             var request = require('superagent');
@@ -358,6 +366,9 @@ let App = React.createClass({
 
         if(POST_Props.name !== undefined) {
             //POST data to the server over the REST API.
+            console.log("POST:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint);
+            console.log("DATA" + POST_Props);
+
             var request = require('superagent');
             const self = this;
             request
@@ -376,7 +387,7 @@ let App = React.createClass({
         var request = require('superagent');
         const self = this;
         request
-            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + "/" + props.id)
+            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + props.id)
             .send(props)
             .end(function () {
                 self.getPlantData();
@@ -390,7 +401,7 @@ let App = React.createClass({
         var request = require('superagent');
         const self = this;
         request
-            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + "/" + props.id)
+            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id)
             .send(props)
             .end(function () {
                 self.getPlantData();
