@@ -261,6 +261,7 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint)
             .end(function (err, res) {
+                console.log(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint);
                 console.log("Asked server for plant-data. Response:" + res);
                 if(res !== undefined) {
                     self.setState({
