@@ -46,6 +46,15 @@ const styles = {
             width: '224px'
         }
     },
+
+    editButtonStyle: {
+        className: 'amber lighten-3',
+        waves: 'light',
+        style: {
+            margin: '8px 16px 16px 16px',
+            width: '224px'
+        }
+    }
 };
 
 class SidebarContent extends React.Component {
@@ -54,6 +63,7 @@ class SidebarContent extends React.Component {
         super(props);
         this.turnOffFilter = this.turnOffFilter.bind(this);
         this.deleteSelected = this.deleteSelected.bind(this);
+        this.editSelected = this.editSelected.bind(this);
     }
 
     turnOffFilter() {
@@ -66,6 +76,14 @@ class SidebarContent extends React.Component {
             this.props.deleteSelectedRoom(this.props.activeRoomButton);
         } else if (this.props.activeTypeButton !== -1) {
             this.props.deleteSelectedType(this.props.activeTypeButton);
+        }
+    }
+
+    editSelected() {
+        if (this.props.activeRoomButton !== -1) {
+            this.props.editSelectedRoom(this.props.activeRoomButton);
+        } else if (this.props.activeTypeButton !== -1) {
+            this.props.editSelectedType(this.props.activeTypeButton);
         }
     }
 
@@ -157,6 +175,10 @@ class SidebarContent extends React.Component {
                     <div style={styles.divider}/>
                     {typeContent}
                     <div style={styles.divider}/>
+                    <Button
+                        {...styles.editButtonStyle}
+                        onClick={this.editSelected}
+                    >Edit</Button>
                     <Button
                         {...styles.deleteButtonStyle}
                         onClick={this.deleteSelected}
