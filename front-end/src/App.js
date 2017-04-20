@@ -482,7 +482,7 @@ let App = React.createClass({
         var request = require('superagent');
         const self = this;
         request
-            .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + "/" + TypeID)
+            .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + TypeID + "/")
             .end(function () {
                 self.getTypeData();
                 self.getPlantData();
@@ -497,7 +497,7 @@ let App = React.createClass({
         var request = require('superagent');
         const self = this;
         request
-            .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + "/" + RoomID)
+            .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + RoomID + "/")
             .end(function () {
                 self.getRoomData();
                 self.getPlantData();
