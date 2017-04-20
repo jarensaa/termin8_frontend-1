@@ -7,6 +7,8 @@ import CardArea from './Cards/card_area';
 import RoomCard from './Cards/room_add_card';
 import TypeAddCard from './Cards/add_plant_type_card';
 import PlantAddCard from './Cards/add_plant';
+import TypeEditCard from './Cards/edit_plant_type_card';
+import RoomEditCard from './Cards/room_edit_card';
 import Overlay from './StyleComponents/overlay'
 import configData from './config.json';
 import PlantConfigCard from './Cards/plant_configuration_card';
@@ -109,6 +111,32 @@ let App = React.createClass({
                     />
                 )
             }
+
+            else if(this.state.renderRoomEditCard){
+                cardAreaContent.push(
+                    <RoomEditCard
+                        key="3"
+                        handleCancelButton={this.handleCancelButton}
+                        handleConfirmButton={this.editRoomData}
+                        roomEditId={this.state.roomEditId}
+                        rooms={this.state.roomData}
+                    />
+
+                )
+            }
+
+            else if(this.state.renderTypeEditCard){
+                cardAreaContent.push(
+                    <TypeEditCard
+                        key="3"
+                        handleCancelButton={this.handleCancelButton}
+                        handleConfirmButton={this.editTypeData}
+                        typeEditId={this.state.typeEditId}
+                        types={this.state.typeData}
+                    />
+
+                )
+            }
         }
 
         return cardAreaContent;
@@ -121,9 +149,14 @@ let App = React.createClass({
             renderTypeAddCard: false,
             renderRoomAddCard: false,
             renderPlantAddCard: false,
+            renderTypeEditCard: false,
+            renderRoomEditCard: false,
             plantConfig: undefined,
+            roomEditId: undefined,
+            typeEditId: undefined,
         })
     },
+
 
 
     handleConfigConfirmButton(returnProps){
@@ -191,10 +224,12 @@ let App = React.createClass({
      */
     checkOtherProcedures(){
         return(
-                this.state.renderConfigCard ||
+                this.state.renderConfigCard   ||
                 this.state.renderPlantAddCard ||
-                this.state.renderTypeAddCard ||
-                this.state.renderRoomAddCard
+                this.state.renderTypeAddCard  ||
+                this.state.renderRoomAddCard  ||
+                this.state.renderRoomEditCard ||
+                this.state.renderTypeEditCard
         )
     },
 
@@ -209,9 +244,13 @@ let App = React.createClass({
             typeFilter: -1,
             renderConfigCard: false,
             renderTypeAddCard: false,
+            renderTypeEditCard: false,
             renderPlantAddCard: false,
             renderRoomAddCard: false,
+            renderRoomEditCard: false,
             plantConfig: undefined,
+            roomEditId: undefined,
+            typeEditId: undefined,
         };
     },
 
@@ -323,6 +362,34 @@ let App = React.createClass({
         this.handleCancelButton();
     },
 
+    editTypeData(props){
+        //PATCH data to the server over the REST API.
+        var request = require('superagent');
+        const self = this;
+        request
+            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + "/" + props.id)
+            .send(props)
+            .end(function () {
+                self.getPlantData();
+                self.getTypeData();
+            });
+        this.handleCancelButton();
+    },
+
+    editRoomData(props){
+        console.log(props);
+        var request = require('superagent');
+        const self = this;
+        request
+            .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + "/" + props.id)
+            .send(props)
+            .end(function () {
+                self.getPlantData();
+                self.getRoomData();
+            });
+        this.handleCancelButton();
+    },
+
     /*
     Called after the component is initalized, but right before it's rendered.
      */
@@ -381,7 +448,6 @@ let App = React.createClass({
         this.setState({
             typeFilter: filterOnID,
             roomFilter: -1
-
         });
     },
 
@@ -415,6 +481,20 @@ let App = React.createClass({
             });
     },
 
+    editSelectedType(TypeID){
+        this.setState({
+            renderTypeEditCard: true,
+            typeEditId: TypeID,
+        });
+    },
+
+    editSelectedRoom(RoomID){
+        this.setState({
+            renderRoomEditCard: true,
+            roomEditId: RoomID,
+        })
+    },
+
 
 
     render: function () {
@@ -436,7 +516,9 @@ let App = React.createClass({
             roomData: this.state.roomData,
             typeData: this.state.typeData,
             deleteSelectedRoom: this.deleteSelectedRoom,
-            deleteSelectedType: this.deleteSelectedType
+            deleteSelectedType: this.deleteSelectedType,
+            editSelectedRoom: this.editSelectedRoom,
+            editSelectedType: this.editSelectedType
         };
 
         const sidebarProps = {
