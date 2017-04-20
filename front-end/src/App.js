@@ -395,6 +395,7 @@ let App = React.createClass({
         request
             .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint + props.id + "/")
             .send(props)
+            .withCredentials()
             .end(function () {
                 self.getPlantData();
                 self.getTypeData();
@@ -405,12 +406,12 @@ let App = React.createClass({
     editRoomData(props){
         console.log("PATCH:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/");
         console.log(props);
-        var request = require('superagent');
+        var request = require('superagent').agent;
         const self = this;
         request
-            .agent()
             .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/")
             .send(props)
+            .withCredentials()
             .end(function () {
                 self.getPlantData();
                 self.getRoomData();
