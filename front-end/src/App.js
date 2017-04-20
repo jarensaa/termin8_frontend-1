@@ -261,10 +261,11 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint)
             .end(function (err, res) {
-                self.setState({
-                    plantData: res.body
-                });
-
+                if(res !== undefined) {
+                    self.setState({
+                        plantData: res.body
+                    });
+                }
             })
     },
 
@@ -274,9 +275,11 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint)
             .end(function (err, res) {
-                self.setState({
-                    roomData: res.body,
-                });
+                if(res !== undefined) {
+                    self.setState({
+                        roomData: res.body,
+                    });
+                }
             })
 
 
@@ -288,9 +291,11 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint)
             .end(function (err, res) {
-                self.setState({
-                    typeData: res.body,
-                });
+                if(res !== undefined) {
+                    self.setState({
+                        typeData: res.body,
+                    });
+                }
             })
     },
 
@@ -534,7 +539,6 @@ let App = React.createClass({
             handleNewPlantEvent: this.handleNewPlantEvent,
             handleAddNewTypeEvent: this.handleAddNewTypeEvent
         }
-
 
         return (
             <Sidebar {...sidebarProps}>
