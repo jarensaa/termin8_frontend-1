@@ -408,8 +408,8 @@ let App = React.createClass({
         var request = require('superagent');
         const self = this;
         request
+            .agent()
             .patch(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint + props.id + "/")
-            .withCredentials()
             .send(props)
             .end(function () {
                 self.getPlantData();
