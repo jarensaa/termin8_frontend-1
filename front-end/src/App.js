@@ -9,6 +9,7 @@ import TypeAddCard from './Cards/add_plant_type_card';
 import PlantAddCard from './Cards/add_plant';
 import TypeEditCard from './Cards/edit_plant_type_card';
 import RoomEditCard from './Cards/room_edit_card';
+import FixedActionButton from './floating_button/plant_button';
 import Overlay from './StyleComponents/overlay'
 import configData from './config.json';
 import PlantConfigCard from './Cards/plant_configuration_card';
@@ -528,28 +529,10 @@ let App = React.createClass({
             onSetOpen: this.onSetOpen,
         };
 
-        const addroom = {
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            width: '280px',
-            zIndex: 2
-        }
-
-        const addplant = {
-            position: 'fixed',
-            bottom: '70px',
-            right: '20px',
-            width: '280px',
-            zIndex: 2
-        }
-
-        const addType = {
-            position: 'fixed',
-            bottom: '120px',
-            right: '20px',
-            width: '280px',
-            zIndex: 2
+        const actionButtonProps = {
+            handleAddNewRoomEvent: this.handleAddNewRoomEvent,
+            handleNewPlantEvent: this.handleNewPlantEvent,
+            handleAddNewTypeEvent: this.handleAddNewTypeEvent
         }
 
 
@@ -557,9 +540,7 @@ let App = React.createClass({
             <Sidebar {...sidebarProps}>
                 <MaterialTitlePanel title={contentHeader}>
                     {this.getCardAreaContent()}
-                    <Button style={addroom} onClick={this.handleAddNewRoomEvent}>Prototyping: addroom</Button>
-                    <Button style={addplant} onClick={this.handleNewPlantEvent}>Prototyping: addPlant</Button>
-                    <Button style={addType} onClick={this.handleAddNewTypeEvent}>Prototyping: addType</Button>
+                    <FixedActionButton {...actionButtonProps}/>
                 </MaterialTitlePanel>
             </Sidebar>
         );
