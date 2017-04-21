@@ -40,6 +40,7 @@ let App = React.createClass({
     is the main component of the system.
      */
     getCardAreaContent(){
+        console.log(this.state);
         const cardAreaContent = [];
 
         const cardAreaProps = {
