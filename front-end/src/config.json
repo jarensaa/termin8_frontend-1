@@ -9,6 +9,7 @@
     "port": ":4000",
     "plantEndpoint": "/plant/",
     "roomEndpoint": "/room/",
-    "typesEndpoint": "/planttype/"
+    "typesEndpoint": "/planttype/",
+    "waterEndpoint": "/water/"
   }
 }

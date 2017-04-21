@@ -464,8 +464,23 @@ let App = React.createClass({
 
     //Triggered when the "water" button is pressed on a plant-card.
     handleWaterEvent(plantCardProps){
-        console.log("Pressed the water button on plant with id:" + plantCardProps.id);
-        //Send a POST to the server, then re-render the area.
+        console.log("POST:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.waterEndpoint);
+
+        const request_content = {
+            "plant": plantCardProps.id,
+        };
+
+        console.log(request_content);
+
+        const request = require('superagent');
+
+        request
+            .post(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.waterEndpoint)
+            .send(request_content)
+            .withCredentials()
+            .end();
+
+        this.handleCancelButton();
     },
 
     //Triggered when a sidebar button is pressed. ID to filter on is thrown from the sidebar.
