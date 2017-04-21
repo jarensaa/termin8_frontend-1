@@ -2,7 +2,7 @@
  * Created by Jens-Andreas on 06-Apr-17.
  */
 import React from 'react';
-import {Card, Button, Breadcrumb, MenuItem, Icon} from 'react-materialize';
+import {Card, Button, Icon} from 'react-materialize';
 
 const style = {
 

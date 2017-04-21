@@ -7,8 +7,8 @@
   "serverConfig": {
     "baseUrl": "http://localhost",
     "port": ":4000",
-    "plantEndpoint": "/plants",
-    "roomEndpoint": "/room",
-    "typesEndpoint": "/planttype"
+    "plantEndpoint": "/plant/",
+    "roomEndpoint": "/room/",
+    "typesEndpoint": "/planttype/"
   }
 }

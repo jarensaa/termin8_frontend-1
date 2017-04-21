@@ -40,7 +40,6 @@ let App = React.createClass({
     is the main component of the system.
      */
     getCardAreaContent(){
-        console.log(this.state);
         const cardAreaContent = [];
 
         const cardAreaProps = {
@@ -59,7 +58,7 @@ let App = React.createClass({
         };
 
 
-        cardAreaContent.push(<CardArea {...cardAreaProps}/>)
+        cardAreaContent.push(<CardArea {...cardAreaProps}/>);
 
         //Check if something other than cardarea got focus:
         if(this.checkOtherProcedures()){
@@ -167,11 +166,12 @@ let App = React.createClass({
             id: returnProps.plantId,
             name: returnProps.plantName,
             room: returnProps.plantRoom,
-            plant_type: returnProps.plantType.id,
+            plant_type: returnProps.plantType,
             automatic_water: returnProps.autoWater,
         }
 
         console.log("PATCH:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint + PATCH_Props.id + "/");
+        console.log(PATCH_Props);
 
         //PATCH data to the server over the REST API.
         var request = require('superagent');
@@ -191,7 +191,7 @@ let App = React.createClass({
         if(!this.checkOtherProcedures()) {
             this.setState({
                 renderConfigCard: true,
-                plantConfig: this.state.plantData[plantCardProps.id - 1],
+                plantConfig: this.getPlantByID(plantCardProps.id),
             })
         }
     },
@@ -525,6 +525,15 @@ let App = React.createClass({
             renderRoomEditCard: true,
             roomEditId: RoomID,
         })
+    },
+
+    getPlantByID(id){
+        for(let i = 0; i < this.state.plantData.length; i++){
+            if(this.state.plantData[i].id === id)
+                return this.state.plantData[i];
+        }
+
+        return undefined;
     },
 
 
