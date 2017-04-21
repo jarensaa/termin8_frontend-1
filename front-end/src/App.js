@@ -264,7 +264,7 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint)
             .end(function (err, res) {
-                console.log("Response:");
+                console.log("RESPONSE");
                 console.log(res);
                 if(res !== undefined) {
                     self.setState({
@@ -281,7 +281,8 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.roomEndpoint)
             .end(function (err, res) {
-                console.log("Response:" + res);
+                console.log("RESPONSE:");
+                console.log(res);
                 if(res !== undefined) {
                     self.setState({
                         roomData: res.body,
@@ -299,7 +300,8 @@ let App = React.createClass({
         request
             .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.typesEndpoint)
             .end(function (err, res) {
-                console.log("Response:" + res);
+                console.log("RESPONSE:");
+                console.log(res);
                 if(res !== undefined) {
                     self.setState({
                         typeData: res.body,
