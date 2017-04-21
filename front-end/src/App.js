@@ -167,7 +167,7 @@ let App = React.createClass({
             id: returnProps.plantId,
             name: returnProps.plantName,
             room: returnProps.plantRoom,
-            plant_type: returnProps.plantType,
+            plant_type: returnProps.plantType.id,
             automatic_water: returnProps.autoWater,
         }
 
@@ -366,7 +366,7 @@ let App = React.createClass({
         const POST_Props={
             name: props.plantName,
             room: props.plantRoom,
-            plant_type: props.plantType,
+            plant_type: props.plantType.id,
             automatic_water: props.autoWater,
         };
 
