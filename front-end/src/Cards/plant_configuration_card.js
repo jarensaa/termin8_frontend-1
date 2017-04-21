@@ -72,7 +72,6 @@ class PlantConfigCard extends React.Component {
     constructor(props){
         super(props);
 
-        console.log(props);
         this.state = {
             plantId: props.plantProps.id,
             plantName: props.plantProps.name,
@@ -100,9 +99,10 @@ class PlantConfigCard extends React.Component {
     }
 
     checkIfTypeExist(){
-
+        console.log(this.state.plantType);
+        console.log(this.props.typeData);
         for(let i = 0; i < this.props.typeData.length; i++){
-            if(this.state.plantType.id === this.props.typeData[i].id)
+            if(this.state.plantType === this.props.typeData[i].id)
                 return true;
         }
         return false;
@@ -229,7 +229,7 @@ class PlantConfigCard extends React.Component {
     getTypes(){
         const types = [];
         for(let i = 0; i < this.props.typeData.length; i++){
-            if(this.props.typeData[i].id !== this.state.plantType.id) {
+            if(this.props.typeData[i].id !== this.state.plantType) {
                 types.push(
                     <NavItem
                         key={i}
@@ -245,7 +245,7 @@ class PlantConfigCard extends React.Component {
 
     handleTypeDropdown(selectedType){
         this.setState({
-            plantType: selectedType,
+            plantType: selectedType.id,
         })
     }
 

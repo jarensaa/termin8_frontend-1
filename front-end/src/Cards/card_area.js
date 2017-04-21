@@ -13,16 +13,16 @@ const PreloaderStyle = {
 
 class CardArea extends React.Component {
 
-    getRoom(plantRoom,rooms){
+    getRoom(plantRoomID,rooms){
         for(let i = 0; i < rooms.length; i++){
-            if(rooms[i].id === plantRoom)
+            if(rooms[i].id === plantRoomID)
                 return rooms[i];
         }
     }
 
-    getType(plantType,types){
+    getType(plantTypeID,types){
         for(let i = 0; i < types.length;i++){
-            if(types[i].id === plantType){
+            if(types[i].id === plantTypeID){
                 return types[i];
             }
         }
@@ -38,13 +38,14 @@ class CardArea extends React.Component {
             )
         }
 
+
         let plants = [];
 
         for (let i = 0; i < this.props.data.length; i++) {
             const plant = this.props.data[i];
 
             const room = this.getRoom(plant.room,this.props.rooms);
-            const type = this.getType(plant.plant_type.id,this.props.types);
+            const type = this.getType(plant.plant_type,this.props.types);
 
 
             let plantColor = "green";
