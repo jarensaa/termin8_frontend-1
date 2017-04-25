@@ -1,7 +1,9 @@
 {
   "plantConfig": {
-    "redTreshhold": "80",
-    "yellowTreshhold": "65"
+    "moistureRedLimit": 0.1,
+    "moistureYellowLimit": 0.2,
+    "tempRedLimit": 0.1,
+    "tempYellowLimit": 0.2
   },
 
   "serverConfig": {

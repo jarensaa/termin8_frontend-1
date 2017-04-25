@@ -2,20 +2,23 @@
   "plant": [
     {
       "id": 3,
-      "name": "Test",
+      "name": "Einars plante",
       "room": 3,
-      "sensor_data": {},
+      "sensor_data": {
+        "moisture": 600,
+        "temp": 10
+      },
       "watering_history": {
         "moisture": 600,
         "temp": 10
       },
-      "automatic_water": false,
+      "automatic_water": true,
       "plant_type": 4
     },
     {
       "id": 4,
       "name": "Test2",
-      "room": 1,
+      "room": 3,
       "sensor_data": {
         "moisture": 112,
         "temp": 10
@@ -25,7 +28,7 @@
         "temp": 10
       },
       "automatic_water": true,
-      "plant_type": 4
+      "plant_type": 3
     },
     {
       "name": "asdasd",
@@ -42,10 +45,11 @@
       "plant_type": 3
     },
     {
-      "name": "asdasd",
-      "room": -1,
+      "name": "new plant",
+      "room": 3,
       "automatic_water": false,
-      "id": 8
+      "id": 8,
+      "plant_type": 3
     }
   ],
   "room": [
@@ -64,8 +68,8 @@
       "name": "Orkidén",
       "max_temp": 40,
       "min_temp": 0,
-      "min_moisture": 1,
-      "max_moisture": 30
+      "min_moisture": "115",
+      "max_moisture": "150"
     },
     {
       "id": 4,
@@ -147,6 +151,14 @@
     {
       "plant": 3,
       "id": 1
+    },
+    {
+      "plant": 3,
+      "id": 2
+    },
+    {
+      "plant": 4,
+      "id": 3
     }
   ]
 }

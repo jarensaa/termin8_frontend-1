@@ -99,8 +99,6 @@ class PlantConfigCard extends React.Component {
     }
 
     checkIfTypeExist(){
-        console.log(this.state.plantType);
-        console.log(this.props.typeData);
         for(let i = 0; i < this.props.typeData.length; i++){
             if(this.state.plantType === this.props.typeData[i].id)
                 return true;

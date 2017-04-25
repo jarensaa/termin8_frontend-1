@@ -13,7 +13,6 @@ import FixedActionButton from './floating_button/plant_button';
 import Overlay from './StyleComponents/overlay'
 import configData from './config.json';
 import PlantConfigCard from './Cards/plant_configuration_card';
-import {Button} from 'react-materialize';
 
 
 
@@ -191,7 +190,7 @@ let App = React.createClass({
         if(!this.checkOtherProcedures()) {
             this.setState({
                 renderConfigCard: true,
-                plantConfig: this.getPlantByID(plantCardProps.id),
+                plantConfig: this.getPlantByID(plantCardProps.plant.id),
             })
         }
     },
@@ -467,7 +466,7 @@ let App = React.createClass({
         console.log("POST:" + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.waterEndpoint);
 
         const request_content = {
-            "plant": plantCardProps.id,
+            "plant": plantCardProps.plant.id,
         };
 
         console.log(request_content);
