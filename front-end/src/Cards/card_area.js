@@ -46,14 +46,13 @@ class CardArea extends React.Component {
             const room = this.getRoom(plant.room,this.props.rooms);
             const type = this.getType(plant.plant_type,this.props.types);
 
-            //TODO: Remove when watering logic is implemented
-
             const plantProps = {
                 room: room,
                 type: type,
                 plant: plant,
                 handleConfigureEvent: this.props.handleConfigureEvent,
                 handleWaterEvent: this.props.handleWaterEvent,
+                getPlantData: this.props.getPlantData,
             };
 
             if (this.props.roomFilter === -1 && this.props.typeFilter === -1) {
