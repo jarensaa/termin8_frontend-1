@@ -41,12 +41,12 @@ class CardArea extends React.Component {
 
         let plants = [];
 
+        console.log(this.props);
+
         for (let i = 0; i < this.props.data.length; i++) {
             const plant = this.props.data[i];
-
             const room = this.getRoom(plant.room,this.props.rooms);
             const type = this.getType(plant.plant_type,this.props.types);
-
 
             let plantColor = "green";
 
@@ -68,15 +68,23 @@ class CardArea extends React.Component {
                 handleWaterEvent: this.props.handleWaterEvent,
             };
 
+            console.log("Roomfilter: " + this.props.roomFilter);
+            console.log("typeFilter " +  this.props.typeFilter);
+            console.log(plant);
+
+
+
+
             if (this.props.roomFilter === -1 && this.props.typeFilter === -1) {
                 plants.push(<PlantCard {...plantProps}/>);
             } else {
                 if (plant.room === this.props.roomFilter)
                     plants.push(<PlantCard {...plantProps}/>);
-                else if(plant.plant_type.id === this.props.typeFilter)
+                else if(plant.plant_type === this.props.typeFilter)
                     plants.push(<PlantCard {...plantProps}/>);
             }
         }
+
 
 
         return (
