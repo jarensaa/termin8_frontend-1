@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {Card, Button, Icon} from 'react-materialize';
+import configData from '../config.json';
 
 const style = {
 
@@ -126,6 +127,16 @@ const style = {
 
 const PlantCard = (props) => {
 
+
+    const OK_STATUS = 0;
+
+    const YELLOW_STATUS = 1;
+    const RED_STATUS = 2;
+
+    const IS_HIGH = 1;
+    const IS_LOW = 2;
+
+
     function handleConfigureClick() {
         props.handleConfigureEvent(props);
     }
@@ -140,7 +151,7 @@ const PlantCard = (props) => {
         )
     }
 
-    if (props.room === undefined || props.type === undefined || props.name === undefined) {
+    if (props.room === undefined || props.type === undefined || props.plant.name === undefined) {
         return (
             <div style={style.content}>
                 <Card {...style.grayCardStyle}>
@@ -155,12 +166,78 @@ const PlantCard = (props) => {
 
     else {
 
-        if (props.color === "yellow") {
+        //Logic to determine the plant status and set the color of the plant
+
+        let plantStatus = {
+            color: OK_STATUS,
+            tempDirection: OK_STATUS,
+            moistureDirection: OK_STATUS,
+        };
+
+
+        if(props.plant.sensor_data !== undefined){
+
+            /**
+             The following section is the locic to determin the color of the card based on moisture.
+             Used props: Config.json, type reference levels, plant current props.
+             */
+            let redMoistureTreshhold = (props.type.max_moisture - props.type.min_moisture) * Number(configData.plantConfig.moistureRedLimit);
+            let yellowMoistureTreshhold = (props.type.max_moisture - props.type.min_moisture) * configData.plantConfig.moistureYellowLimit;
+
+            if(Number(props.plant.sensor_data.moisture) > (Number(props.type.max_moisture) - Number(redMoistureTreshhold))){
+                plantStatus.color = RED_STATUS;
+                plantStatus.moistureDirection = IS_HIGH;
+            }
+
+            else if(props.plant.sensor_data.moisture < (Number(props.type.min_moisture) + Number(redMoistureTreshhold))){
+                plantStatus.color = RED_STATUS;
+                plantStatus.moistureDirection = IS_LOW;
+            }
+            else if(props.plant.sensor_data.moisture > (Number(props.type.max_moisture) - Number(yellowMoistureTreshhold))){
+                plantStatus.color = YELLOW_STATUS;
+                plantStatus.moistureDirection = IS_HIGH;
+            }
+            else if(props.plant.sensor_data.moisture < (Number(props.type.min_moisture) + Number(yellowMoistureTreshhold))){
+                plantStatus.color = YELLOW_STATUS;
+                plantStatus.moistureDirection = IS_LOW;
+            }
+
+            /**
+             * Determine the card color, based on plant temprature
+             */
+            let redTempTreshhold = (props.type.max_temp - props.type.min_temp) * configData.plantConfig.tempRedLimit;
+            let yellowTempTreshhold = (props.type.max_temp - props.type.min_temp) * configData.plantConfig.tempYellowLimit;
+
+            if(Number(props.plant.sensor_data.temp) > (Number(props.type.max_temp) - Number(redTempTreshhold))){
+                plantStatus.color = RED_STATUS;
+                plantStatus.tempDirection = IS_HIGH;
+            }
+
+            else if(props.plant.sensor_data.temp < (Number(props.type.min_temp) + Number(redTempTreshhold))){
+                plantStatus.color = RED_STATUS;
+                plantStatus.tempDirection = IS_LOW;
+            }
+            else if(props.plant.sensor_data.temp > (Number(props.type.max_temp) - Number(yellowTempTreshhold))){
+                plantStatus.color = YELLOW_STATUS;
+                plantStatus.tempDirection = IS_HIGH;
+            }
+            else if(props.plant.sensor_data.temp < (Number(props.type.min_temp) + Number(yellowTempTreshhold))){
+                plantStatus.color = YELLOW_STATUS;
+                plantStatus.tempDirection = IS_LOW;
+            }
+
+        }
+
+
+
+
+
+        if (plantStatus.color === YELLOW_STATUS) {
             style.cardStyle.className = 'amber lighten-3';
             style.configureButtonStyle.className = 'amber lighten-2';
             style.waterButtonStyle.className = 'amber lighten-2';
 
-        } else if (props.color === "red") {
+        } else if (plantStatus.color === RED_STATUS) {
             style.cardStyle.className = 'red lighten-3';
             style.waterButtonStyle.className = 'red lighten-2';
             style.configureButtonStyle.className = 'red lighten-2';
@@ -170,7 +247,7 @@ const PlantCard = (props) => {
             style.configureButtonStyle.className = 'green lighten-2';
         }
 
-        style.cardStyle.title = <a {...style.titleProps}>{props.name}</a>;
+        style.cardStyle.title = <a {...style.titleProps}>{props.plant.name}</a>;
         style.internalCardStyle.className = style.cardStyle.className;
     }
 
