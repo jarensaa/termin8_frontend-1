@@ -96,7 +96,6 @@ class SidebarContent extends React.Component {
         const roomContent = [];
         const typeContent = [];
 
-
         //The data property is passed from from the server through a GET in App.js.
         if (this.props.roomData.length > 0) {
 
@@ -156,6 +155,7 @@ class SidebarContent extends React.Component {
                 }
             }
         }
+
 
 
         //Determine if home is active. Set style accordingly.

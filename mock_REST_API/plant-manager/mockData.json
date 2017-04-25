@@ -10,7 +10,7 @@
         "temp": 10
       },
       "automatic_water": false,
-      "plant_type": 3
+      "plant_type": 4
     },
     {
       "id": 4,
@@ -33,6 +33,19 @@
       "plant_type": 3,
       "automatic_water": true,
       "id": 5
+    },
+    {
+      "name": "asdsd",
+      "room": 3,
+      "automatic_water": false,
+      "id": 7,
+      "plant_type": 3
+    },
+    {
+      "name": "asdasd",
+      "room": -1,
+      "automatic_water": false,
+      "id": 8
     }
   ],
   "room": [

@@ -16,6 +16,7 @@ const overlayProps = {
         backgroundColor: 'black',
         opacity: '.4',
         zIndex: 2,
+        overflowY: 'scroll',
     }
 }
 
