@@ -2,7 +2,7 @@
  * Created by Jens-Andreas on 06-Apr-17.
  */
 import React from 'react';
-import {Card, Button, Icon} from 'react-materialize';
+import {Card, Button, Icon, Modal} from 'react-materialize';
 import configData from '../config.json';
 
 const style = {
@@ -123,10 +123,12 @@ const style = {
         }
     }
 
-}
+};
+
+
+
 
 const PlantCard = (props) => {
-
 
     const OK_STATUS = 0;
 
@@ -137,6 +139,13 @@ const PlantCard = (props) => {
     const IS_LOW = 2;
 
 
+
+    let plantStatus = {
+        color: OK_STATUS,
+        tempDirection: OK_STATUS,
+        moistureDirection: OK_STATUS,
+    };
+
     function handleConfigureClick() {
         props.handleConfigureEvent(props);
     }
@@ -145,11 +154,153 @@ const PlantCard = (props) => {
         props.handleWaterEvent(props);
     }
 
-    function renderReveal() {
+    function renderReveal(plantStatus) {
+
+        const textStyle = {
+            style: {
+                fontSize: '18px',
+                padding: '10px 0px 0px 0px',
+            }
+        };
+
+        function getTempWarning(){
+
+            let style = {
+                color: 'green',
+                fontSize: '13px'
+            }
+
+
+            let text = "Temperature is normal";
+
+            if(plantStatus.color === RED_STATUS && plantStatus.tempDirection !== OK_STATUS){
+                style.color = 'red';
+            } else if(plantStatus.color === YELLOW_STATUS && plantStatus.tempDirection !== OK_STATUS){
+                style.color = '#ffa000';
+            }
+
+            if(plantStatus.tempDirection === IS_HIGH){
+                text = "WARNING: Temperature is HIGH"
+            }
+            else if(plantStatus.tempDirection === IS_LOW){
+                text = "WARNING: Temperature is LOW"
+            }
+
+            return <div style={style}>{text}</div>
+
+        }
+
+        function getMoistureWarning() {
+            let style = {
+                color: 'green',
+                fontSize: '13px'
+            }
+
+            let text = "Moisture is normal";
+
+            if(plantStatus.color === RED_STATUS && plantStatus.moistureDirection !== OK_STATUS){
+                style.color = 'red';
+            }
+
+            else if(plantStatus.color === YELLOW_STATUS && plantStatus.moistureDirection !== OK_STATUS){
+                style.color = '#ffa000';
+            }
+
+            if(plantStatus.moistureDirection === IS_HIGH){
+                text = "WARNING: Moisture is HIGH"
+            }
+
+            else if(plantStatus.moistureDirection === IS_LOW){
+                text = "WARNING: Moisture is LOW"
+            }
+
+            return <div style={style}>{text}</div>
+        }
+
+        function cardBackContent(){
+            if(props.plant.sensor_data === undefined){
+                return (
+                    <div>
+                        <div>No tempratures or moisture data to show.</div>
+                    </div>
+                )
+            }
+
+            else if(plantStatus.color >= 0){
+                return (
+                    <div>
+                        <div>
+                            <div {...textStyle}>Plant moisture is {props.plant.sensor_data.moisture}</div>
+                            {getMoistureWarning()}
+                            <div {...textStyle}>Plant temprature is {props.plant.sensor_data.temp} degrees</div>
+                            {getTempWarning()}
+                        </div>
+                    </div>
+                )
+            }
+        }
+
+
+
+        const deleteButtonProps = {
+            onClick: deletePlant,
+            className: 'red lighten-2',
+            style: {
+                position: 'fixed',
+                bottom: '5%',
+                width: '40%'
+            }
+        };
+        
+        const modalButtonStyle = {
+            className: 'green lighten-2',
+            style: {
+                position: 'fixed',
+                bottom: '5%',
+                right: '5%'
+            }
+        };
+
+        let tempTextProps = {
+            style: {
+                color: 'green',
+            }
+        };
+
+        let moistureTextProps = {
+            style: {
+                color: 'red',
+            }
+        }
+
+        console.log(plantStatus.color === OK_STATUS);
+
+
         return (
-            <div>Here is the card back</div>
+            <div>
+                <div>
+                    {cardBackContent()}
+                </div>
+                <Button {...deleteButtonProps}>DELETE</Button>
+                <Modal trigger={
+                    <Button {...modalButtonStyle}>VIEW GRAPH</Button>
+                }>
+                    <h4>Graphs go here</h4>
+                </Modal>
+
+            </div>
         )
     }
+
+    function deletePlant() {
+        var request = require('superagent');
+        request
+            .del(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.plantEndpoint + props.plant.id + "/")
+            .end(function () {
+                props.getPlantData();
+            });
+    }
+
 
     if (props.room === undefined || props.type === undefined || props.plant.name === undefined) {
         return (
@@ -167,12 +318,6 @@ const PlantCard = (props) => {
     else {
 
         //Logic to determine the plant status and set the color of the plant
-
-        let plantStatus = {
-            color: OK_STATUS,
-            tempDirection: OK_STATUS,
-            moistureDirection: OK_STATUS,
-        };
 
 
         if(props.plant.sensor_data !== undefined){
@@ -228,10 +373,6 @@ const PlantCard = (props) => {
 
         }
 
-
-
-
-
         if (plantStatus.color === YELLOW_STATUS) {
             style.cardStyle.className = 'amber lighten-3';
             style.configureButtonStyle.className = 'amber lighten-2';
@@ -255,7 +396,7 @@ const PlantCard = (props) => {
         <div style={style.content}>
             <Card
                 {...style.cardStyle}
-                reveal={renderReveal()}
+                reveal={renderReveal(plantStatus)}
             >
                 <Card {...style.internalCardStyle}>
                     <div {...style.internalCardFields}>

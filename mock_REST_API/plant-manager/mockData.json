@@ -5,12 +5,12 @@
       "name": "Einars plante",
       "room": 3,
       "sensor_data": {
-        "moisture": 600,
-        "temp": 10
+        "moisture": 400,
+        "temp": 20
       },
       "watering_history": {
-        "moisture": 600,
-        "temp": 10
+        "moisture": 400,
+        "temp": 20
       },
       "automatic_water": true,
       "plant_type": 4
@@ -20,11 +20,11 @@
       "name": "Test2",
       "room": 3,
       "sensor_data": {
-        "moisture": 112,
+        "moisture": 512,
         "temp": 10
       },
       "watering_history": {
-        "moisture": 112,
+        "moisture": 512,
         "temp": 10
       },
       "automatic_water": true,
@@ -35,21 +35,30 @@
       "room": 3,
       "plant_type": 3,
       "automatic_water": true,
-      "id": 5
+      "id": 5,
+      "sensor_data": {
+        "moisture": 512,
+        "temp": 10
+      },
+      "watering_history": {
+        "moisture": 512,
+        "temp": 10
+      }
     },
     {
-      "name": "asdsd",
-      "room": 3,
-      "automatic_water": false,
-      "id": 7,
-      "plant_type": 3
-    },
-    {
-      "name": "new plant",
-      "room": 3,
-      "automatic_water": false,
-      "id": 8,
-      "plant_type": 3
+      "name": "Sarmilan sin kaktus",
+      "room": 1,
+      "plant_type": 4,
+      "automatic_water": true,
+      "id": 6,
+      "sensor_data": {
+        "moisture": 512,
+        "temp": 10
+      },
+      "watering_history": {
+        "moisture": 512,
+        "temp": 10
+      }
     }
   ],
   "room": [
@@ -67,17 +76,17 @@
       "id": 3,
       "name": "Orkidén",
       "max_temp": 40,
-      "min_temp": 0,
-      "min_moisture": "115",
-      "max_moisture": "150"
+      "min_temp": "1",
+      "min_moisture": "400",
+      "max_moisture": "600"
     },
     {
       "id": 4,
       "name": "Kaktus",
-      "max_temp": 25,
-      "min_temp": 80,
-      "min_moisture": 70,
-      "max_moisture": 5
+      "max_temp": "50",
+      "min_temp": "5",
+      "min_moisture": "350",
+      "max_moisture": "450"
     }
   ],
   "wateringhistory": [
@@ -159,6 +168,18 @@
     {
       "plant": 4,
       "id": 3
+    },
+    {
+      "plant": 3,
+      "id": 4
+    },
+    {
+      "plant": 3,
+      "id": 5
+    },
+    {
+      "plant": 3,
+      "id": 6
     }
   ]
 }

@@ -45,6 +45,7 @@ let App = React.createClass({
             key: '1',
             handleConfigureEvent: this.handleConfigureEvent,
             handleWaterEvent: this.handleWaterEvent,
+            getPlantData: this.getPlantData,
             roomFilter: this.state.roomFilter,
             typeFilter: this.state.typeFilter,
             data: this.state.plantData,
