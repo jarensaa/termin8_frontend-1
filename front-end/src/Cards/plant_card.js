@@ -4,6 +4,7 @@
 import React from 'react';
 import {Card, Button, Icon, Modal} from 'react-materialize';
 import configData from '../config.json';
+import GraphArea from './graphArea';
 
 const style = {
 
@@ -285,12 +286,12 @@ const PlantCard = (props) => {
                 <Modal trigger={
                     <Button {...modalButtonStyle}>VIEW GRAPH</Button>
                 }>
-                    <h4>Graphs go here</h4>
+                    <GraphArea/>
                 </Modal>
-
             </div>
         )
     }
+
 
     function deletePlant() {
         var request = require('superagent');
