@@ -184,6 +184,7 @@ const PlantCard = (props) => {
                 <Modal trigger={
                     <Button {...modalButtonStyle}>VIEW GRAPH</Button>
                     }>
+
                         <GraphArea {...GraphAreaProps}/>
                 </Modal>
             );
