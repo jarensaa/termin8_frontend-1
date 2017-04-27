@@ -3,7 +3,6 @@
  */
 import React from 'react';
 import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
-import configData from '../config.json';
 
 const data = [
     {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
@@ -31,58 +30,24 @@ class GraphArea extends React.Component {
 
     }
 
-    getWateringDataWithID(data, id){
-        let returnData = [];
-
-        return data
-    }
-
-    getSensorDataWithID(data, id){
-        let returnData = [];
-
-
-        return data
-    }
-
-    getWateringHistory(){
-        console.log("GET: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.wateringHistoryEndpoint);
-        var request = require('superagent');
-        const self = this;
-        request
-            .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.wateringHistoryEndpoint)
-            .end(function (err, res) {
-                console.log("RESPONSE:");
-                console.log(res);
-                if(res !== undefined) {
-                    self.setState({
-                        waterData: self.getWateringDataWithID(data, this.props.plant.id)
-                    });
-                }
-            })
-    }
-
-    getSensorHistory(){
-
-    }
-
     render(){
-        if(this.props.renderGraph) {
-            console.log("Render graph");
-        }
-
         return (
-            <LineChart width={600} height={300} data={data}
-                       margin={{top: 5, right: 30, left: 20, bottom: 5}}>
-                <XAxis dataKey="name"/>
-                <YAxis/>
-                <CartesianGrid strokeDasharray="3 3"/>
-                <Tooltip/>
-                <Legend />
-                <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
-                <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
-            </LineChart>
+            <div>
+                <h1> Graphs </h1>
+                <LineChart width={600} height={300} data={data}
+                           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+                    <XAxis dataKey="name"/>
+                    <YAxis/>
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <Tooltip/>
+                    <Legend />
+                    <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                </LineChart>
+            </div>
         );
     }
 }
+
 
 export default GraphArea;

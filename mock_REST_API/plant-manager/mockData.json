@@ -36,14 +36,8 @@
       "plant_type": 3,
       "automatic_water": true,
       "id": 5,
-      "sensor_data": {
-        "moisture": 512,
-        "temp": 10
-      },
-      "watering_history": {
-        "moisture": 512,
-        "temp": 10
-      }
+      "sensor_data": {},
+      "watering_history": {}
     },
     {
       "name": "Sarmilan sin kaktus",
@@ -51,14 +45,8 @@
       "plant_type": 4,
       "automatic_water": true,
       "id": 6,
-      "sensor_data": {
-        "moisture": 512,
-        "temp": 10
-      },
-      "watering_history": {
-        "moisture": 512,
-        "temp": 10
-      }
+      "sensor_data": {},
+      "watering_history": {}
     }
   ],
   "room": [
@@ -78,7 +66,7 @@
       "max_temp": 40,
       "min_temp": "1",
       "min_moisture": "400",
-      "max_moisture": "600"
+      "max_moisture": "530"
     },
     {
       "id": 4,
@@ -86,7 +74,7 @@
       "max_temp": "50",
       "min_temp": "5",
       "min_moisture": "350",
-      "max_moisture": "450"
+      "max_moisture": "400"
     }
   ],
   "wateringhistory": [

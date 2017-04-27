@@ -219,7 +219,7 @@ const PlantCard = (props) => {
         }
 
         function cardBackContent(){
-            if(props.plant.sensor_data === undefined){
+            if(props.plant.sensor_data.moisture === undefined && props.plant.sensor_data.temp === undefined){
                 return (
                     <div>
                         <div>No tempratures or moisture data to show.</div>
@@ -262,20 +262,10 @@ const PlantCard = (props) => {
             }
         };
 
-        let tempTextProps = {
-            style: {
-                color: 'green',
-            }
-        };
-
-        let moistureTextProps = {
-            style: {
-                color: 'red',
-            }
+        let GraphAreaProps = {
+            waterData: props.waterData,
+            sensorData: props.sensorData
         }
-
-        console.log(plantStatus.color === OK_STATUS);
-
 
         return (
             <div>
@@ -286,7 +276,7 @@ const PlantCard = (props) => {
                 <Modal trigger={
                     <Button {...modalButtonStyle}>VIEW GRAPH</Button>
                 }>
-                    <GraphArea/>
+                    <GraphArea {...GraphAreaProps}/>
                 </Modal>
             </div>
         )
@@ -320,8 +310,7 @@ const PlantCard = (props) => {
 
         //Logic to determine the plant status and set the color of the plant
 
-
-        if(props.plant.sensor_data !== undefined){
+        if(props.plant.sensor_data.moisture !== undefined && props.plant.sensor_data.temp !== undefined){
 
             /**
              The following section is the locic to determin the color of the card based on moisture.
@@ -389,7 +378,7 @@ const PlantCard = (props) => {
             style.configureButtonStyle.className = 'green lighten-2';
         }
 
-        style.cardStyle.title = <a {...style.titleProps}>{props.plant.name}</a>;
+        style.cardStyle.title = props.plant.name;
         style.internalCardStyle.className = style.cardStyle.className;
     }
 

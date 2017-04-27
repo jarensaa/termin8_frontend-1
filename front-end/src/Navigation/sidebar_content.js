@@ -5,6 +5,7 @@ import React from 'react';
 import Logo from '../Termin8_logo.svg';
 import {Button} from 'react-materialize';
 
+
 const styles = {
     sidebar: {
         width: 256,
