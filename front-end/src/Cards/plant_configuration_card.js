@@ -9,10 +9,10 @@ const style = {
     cardStyle: {
         position: 'absolute',
         zIndex: 3,
-        width: '80%',
-        maxWidth: '380px',
+        width: '95%',
+        maxWidth: '390px',
         height: "615px",
-        left: '20px',
+        left: '10px',
 
     },
 
@@ -24,7 +24,8 @@ const style = {
             position: 'absolute',
             bottom: '10px',
             right: '25px',
-            width: '140px'
+            maxWidth: '140px',
+            width: "38%"
         }
     },
 
@@ -36,7 +37,8 @@ const style = {
             position: 'absolute',
             bottom: '10px',
             left: '25px',
-            width: '140px'
+            maxWidth: '140px',
+            width: "38%",
         }
     },
 
@@ -45,7 +47,8 @@ const style = {
         className: 'green lighten-2',
         style: {
             margin: "0px 10px 40px 10px",
-            width: "310px",
+            maxWidth: "310px",
+            width: "93%",
             backgroundColor: '#81c784'
         }
     },
@@ -55,7 +58,8 @@ const style = {
         className: 'green lighten-2',
         style: {
             margin: "0px 10px 40px 10px",
-            width: "310px",
+            maxWidth: "310px",
+            width: "93%",
             backgroundColor: '#e0e0e0',
         }
     },

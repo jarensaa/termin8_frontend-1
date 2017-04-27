@@ -16,9 +16,8 @@ const overlayProps = {
         backgroundColor: 'black',
         opacity: '.4',
         zIndex: 2,
-        overflowY: 'scroll',
     }
-}
+};
 
 const Overlay = (props) => {
     return <div {...overlayProps} onClick={props.handleCancelButton}>{props.content}</div>

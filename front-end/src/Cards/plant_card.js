@@ -10,8 +10,8 @@ import GraphArea from './graphArea';
 const style = {
 
     content: {
-        padding: '0px 10px 0px 10px',
-        width: '80%',
+        padding: '0px 0px 0px 10px',
+        width: '100%',
         maxWidth: '400px',
         float: 'left',
     },
@@ -36,7 +36,8 @@ const style = {
         style: {
             position: 'absolute',
             bottom: '20px',
-            width: '150px',
+            maxWidth: '150px',
+            width: "40%",
             zIndex: 1,
         }
     },
@@ -48,7 +49,8 @@ const style = {
             position: 'absolute',
             bottom: '20px',
             right: '25px',
-            width: '150px',
+            maxWidth: '150px',
+            width: "40%",
             zIndex: 1,
         }
     },
@@ -59,8 +61,10 @@ const style = {
         style: {
             position: 'absolute',
             bottom: '20px',
-            width: '150px',
+            maxWidth: '150px',
+            width: "40%",
             zIndex: 1,
+
         }
     },
 
@@ -71,7 +75,8 @@ const style = {
             position: 'absolute',
             bottom: '20px',
             right: '25px',
-            width: '150px',
+            maxWidth: '150px',
+            width: "40%",
             zIndex: 1,
         }
     },
@@ -81,7 +86,6 @@ const style = {
         textClassName: 'gray-text',
         title: 'Unconfigured plant',
         style: {
-            width: "380px",
             height: "235px",
         }
 
@@ -89,16 +93,18 @@ const style = {
 
     roomFieldStyle: {
         style: {
-            fontSize: '25px',
+            fontSize: '20px',
             color: '#424242',
             display: 'inline-block',
-            width: '80px'
+            width: '70px',
+            position: 'relative',
+            left: "-10px"
         }
     },
 
     roomTextStyle: {
         style: {
-            fontSize: '20px',
+            fontSize: '18px',
             color: '#424242',
             display: 'inline-block',
             width: '180px'
@@ -207,7 +213,7 @@ const PlantCard = (props) => {
             let style = {
                 color: 'green',
                 fontSize: '13px'
-            }
+            };
 
 
             let text = "Temperature is normal";
@@ -412,15 +418,14 @@ const PlantCard = (props) => {
             >
                 <Card {...style.internalCardStyle}>
                     <div {...style.internalCardFields}>
-                        <a {...style.roomFieldStyle}>Room</a>
-                        <a {...style.iconStyle}><Icon>label</Icon></a>
+                        <a {...style.roomFieldStyle}>ROOM: </a>
                         <a {...style.roomTextStyle}>{props.room.name}</a>
                     </div>
                 </Card>
+
                 <Card {...style.internalCardStyle}>
                     <div {...style.internalCardFields}>
-                        <a {...style.roomFieldStyle}>Type</a>
-                        <a {...style.iconStyle}><Icon>label</Icon></a>
+                        <a {...style.roomFieldStyle}>TYPE: </a>
                         <a {...style.roomTextStyle}>{props.type.name}</a>
                     </div>
                 </Card>
