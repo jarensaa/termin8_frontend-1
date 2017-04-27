@@ -19,8 +19,6 @@ class GraphArea extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            waterData: [],
-            sensorData: [],
             show: {
                 waterhistory: false,
                 temprature: false,
@@ -31,6 +29,9 @@ class GraphArea extends React.Component {
     }
 
     render(){
+
+        console.log(this.props);
+
         return (
             <div>
                 <h1> Graphs </h1>

@@ -94,6 +94,15 @@ const style = {
         }
     },
 
+    roomTextStyle: {
+        style: {
+            fontSize: '20px',
+            color: '#424242',
+            display: 'inline-block',
+            width: '180px'
+        }
+    },
+
     iconStyle: {
         style: {
             padding: '50px 10px 0px 0px',
@@ -153,6 +162,33 @@ const PlantCard = (props) => {
 
     function handleWaterClick() {
         props.handleWaterEvent(props);
+    }
+
+    function getGraphButton() {
+        const modalButtonStyle = {
+            className: 'green lighten-2',
+            style: {
+                position: 'fixed',
+                bottom: '5%',
+                right: '5%'
+            }
+        };
+
+        let GraphAreaProps = {
+            waterData: props.waterData,
+            sensorData: props.sensorData
+        }
+
+        if(props.plant.sensor_data.moisture !== undefined && props.plant.sensor_data.temp !== undefined){
+            return(
+                <Modal trigger={
+                    <Button {...modalButtonStyle}>VIEW GRAPH</Button>
+                    }>
+                        <GraphArea {...GraphAreaProps}/>
+                </Modal>
+            );
+        }
+        return
     }
 
     function renderReveal(plantStatus) {
@@ -253,19 +289,7 @@ const PlantCard = (props) => {
             }
         };
         
-        const modalButtonStyle = {
-            className: 'green lighten-2',
-            style: {
-                position: 'fixed',
-                bottom: '5%',
-                right: '5%'
-            }
-        };
 
-        let GraphAreaProps = {
-            waterData: props.waterData,
-            sensorData: props.sensorData
-        }
 
         return (
             <div>
@@ -273,11 +297,7 @@ const PlantCard = (props) => {
                     {cardBackContent()}
                 </div>
                 <Button {...deleteButtonProps}>DELETE</Button>
-                <Modal trigger={
-                    <Button {...modalButtonStyle}>VIEW GRAPH</Button>
-                }>
-                    <GraphArea {...GraphAreaProps}/>
-                </Modal>
+                {getGraphButton()}
             </div>
         )
     }
@@ -316,23 +336,23 @@ const PlantCard = (props) => {
              The following section is the locic to determin the color of the card based on moisture.
              Used props: Config.json, type reference levels, plant current props.
              */
-            let redMoistureTreshhold = (props.type.max_moisture - props.type.min_moisture) * Number(configData.plantConfig.moistureRedLimit);
-            let yellowMoistureTreshhold = (props.type.max_moisture - props.type.min_moisture) * configData.plantConfig.moistureYellowLimit;
+            let redMoistureTreshhold = (Number(props.type.max_moisture) - Number(props.type.min_moisture)) * Number(configData.plantConfig.moistureRedLimit);
+            let yellowMoistureTreshhold = (Number(props.type.max_moisture) - Number(props.type.min_moisture)) * Number(configData.plantConfig.moistureYellowLimit);
 
             if(Number(props.plant.sensor_data.moisture) > (Number(props.type.max_moisture) - Number(redMoistureTreshhold))){
                 plantStatus.color = RED_STATUS;
                 plantStatus.moistureDirection = IS_HIGH;
             }
 
-            else if(props.plant.sensor_data.moisture < (Number(props.type.min_moisture) + Number(redMoistureTreshhold))){
+            else if(Number(props.plant.sensor_data.moisture) < (Number(props.type.min_moisture) + Number(redMoistureTreshhold))){
                 plantStatus.color = RED_STATUS;
                 plantStatus.moistureDirection = IS_LOW;
             }
-            else if(props.plant.sensor_data.moisture > (Number(props.type.max_moisture) - Number(yellowMoistureTreshhold))){
+            else if(Number(props.plant.sensor_data.moisture) > (Number(props.type.max_moisture) - Number(yellowMoistureTreshhold))){
                 plantStatus.color = YELLOW_STATUS;
                 plantStatus.moistureDirection = IS_HIGH;
             }
-            else if(props.plant.sensor_data.moisture < (Number(props.type.min_moisture) + Number(yellowMoistureTreshhold))){
+            else if(Number(props.plant.sensor_data.moisture) < (Number(props.type.min_moisture) + Number(yellowMoistureTreshhold))){
                 plantStatus.color = YELLOW_STATUS;
                 plantStatus.moistureDirection = IS_LOW;
             }
@@ -348,20 +368,20 @@ const PlantCard = (props) => {
                 plantStatus.tempDirection = IS_HIGH;
             }
 
-            else if(props.plant.sensor_data.temp < (Number(props.type.min_temp) + Number(redTempTreshhold))){
+            else if(Number(props.plant.sensor_data.temp) < (Number(props.type.min_temp) + Number(redTempTreshhold))){
                 plantStatus.color = RED_STATUS;
                 plantStatus.tempDirection = IS_LOW;
             }
-            else if(props.plant.sensor_data.temp > (Number(props.type.max_temp) - Number(yellowTempTreshhold))){
+            else if(Number(props.plant.sensor_data.temp) > (Number(props.type.max_temp) - Number(yellowTempTreshhold))){
                 plantStatus.color = YELLOW_STATUS;
                 plantStatus.tempDirection = IS_HIGH;
             }
-            else if(props.plant.sensor_data.temp < (Number(props.type.min_temp) + Number(yellowTempTreshhold))){
+            else if(Number(props.plant.sensor_data.temp) < (Number(props.type.min_temp) + Number(yellowTempTreshhold))){
                 plantStatus.color = YELLOW_STATUS;
                 plantStatus.tempDirection = IS_LOW;
             }
-
         }
+
 
         if (plantStatus.color === YELLOW_STATUS) {
             style.cardStyle.className = 'amber lighten-3';
@@ -392,14 +412,14 @@ const PlantCard = (props) => {
                     <div {...style.internalCardFields}>
                         <a {...style.roomFieldStyle}>Room</a>
                         <a {...style.iconStyle}><Icon>label</Icon></a>
-                        <a {...style.roomFieldStyle}>{props.room.name}</a>
+                        <a {...style.roomTextStyle}>{props.room.name}</a>
                     </div>
                 </Card>
                 <Card {...style.internalCardStyle}>
                     <div {...style.internalCardFields}>
                         <a {...style.roomFieldStyle}>Type</a>
                         <a {...style.iconStyle}><Icon>label</Icon></a>
-                        <a {...style.roomFieldStyle}>{props.type.name}</a>
+                        <a {...style.roomTextStyle}>{props.type.name}</a>
                     </div>
                 </Card>
 
