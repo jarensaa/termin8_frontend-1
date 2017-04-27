@@ -58,6 +58,7 @@ class CardArea extends React.Component {
             })
     }
 
+
     getSensorHistory(){
         console.log("GET: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.sensorHistoryEndpoint);
         var request = require('superagent');

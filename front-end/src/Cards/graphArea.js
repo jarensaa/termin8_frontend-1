@@ -38,8 +38,8 @@ class GraphArea extends React.Component {
         for(let i = 0; i < this.props.sensorData.length; i++){
             returnData[i] = {
                 time: this.stampToText(this.props.sensorData[i].timestamp),
-                moisture:  this.props.sensorData[i].moisture,
-                Temperature:  this.props.sensorData[i].temp
+                moisture:  Number(this.props.sensorData[i].moisture),
+                Temperature:  Number(this.props.sensorData[i].temp)
             }
         }
 
