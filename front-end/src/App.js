@@ -53,7 +53,7 @@ let App = React.createClass({
             types: this.state.typeData,
 
             styles: {
-                padding: "10px 10px 0px",
+                padding: "10px 10px 0px 0px",
             }
         };
 
@@ -587,7 +587,14 @@ let App = React.createClass({
         const actionButtonProps = {
             handleAddNewRoomEvent: this.handleAddNewRoomEvent,
             handleNewPlantEvent: this.handleNewPlantEvent,
-            handleAddNewTypeEvent: this.handleAddNewTypeEvent
+            handleAddNewTypeEvent: this.handleAddNewTypeEvent,
+            style: {
+                position: "fixed",
+                zIndex: 2,
+                right: "5%",
+                bottom: "5%"
+
+            }
         }
 
         return (

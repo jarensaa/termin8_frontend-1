@@ -4,13 +4,6 @@
 import React from 'react';
 import {Legend, Line,LineChart, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 
-
-const newData = [
-    {time: "10", moisture: 500, Temperature: 20},
-    {time: "20", moisture: 550, Temperature: 26},
-    {time: "30", moisture: 600, Temperature: 30}
-]
-
 class GraphArea extends React.Component {
 
     constructor(props){
@@ -47,8 +40,6 @@ class GraphArea extends React.Component {
     }
 
     render(){
-        console.log(this.getData());
-        console.log(newData);
         return(
             <div>
 
