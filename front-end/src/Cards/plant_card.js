@@ -2,7 +2,7 @@
  * Created by Jens-Andreas on 06-Apr-17.
  */
 import React from 'react';
-import {Card, Button, Icon, Modal} from 'react-materialize';
+import {Card, Button, Modal} from 'react-materialize';
 import configData from '../config.json';
 import GraphArea from './graphArea';
 
@@ -98,7 +98,7 @@ const style = {
             display: 'inline-block',
             width: '70px',
             position: 'relative',
-            left: "-10px"
+            left: "-15px"
         }
     },
 
@@ -107,7 +107,8 @@ const style = {
             fontSize: '18px',
             color: '#424242',
             display: 'inline-block',
-            width: '180px'
+            width: '180px',
+            position: 'relative',
         }
     },
 

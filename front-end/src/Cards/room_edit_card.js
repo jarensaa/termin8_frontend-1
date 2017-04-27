@@ -16,7 +16,6 @@ const style = {
         maxWidth: '390px',
         height: "235px",
         left: '10px',
-
     },
 
     cancelButtonStyle: {
