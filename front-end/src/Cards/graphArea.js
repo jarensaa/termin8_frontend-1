@@ -4,16 +4,12 @@
 import React from 'react';
 import {Legend, Line,LineChart, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 
-const data = [
-    {name: 'Page A', moisture: 4000, Temperature: 2400, amt: 2400},
-    {name: 'Page B', moisture: 3000, Temperature: 1398, amt: 2210},
-    {name: 'Page C', moisture: 2000, Temperature: 9800, amt: 2290},
-    {name: 'Page D', moisture: 2780, Temperature: 3908, amt: 2000},
-    {name: 'Page E', moisture: 1890, Temperature: 4800, amt: 2181},
-    {name: 'Page F', moisture: 2390, Temperature: 3800, amt: 2500},
-    {name: 'Page G', moisture: 3490, Temperature: 4300, amt: 2100},
-];
 
+const newData = [
+    {time: "10", moisture: 500, Temperature: 20},
+    {time: "20", moisture: 550, Temperature: 26},
+    {time: "30", moisture: 600, Temperature: 30}
+]
 
 class GraphArea extends React.Component {
 
@@ -28,33 +24,50 @@ class GraphArea extends React.Component {
         }
     }
 
-    getMoistureData(){
-        let returnData = []
-        return data;
+    stampToText(timeStamp){
+        let splitTime = timeStamp.split("Z");
+        splitTime = splitTime[0].split("T");
+        let month = splitTime[0].split("-")[1];
+        let day = splitTime[0].split("-")[2];
+        return day + "/" + month + ": " + splitTime[1];
     }
 
-    getTempratureData(){
-        return data;
+
+    getData(){
+        let returnData = [];
+        for(let i = 0; i < this.props.sensorData.length; i++){
+            returnData[i] = {
+                time: this.stampToText(this.props.sensorData[i].timestamp),
+                moisture:  this.props.sensorData[i].moisture,
+                Temperature:  this.props.sensorData[i].temp
+            }
+        }
+
+        return returnData;
     }
 
     render(){
-        return (
+        console.log(this.getData());
+        console.log(newData);
+        return(
             <div>
+
                 <h4>Data</h4>
-                <LineChart width={600} height={300} data={data}
-                          margin={{top: 20, right: 30, left: 20, bottom: 5}}>
-                    <XAxis dataKey="name"/>
+                <LineChart width={800} height={300} data={this.getData()}
+                           margin={{top: 20, right: 30, left: 20, bottom: 5}}>
+                    <XAxis dataKey="time"/>
                     <YAxis yAxisId="left" orientation="left" stroke="#8884d8"/>
                     <YAxis yAxisId="right" orientation="right" stroke="#82ca9d"/>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <Tooltip/>
                     <Legend />
-                    <Line yAxisId="left" dataKey="Moisture" fill="#8884d8" />
+                    <Line yAxisId="left" dataKey="moisture" fill="#8884d8"/>
                     <Line yAxisId="right" dataKey="Temperature" fill="#82ca9d" />
                 </LineChart>
             </div>
         );
     }
+
 
 }
 
