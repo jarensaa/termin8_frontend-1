@@ -9,8 +9,8 @@ import configData from '../config.json';
 
 const PreloaderStyle = {
     position: 'fixed',
-    left: '50%',
-    top: '50%'
+    left: '45%',
+    top: '45%'
 };
 
 class CardArea extends React.Component {
@@ -40,6 +40,8 @@ class CardArea extends React.Component {
             }
         }
     }
+
+
 
     getWaterHistory(){
         console.log("GET: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.wateringHistoryEndpoint);

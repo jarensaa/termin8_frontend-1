@@ -12,10 +12,10 @@ const style = {
     cardStyle: {
         position: 'absolute',
         zIndex: 3,
-        width: '80%',
-        maxWidth: '380px',
+        width: '95%',
+        maxWidth: '390px',
         height: "235px",
-        left: '20px',
+        left: '10px',
 
     },
 
@@ -27,7 +27,8 @@ const style = {
             position: 'absolute',
             bottom: '10px',
             right: '25px',
-            width: '140px'
+            maxWidth: '140px',
+            width: "38%",
         }
     },
 
@@ -39,7 +40,8 @@ const style = {
             position: 'absolute',
             bottom: '10px',
             left: '25px',
-            width: '140px'
+            maxWidth: '140px',
+            width: "38%",
         }
     },
 
