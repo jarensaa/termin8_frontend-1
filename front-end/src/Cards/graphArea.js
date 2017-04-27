@@ -17,6 +17,8 @@ class GraphArea extends React.Component {
         }
     }
 
+
+
     stampToText(timeStamp){
         let splitTime = timeStamp.split("Z");
         splitTime = splitTime[0].split("T");
