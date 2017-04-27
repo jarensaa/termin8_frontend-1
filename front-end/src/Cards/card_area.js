@@ -4,6 +4,8 @@
 import React from 'react';
 import PlantCard from './plant_card';
 import {Preloader} from 'react-materialize';
+import configData from '../config.json';
+
 
 const PreloaderStyle = {
     position: 'fixed',
@@ -13,19 +15,90 @@ const PreloaderStyle = {
 
 class CardArea extends React.Component {
 
-    getRoom(plantRoom,rooms){
+    constructor(props){
+        super(props);
+        this.state = {
+            waterData: undefined,
+            sensorData: undefined
+        }
+
+        this.getSensorHistory();
+        this.getWaterHistory();
+    }
+
+    getRoom(plantRoomID,rooms){
         for(let i = 0; i < rooms.length; i++){
-            if(rooms[i].id === plantRoom)
+            if(rooms[i].id === plantRoomID)
                 return rooms[i];
         }
     }
 
-    getType(plantType,types){
+    getType(plantTypeID,types){
         for(let i = 0; i < types.length;i++){
-            if(types[i].id === plantType){
+            if(types[i].id === plantTypeID){
                 return types[i];
             }
         }
+    }
+
+    getWaterHistory(){
+        console.log("GET: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.wateringHistoryEndpoint);
+        var request = require('superagent');
+        const self = this;
+        request
+            .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.wateringHistoryEndpoint)
+            .end(function (err, res) {
+                console.log("RESPONSE:");
+                console.log(res);
+                if(res !== undefined) {
+                    self.setState({
+                        waterData: res.body,
+                    });
+                }
+            })
+    }
+
+
+    getSensorHistory(){
+        console.log("GET: " + configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.sensorHistoryEndpoint);
+        var request = require('superagent');
+        const self = this;
+        request
+            .get(configData.serverConfig.baseUrl + configData.serverConfig.port + configData.serverConfig.sensorHistoryEndpoint)
+            .end(function (err, res) {
+                console.log("RESPONSE:");
+                console.log(res);
+                if(res !== undefined) {
+                    self.setState({
+                        sensorData: res.body,
+                    });
+                }
+            })
+    }
+
+    getWaterDataWithID(Data,ID){
+        let returnData = [];
+        if(Data !== undefined){
+            for(let i = 0; i < Data.length; i++){
+                if(Data[i].plant === ID){
+                    returnData.push(Data[i]);
+                }
+            }
+        }
+
+        return returnData;
+    }
+
+    getSensorDataWithID(Data, ID){
+        let returnData = [];
+        if(Data !== undefined){
+            for(let i = 0; i < Data.length; i++){
+                if(Data[i].plant_id === ID){
+                    returnData.push(Data[i]);
+                }
+            }
+        }
+        return returnData;
     }
 
     render() {
@@ -38,33 +111,24 @@ class CardArea extends React.Component {
             )
         }
 
+
         let plants = [];
 
         for (let i = 0; i < this.props.data.length; i++) {
             const plant = this.props.data[i];
-
             const room = this.getRoom(plant.room,this.props.rooms);
-            const type = this.getType(plant.plant_type.id,this.props.types);
-
-
-            let plantColor = "green";
-
-            //TODO: Remove when watering logic is implemented
-            if (plant.id % 3 === 0) {
-                plantColor = "yellow";
-            } else if (plant.id % 5 === 0) {
-                plantColor = "red";
-            }
+            const type = this.getType(plant.plant_type,this.props.types);
 
             const plantProps = {
-                color: plantColor,
+                key: i,
                 room: room,
                 type: type,
-                key: plant.id,
-                id: plant.id,
-                name: plant.name,
+                plant: plant,
                 handleConfigureEvent: this.props.handleConfigureEvent,
                 handleWaterEvent: this.props.handleWaterEvent,
+                getPlantData: this.props.getPlantData,
+                waterData: this.getWaterDataWithID(this.state.waterData, plant.id),
+                sensorData: this.getSensorDataWithID(this.state.sensorData, plant.id)
             };
 
             if (this.props.roomFilter === -1 && this.props.typeFilter === -1) {
@@ -72,10 +136,11 @@ class CardArea extends React.Component {
             } else {
                 if (plant.room === this.props.roomFilter)
                     plants.push(<PlantCard {...plantProps}/>);
-                else if(plant.plant_type.id === this.props.typeFilter)
+                else if(plant.plant_type === this.props.typeFilter)
                     plants.push(<PlantCard {...plantProps}/>);
             }
         }
+
 
 
         return (

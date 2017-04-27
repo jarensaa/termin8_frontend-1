@@ -51,20 +51,33 @@ const style = {
 };
 
 
-class RoomCard extends React.Component {
+class RoomEditCard extends React.Component {
 
     constructor(props){
         super(props);
         this.handleNameChange = this.handleNameChange.bind(this);
+
+        let room = this.getRoom(props.roomEditId, props.rooms);
+
         this.state = {
-            roomName:undefined
+            id: room.id,
+            name: room.name,
         };
     }
 
+    getRoom(id,rooms){
+        for(let i = 0; i < rooms.length; i++){
+            if(rooms[i].id===id){
+                return rooms[i];
+            }
+        }
+
+        return undefined;
+    }
 
 
     loadForm(){
-        let plantName = {
+        let roomName = {
             s: 12,
             label:"Room name",
             style: {
@@ -72,10 +85,14 @@ class RoomCard extends React.Component {
             }
         }
 
+        if(this.state.name !== undefined){
+            roomName.defaultValue = this.state.name;
+        }
+
 
         return(
             <Row>
-                <Input {...plantName} onChange={this.handleNameChange}/>
+                <Input {...roomName} onChange={this.handleNameChange}/>
             </Row>
         )
     }
@@ -87,7 +104,7 @@ class RoomCard extends React.Component {
      */
     handleNameChange(event){
         this.setState({
-            roomName: event.target.value
+            name: event.target.value
         });
     }
 
@@ -102,11 +119,11 @@ class RoomCard extends React.Component {
 
             <div>
                 <Card style={style.cardStyle}>
-                    <h4>Add new room</h4>
+                    <h4>Edit room</h4>
                     <div style={style.divider}/>
                     {this.loadForm()}
                     <Button {...style.cancelButtonStyle} onClick={this.props.handleCancelButton}>Cancel</Button>
-                    <Button {...style.confirmButtonStyle} onClick={(roomName) => this.props.handleConfirmButton(this.state.roomName)}>Confirm</Button>
+                    <Button {...style.confirmButtonStyle} onClick={(roomName) => this.props.handleConfirmButton(this.state)}>Confirm</Button>
                 </Card>
 
             </div>
@@ -114,4 +131,4 @@ class RoomCard extends React.Component {
     }
 };
 
-export default RoomCard;
+export default RoomEditCard;

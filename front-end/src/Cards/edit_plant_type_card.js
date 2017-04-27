@@ -51,17 +51,20 @@ const style = {
 };
 
 
-class TypeAddCard extends React.Component {
+class TypeEditCard extends React.Component {
 
     constructor(props){
         super(props);
 
+        let type = this.getType(props.typeEditId, props.types);
+
         this.state = {
-            name: undefined,
-            min_temp: undefined,
-            max_temp: undefined,
-            max_moisture: undefined,
-            min_moisture: undefined,
+            id: type.id,
+            name: type.name,
+            min_temp: type.min_temp,
+            max_temp: type.max_temp,
+            max_moisture: type.max_moisture,
+            min_moisture: type.min_moisture,
         }
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -71,17 +74,33 @@ class TypeAddCard extends React.Component {
         this.handleMinTempChange = this.handleMinTempChange.bind(this);
     }
 
+    getType(id,types){
+        for(let i = 0; i < types.length; i++){
+            if(id === types[i].id){
+                return types[i];
+            }
+        }
+
+        return undefined
+    }
+
 
     loadDefaultForm(){
-        const typeName = {
+        let typeName = {
             s: 12,
             label:"Type name",
             style: {
                 margin: "0px 0px 40px 0px",
             }
+        };
+
+        if(this.state.name !== undefined){
+            typeName.defaultValue = this.state.name;
         }
 
-        const minTemp = {
+
+
+        let minTemp = {
             s: 6,
             label:"Min. temperature",
             style: {
@@ -89,28 +108,44 @@ class TypeAddCard extends React.Component {
             }
         }
 
-        const maxTemp = {
+        if(this.state.min_temp !== undefined){
+            minTemp.defaultValue = this.state.min_temp;
+        }
+
+        let maxTemp = {
             s: 6,
             label:"Max. temperature",
             style: {
                 margin: "0px 0px 40px 0px",
             }
+        };
+
+        if(this.state.max_temp !== undefined){
+            maxTemp.defaultValue = this.state.max_temp;
         }
 
-        const minMoisture = {
+        let minMoisture = {
             s: 6,
             label:"Min. moisture",
             style: {
                 margin: "0px 0px 40px 0px",
             }
+        };
+
+        if(this.state.min_moisture !== undefined){
+            minMoisture.defaultValue = this.state.min_moisture;
         }
 
-        const maxMoisture = {
+        let maxMoisture = {
             s: 6,
             label:"Max. moisture",
             style: {
                 margin: "0px 0px 40px 0px",
             }
+        };
+
+        if(this.state.max_moisture !== undefined){
+            maxMoisture.defaultValue = this.state.max_moisture;
         }
 
 
@@ -162,11 +197,16 @@ class TypeAddCard extends React.Component {
         })
     }
 
+
+    /**
+     * Renders the HTML for the configuration card
+     * @returns {HTML}
+     */
     render() {
         return (
             <div>
                 <Card style={style.cardStyle}>
-                    <h3>Add plant type</h3>
+                    <h3>Edit plant type</h3>
                     <div style={style.divider}/>
                     {this.loadDefaultForm()}
                     <Button {...style.cancelButtonStyle} onClick={this.props.handleCancelButton}>Cancel</Button>
@@ -180,4 +220,4 @@ class TypeAddCard extends React.Component {
 
 };
 
-export default TypeAddCard;
+export default TypeEditCard;

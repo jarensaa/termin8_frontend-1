@@ -1,122 +1,177 @@
 {
-  "plants": [
-    {
-      "id": 1,
-      "name": "Eierløs",
-      "room": 3,
-      "sensor_data": {
-        "moisture": 1000,
-        "temp": 9000
-      },
-      "watering_history": {
-        "moisture": 23,
-        "temp": 31
-      },
-      "automatic_water": false,
-      "plant_type": {
-        "name": "test",
-        "id": 8
-      }
-    },
-    {
-      "id": 2,
-      "name": "Plante2",
-      "room": 2,
-      "sensor_data": {
-        "moisture": 1000,
-        "temp": 9000
-      },
-      "watering_history": {
-        "moisture": 23,
-        "temp": 31
-      },
-      "automatic_water": true,
-      "plant_type": {
-        "name": "Solsikke",
-        "min_temp": "20",
-        "max_temp": "60",
-        "max_moisture": "30",
-        "min_moisture": "20",
-        "id": 6
-      }
-    },
+  "plant": [
     {
       "id": 3,
-      "name": "Jens sin plante",
-      "room": 2,
+      "name": "Einars plante",
+      "room": 3,
       "sensor_data": {
-        "moisture": 1000,
-        "temp": 9000
+        "moisture": 400,
+        "temp": 20
       },
       "watering_history": {
-        "moisture": 23,
-        "temp": 31
-      },
-      "automatic_water": false,
-      "plant_type": {
-        "name": "Solsikke",
-        "min_temp": "20",
-        "max_temp": "60",
-        "max_moisture": "30",
-        "min_moisture": "20",
-        "id": 6
-      }
-    },
-    {
-      "name": "Plante 4",
-      "room": 2,
-      "plant_type": {
-        "name": "Kaktus",
-        "min_temp": "10",
-        "max_temp": "100",
-        "max_moisture": "10",
-        "min_moisture": "5",
-        "id": 7
+        "moisture": 400,
+        "temp": 20
       },
       "automatic_water": true,
-      "id": 4
+      "plant_type": 4
     },
     {
-      "name": "Plante 5",
-      "room": 2,
-      "plant_type": {
-        "name": "Solsikke",
-        "min_temp": "20",
-        "max_temp": "60",
-        "max_moisture": "30",
-        "min_moisture": "20",
-        "id": 6
+      "id": 4,
+      "name": "Test2",
+      "room": 3,
+      "sensor_data": {
+        "moisture": 512,
+        "temp": 10
       },
-      "automatic_water": false,
-      "id": 5
+      "watering_history": {
+        "moisture": 512,
+        "temp": 10
+      },
+      "automatic_water": true,
+      "plant_type": 3
+    },
+    {
+      "name": "asdasd",
+      "room": 4,
+      "plant_type": 3,
+      "automatic_water": true,
+      "id": 5,
+      "sensor_data": {},
+      "watering_history": {}
+    },
+    {
+      "name": "Sarmilan sin kaktus",
+      "room": 1,
+      "plant_type": 4,
+      "automatic_water": true,
+      "id": 6,
+      "sensor_data": {},
+      "watering_history": {}
     }
   ],
   "room": [
     {
-      "name": "Kjellerstue",
-      "id": 2
+      "id": 1,
+      "name": "rom10"
     },
     {
-      "name": "Stue",
-      "id": 3
+      "id": 3,
+      "name": "rom3"
+    },
+    {
+      "name": "Kjelleren til Simen",
+      "id": 4
     }
   ],
   "planttype": [
     {
-      "name": "Solsikke",
-      "min_temp": "20",
-      "max_temp": "60",
-      "max_moisture": "30",
-      "min_moisture": "20",
-      "id": 6
+      "id": 3,
+      "name": "Orkidén",
+      "max_temp": 40,
+      "min_temp": "1",
+      "min_moisture": "400",
+      "max_moisture": "530"
     },
     {
+      "id": 4,
       "name": "Kaktus",
-      "min_temp": "10",
-      "max_temp": "100",
-      "max_moisture": "10",
-      "min_moisture": "5",
-      "id": 7
+      "max_temp": "50",
+      "min_temp": "5",
+      "min_moisture": "350",
+      "max_moisture": "400"
+    }
+  ],
+  "wateringhistory": [
+    {
+      "id": 10,
+      "temp": 100,
+      "moisture": 90,
+      "time_watered": "2017-04-20T05:14:34Z",
+      "plant": 3
+    },
+    {
+      "id": 11,
+      "temp": 10,
+      "moisture": 600,
+      "time_watered": "2017-04-20T09:00:39Z",
+      "plant": 3
+    },
+    {
+      "id": 12,
+      "temp": 4,
+      "moisture": 32,
+      "time_watered": "2017-04-08T07:21:23Z",
+      "plant": 4
+    },
+    {
+      "id": 13,
+      "temp": 80,
+      "moisture": 65,
+      "time_watered": "2017-04-04T00:00:00Z",
+      "plant": 4
+    },
+    {
+      "id": 14,
+      "temp": 10,
+      "moisture": 112,
+      "time_watered": "2017-04-21T13:33:57Z",
+      "plant": 4
+    },
+    {
+      "id": 15,
+      "temp": 10,
+      "moisture": 112,
+      "time_watered": "2017-04-21T13:38:51Z",
+      "plant": 4
+    },
+    {
+      "id": 16,
+      "temp": 10,
+      "moisture": 112,
+      "time_watered": "2017-04-21T13:39:17Z",
+      "plant": 4
+    }
+  ],
+  "sensorhistory": [
+    {
+      "id": 5,
+      "temp": 30,
+      "moisture": 20,
+      "timestamp": "2017-04-05T06:21:22Z",
+      "plant_id": 4
+    },
+    {
+      "id": 6,
+      "temp": 10,
+      "moisture": 112,
+      "timestamp": "2017-04-13T09:24:32Z",
+      "plant_id": 4
+    }
+  ],
+  "water": [
+    {
+      "plant": 3,
+      "id": 1
+    },
+    {
+      "plant": 3,
+      "id": 2
+    },
+    {
+      "plant": 4,
+      "id": 3
+    },
+    {
+      "plant": 3,
+      "id": 4
+    },
+    {
+      "plant": 3,
+      "id": 5
+    },
+    {
+      "plant": 3,
+      "id": 6
     }
   ]
 }

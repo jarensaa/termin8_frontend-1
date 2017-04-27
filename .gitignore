@@ -9,8 +9,8 @@ front-end/node_modules
 /coverage
 
 # production
-/build
-
+front-end/build/
+build.rar
 # misc
 .DS_Store
 .env

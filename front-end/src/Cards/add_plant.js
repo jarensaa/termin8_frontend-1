@@ -12,7 +12,8 @@ const style = {
     cardStyle: {
         position: 'absolute',
         zIndex: 3,
-        width: "380px",
+        width: '80%',
+        maxWidth: '380px',
         height: "615px",
         left: '20px',
 
@@ -220,17 +221,12 @@ class PlantAddCard extends React.Component {
     }
 
 
-    /**
-     * Renders the HTML for the configuration card
-     * @returns {XML}
-     */
-
     render() {
         return (
 
             <div>
                 <Card style={style.cardStyle}>
-                    <h3>Configure Plant</h3>
+                    <h3>Add New Plant</h3>
                     <div style={style.divider}/>
                     {this.loadDefaultForm()}
                     <Button {...style.cancelButtonStyle} onClick={this.props.handleCancelButton}>Cancel</Button>
