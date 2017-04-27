@@ -6,11 +6,13 @@ import {Card, Button, Icon, Modal} from 'react-materialize';
 import configData from '../config.json';
 import GraphArea from './graphArea';
 
+
 const style = {
 
     content: {
         padding: '0px 10px 0px 10px',
-        width: '400px',
+        width: '80%',
+        maxWidth: '400px',
         float: 'left',
     },
 
@@ -25,7 +27,6 @@ const style = {
         textClassName: 'gray-text',
         title: 'Card title',
         style: {
-            width: "380px",
             height: "235px",
         }
     },
@@ -83,6 +84,7 @@ const style = {
             width: "380px",
             height: "235px",
         }
+
     },
 
     roomFieldStyle: {
@@ -184,7 +186,6 @@ const PlantCard = (props) => {
                 <Modal trigger={
                     <Button {...modalButtonStyle}>VIEW GRAPH</Button>
                     }>
-
                         <GraphArea {...GraphAreaProps}/>
                 </Modal>
             );

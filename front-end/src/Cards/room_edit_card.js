@@ -12,7 +12,8 @@ const style = {
     cardStyle: {
         position: 'absolute',
         zIndex: 3,
-        width: "380px",
+        width: '80%',
+        maxWidth: '380px',
         height: "235px",
         left: '20px',
 
