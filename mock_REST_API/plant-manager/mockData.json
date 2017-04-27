@@ -32,7 +32,7 @@
     },
     {
       "name": "asdasd",
-      "room": 3,
+      "room": 4,
       "plant_type": 3,
       "automatic_water": true,
       "id": 5,
@@ -57,6 +57,10 @@
     {
       "id": 3,
       "name": "rom3"
+    },
+    {
+      "name": "Kjelleren til Simen",
+      "id": 4
     }
   ],
   "planttype": [
