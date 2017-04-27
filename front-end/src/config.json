@@ -12,6 +12,8 @@
     "plantEndpoint": "/plant/",
     "roomEndpoint": "/room/",
     "typesEndpoint": "/planttype/",
-    "waterEndpoint": "/water/"
+    "waterEndpoint": "/water/",
+    "sensorHistoryEndpoint": "/sensorhistory/",
+    "wateringHistoryEndpoint": "/wateringhistory"
   }
 }

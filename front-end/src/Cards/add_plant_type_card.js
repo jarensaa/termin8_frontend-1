@@ -161,11 +161,6 @@ class TypeAddCard extends React.Component {
         })
     }
 
-
-    /**
-     * Renders the HTML for the configuration card
-     * @returns {HTML}
-     */
     render() {
         return (
             <div>
