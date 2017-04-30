@@ -57,6 +57,7 @@ class GraphArea extends React.Component {
                     <Line yAxisId="left" dataKey="moisture" fill="#8884d8"/>
                     <Line yAxisId="right" dataKey="Temperature" fill="#82ca9d" />
                 </LineChart>
+                <h5>Last watered: 2017-04-07 12:32:33</h5>
             </div>
         );
     }

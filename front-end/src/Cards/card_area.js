@@ -23,7 +23,7 @@ class CardArea extends React.Component {
         }
 
         this.getSensorHistory();
-        this.getWaterHistory();
+        //this.getWaterHistory();
     }
 
     getRoom(plantRoomID,rooms){

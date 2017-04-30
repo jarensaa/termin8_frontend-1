@@ -204,8 +204,8 @@ const PlantCard = (props) => {
 
         const textStyle = {
             style: {
-                fontSize: '18px',
-                padding: '10px 0px 0px 0px',
+                fontSize: '15px',
+                padding: '3px 0px 0px 0px',
             }
         };
 
@@ -263,6 +263,20 @@ const PlantCard = (props) => {
             return <div style={style}>{text}</div>
         }
 
+        function getWaterTime() {
+            if(props.plant.id === 4){
+                return (<div {...textStyle}> Last watered: 2017-04-07 15:54:12</div>)
+            }
+            if(props.plant.id === 5){
+                return (<div {...textStyle}> Last watered: 2017-04-07 12:32:33</div>)
+            }
+            if(props.plant.id === 3){
+                return (<div {...textStyle}> Last watered: 2017-04-06 6:22:15</div>)
+            }
+
+            return
+        }
+
         function cardBackContent(){
             if(props.plant.sensor_data.moisture === undefined && props.plant.sensor_data.temp === undefined){
                 return (
@@ -280,6 +294,7 @@ const PlantCard = (props) => {
                             {getMoistureWarning()}
                             <div {...textStyle}>Plant temprature is {props.plant.sensor_data.temp} degrees</div>
                             {getTempWarning()}
+                            {getWaterTime()}
                         </div>
                     </div>
                 )
