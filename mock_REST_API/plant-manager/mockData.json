@@ -2,8 +2,8 @@
   "plant": [
     {
       "id": 3,
-      "name": "Einars plante",
-      "room": 3,
+      "name": "Kåre Kaktus",
+      "room": 4,
       "sensor_data": {
         "moisture": 400,
         "temp": 20
@@ -12,65 +12,93 @@
         "moisture": 400,
         "temp": 20
       },
-      "automatic_water": true,
+      "automatic_water": false,
       "plant_type": 4
     },
     {
       "id": 4,
-      "name": "Test2",
-      "room": 3,
+      "name": "Natasja",
+      "room": 1,
       "sensor_data": {
-        "moisture": 512,
-        "temp": 10
+        "temp": 22,
+        "moisture": 460
       },
       "watering_history": {
         "moisture": 512,
         "temp": 10
       },
       "automatic_water": true,
-      "plant_type": 3
+      "plant_type": 5
     },
     {
-      "name": "asdasd",
-      "room": 4,
+      "name": "Petter Plante",
+      "room": 5,
       "plant_type": 3,
       "automatic_water": true,
       "id": 5,
-      "sensor_data": {},
-      "watering_history": {}
+      "sensor_data": {
+        "temp": 22,
+        "moisture": 450
+      },
+      "watering_history": {
+        "moisture": 450,
+        "temp": 22
+      }
     },
     {
-      "name": "Sarmilan sin kaktus",
-      "room": 1,
+      "name": "Tommy Tomat",
+      "room": 3,
+      "plant_type": 6,
+      "automatic_water": true,
+      "sensor_data": {},
+      "watering_history": {},
+      "id": 6
+    },
+    {
+      "name": "Kjellerkaktus",
+      "room": 4,
       "plant_type": 4,
       "automatic_water": true,
-      "id": 6,
       "sensor_data": {},
-      "watering_history": {}
+      "watering_history": {},
+      "id": 7
+    },
+    {
+      "name": "Djangostar",
+      "room": 1,
+      "plant_type": 3,
+      "automatic_water": true,
+      "sensor_data": {},
+      "watering_history": {},
+      "id": 8
     }
   ],
   "room": [
     {
       "id": 1,
-      "name": "rom10"
+      "name": "Stue"
     },
     {
       "id": 3,
-      "name": "rom3"
+      "name": "Soverom"
     },
     {
-      "name": "Kjelleren til Simen",
+      "name": "Kjeller",
       "id": 4
+    },
+    {
+      "name": "Kjøkken",
+      "id": 5
     }
   ],
   "planttype": [
     {
       "id": 3,
-      "name": "Orkidén",
-      "max_temp": 40,
-      "min_temp": "1",
+      "name": "Orkidé",
+      "max_temp": "30",
+      "min_temp": "10",
       "min_moisture": "400",
-      "max_moisture": "530"
+      "max_moisture": "460"
     },
     {
       "id": 4,
@@ -79,6 +107,22 @@
       "min_temp": "5",
       "min_moisture": "350",
       "max_moisture": "400"
+    },
+    {
+      "name": "Ficus Benjamina",
+      "min_temp": "5",
+      "max_temp": "30",
+      "max_moisture": "500",
+      "min_moisture": "380",
+      "id": 5
+    },
+    {
+      "name": "Tomat",
+      "min_temp": "5",
+      "max_temp": "30",
+      "max_moisture": "500",
+      "min_moisture": "400",
+      "id": 6
     }
   ],
   "wateringhistory": [
@@ -136,16 +180,65 @@
     {
       "id": 5,
       "temp": 30,
-      "moisture": 20,
+      "moisture": 450,
       "timestamp": "2017-04-05T06:21:22Z",
       "plant_id": 4
     },
     {
       "id": 6,
-      "temp": 10,
-      "moisture": 112,
+      "temp": 28,
+      "moisture": 400,
       "timestamp": "2017-04-13T09:24:32Z",
       "plant_id": 4
+    },
+    {
+      "id": 1,
+      "temp": 20,
+      "moisture": 380,
+      "timestamp": "2017-04-07T12:32:33Z",
+      "plant_id": 4
+    },
+    {
+      "id": 7,
+      "temp": 22,
+      "moisture": 520,
+      "timestamp": "2017-04-07T15:34:20Z",
+      "plant_id": 4
+    },
+    {
+      "id": 8,
+      "temp": 23,
+      "moisture": 500,
+      "timestamp": "2017-04-07T17:23:54Z",
+      "plant_id": 4
+    },
+    {
+      "id": 9,
+      "temp": 23,
+      "moisture": 480,
+      "timestamp": "2017-04-07T20:12:23Z",
+      "plant_id": 4
+    },
+    {
+      "id": 10,
+      "temp": 22,
+      "moisture": 460,
+      "timestamp": "2017-04-07T23:32:33Z",
+      "plant_id": 4
+    },
+    {
+      "id": 2,
+      "temp": 19,
+      "moisture": 500,
+      "timestamp": "2017-04-25T07:20:23Z",
+      "plant_id": 3
+    },
+    {
+      "id": 4,
+      "temp": 40,
+      "moisture": 450,
+      "timestamp": "2017-04-13T09:34:37Z",
+      "plant_id": 3
     }
   ],
   "water": [
@@ -172,6 +265,86 @@
     {
       "plant": 3,
       "id": 6
+    },
+    {
+      "plant": 3,
+      "id": 7
+    },
+    {
+      "plant": 3,
+      "id": 8
+    },
+    {
+      "plant": 3,
+      "id": 9
+    },
+    {
+      "plant": 3,
+      "id": 10
+    },
+    {
+      "plant": 3,
+      "id": 11
+    },
+    {
+      "plant": 3,
+      "id": 12
+    },
+    {
+      "plant": 3,
+      "id": 13
+    },
+    {
+      "plant": 3,
+      "id": 14
+    },
+    {
+      "plant": 3,
+      "id": 15
+    },
+    {
+      "plant": 3,
+      "id": 16
+    },
+    {
+      "plant": 3,
+      "id": 17
+    },
+    {
+      "plant": 3,
+      "id": 18
+    },
+    {
+      "plant": 3,
+      "id": 19
+    },
+    {
+      "plant": 3,
+      "id": 20
+    },
+    {
+      "plant": 3,
+      "id": 21
+    },
+    {
+      "plant": 3,
+      "id": 22
+    },
+    {
+      "plant": 3,
+      "id": 23
+    },
+    {
+      "plant": 3,
+      "id": 24
+    },
+    {
+      "plant": 3,
+      "id": 25
+    },
+    {
+      "plant": 3,
+      "id": 26
     }
   ]
 }
